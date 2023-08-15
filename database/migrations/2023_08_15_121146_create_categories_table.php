@@ -11,18 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('status_id')->constrained('statuses','id');
+            $table->foreignId('admin_id')->constrained('users','id');
+            $table->foreignId('parent_category_id')->nullable()->constrained('categories','id');
             $table->string('name');
-            $table->enum('gender',['Male','Female','Other']);
-            $table->text('address');
-            $table->date('dob');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('categories');
     }
 };
