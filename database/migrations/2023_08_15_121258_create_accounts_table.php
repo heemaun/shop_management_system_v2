@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('status_id')->constrained('statuses','id');
             $table->foreignId('admin_id')->constrained('users','id');
-            $table->foreignId('customer_id')->constrained('users','id');
             $table->string('name');
             $table->integer('balance');
             $table->timestamps();

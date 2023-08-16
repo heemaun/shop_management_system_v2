@@ -2,63 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function Login(Request $request)
     {
-        //
-    }
+        $data = Validator::make($request->all(),[
+            'username' => 'required|exists:users,username',
+            'password' => 'required|min:8|max:20',
+        ]);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        if($data->fails()){
+            return response()->json([
+                'status' => 'errors',
+                'errors' => $data->errors(),
+            ]);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $data = $data->validate();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        try{
+            $user = User::where('username',$data['username'])->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+            if(Hash::check($data['password'],$user->password)){
+                Auth::login($user);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+                return response()->json([
+                    'status'    => 'success',
+                    'url'       => route('home'),
+                ]);
+            }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Incorrect password',
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
+    }
+    
+    public function logout()
     {
-        //
+        Auth::logout();
+        Session::invalidate();
+        Session::regenerateToken();
+        return redirect(route('home'));
     }
 }
