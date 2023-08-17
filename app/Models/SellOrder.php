@@ -9,12 +9,13 @@ class SellOrder extends Model
 {
     use HasFactory;
 
-    protected $table = 'purchase-orders';
+    protected $table = 'sell_orders';
 
     protected $fillable = [
         'status_id',
         'admin_id',
         'sell_id',
+        'product_id',
         'units',
         'price',
         'discount',
@@ -33,5 +34,10 @@ class SellOrder extends Model
     public function sell()
     {
         return $this->belongsTo(Sell::class);
+    }
+    
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

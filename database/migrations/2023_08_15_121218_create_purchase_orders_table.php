@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('status_id')->constrained('statuses','id');
             $table->foreignId('admin_id')->constrained('users','id');
             $table->foreignId('purchase_id')->constrained('purchases','id');
+            $table->foreignId('product_id')->constrained('products','id');
             $table->float('units')->default(0);
             $table->float('price')->default(0);
             $table->float('discount')->default(0);

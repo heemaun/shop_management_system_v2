@@ -9,12 +9,13 @@ class PurchaseOrder extends Model
 {
     use HasFactory;
 
-    protected $table = 'purchase-orders';
+    protected $table = 'purchase_orders';
 
     protected $fillable = [
         'status_id',
         'admin_id',
         'purchase_id',
+        'product_id',
         'units',
         'price',
         'discount',
@@ -31,5 +32,9 @@ class PurchaseOrder extends Model
     public function purchase()
     {
         return $this->belongsTo(Purchase::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

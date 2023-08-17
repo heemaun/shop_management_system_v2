@@ -37,6 +37,9 @@ class Dataseeder extends Seeder
         $status5 = Status::create([
             'name' => 'Inactive',
         ]);
+        $status5 = Status::create([
+            'name' => 'Carted',
+        ]);
 
         $user1 = User::create([
             'status_id' => $status1->id,
@@ -47,6 +50,18 @@ class Dataseeder extends Seeder
             'dob'       => '1993-11-8',
             'email'     => 'heemaun@gmail.com',
             'phone'     => '01751430596',
+            'password'  => Hash::make('11111111'),
+        ]);
+        
+        User::create([
+            'status_id' => $status1->id,
+            'name'      => 'Test User',
+            'username'  => 'testuser',
+            'gender'    => 'Male',
+            'address'   => 'Test Address',
+            'dob'       => '1990-2-22',
+            'email'     => 'test@gmail.com',
+            'phone'     => '01234567891',
             'password'  => Hash::make('11111111'),
         ]);
 

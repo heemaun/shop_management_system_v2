@@ -1,0 +1,26 @@
+.cart table thead th {
+  text-align: center;
+  vertical-align: middle;
+}
+.cart table tbody tr td {
+  text-align: center;
+  vertical-align: middle;
+}
+.cart table tbody tr td button {
+  width: 38px;
+  aspect-ratio: 1;
+}
+.cart table tfoot tr td {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.cart table tfoot tr td span {
+  font-weight: normal;
+}
+.cart table .left {
+  text-align: right;
+}
+.cart table .right {
+  text-align: right;
+}/*# sourceMappingURL=cart.css.map */

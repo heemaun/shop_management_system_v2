@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sells', function (Blueprint $table) {
             $table->id();
             $table->foreignId('status_id')->constrained('statuses','id');
-            $table->foreignId('admin_id')->constrained('users','id');
+            $table->foreignId('admin_id')->nullable()->constrained('users','id');
             $table->foreignId('customer_id')->constrained('users','id');
             $table->float('units')->default(0);
             $table->float('sub_total')->default(0);

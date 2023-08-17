@@ -1,0 +1,50 @@
+.cart{
+    table{
+        thead{
+            th{
+                text-align: center;
+                vertical-align: middle;
+            }
+        }
+
+        tbody{
+            tr{
+                td{
+                    text-align: center;
+                    vertical-align: middle;
+
+                    button{
+                        width: 38px;
+                        aspect-ratio: 1;
+                    }
+                }                
+            }
+        }
+
+        tfoot{
+            tr{
+                td{
+                    text-align: center;
+                    vertical-align: middle;
+                    font-weight: bold;
+
+                    span{
+                        font-weight: normal;
+                    }                    
+                }
+            }
+        }
+
+        .left{
+            text-align: right;
+        }
+
+        .right{
+            text-align: right;
+        }
+    }
+
+    .btn-container{
+
+    }
+}

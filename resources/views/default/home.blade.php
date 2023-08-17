@@ -2,7 +2,8 @@
 @section('content')
 
 <div class="home">
-    <header class="main-header">
+    {{-- {{ print_r($sell->sellOrders) }} --}}
+    {{-- <header class="main-header">
         <a href="{{ route('home') }}" class="logo"><img src="{{ asset('image/logo.png') }}" alt="Logo">SMSV2</a>
 
         <div class="form-group">          
@@ -14,11 +15,11 @@
 
             <div class="result">
                 <ul id="result_ul">
-                    {{-- <li>Item 1</li>
+                    <li>Item 1</li>
                     <li>Item 2</li>
                     <li>Item 3</li>
                     <li>Item 4</li>
-                    <li>Item 5</li> --}}
+                    <li>Item 5</li>
                 </ul>
             </div>
         </div>
@@ -60,7 +61,7 @@
     </aside>
 
 
-    @endif
+    @endif --}}
 
     <section class="products-list">
         <h2>Product List</h2>
@@ -78,7 +79,7 @@
                         <span>{{ 'Price: '.$product->price.' Tk' }}</span>
 
                         <div class="btn-container">
-                            <a href="{{ route('add-to-cart') }}" class="btn btn-success">ADD TO CART</a>
+                            <a href="{{ route('add-to-cart') }}" data-id="{{ $product->id }}" class="btn btn-success add-to-cart">ADD TO CART</a>
 
                             <button type="button" data-id="{{ $product->id }}" class="btn btn-primary" id="product_view_trigger">View Details</button>
                         </div>
@@ -89,10 +90,10 @@
         </div>        
     </section>
 
-    <footer>
+    {{-- <footer>
         <p>All rights reserve by <a href="https://zamanscorp.com">Zamans Corp</a></p>
         <p>&copy 2021 - {{ date('Y') }}</p>
-    </footer>
+    </footer> --}}
 </div>
 
 <div id="login_div" class="login-div">
@@ -121,7 +122,7 @@
     </form>
 </div>
 
-<div id="product_details_div" class="product-details">
+{{-- <div id="product_details_div" class="product-details">
     <article>
         <header>
             <h3 id="product_name">Product Name</h3>
@@ -135,14 +136,81 @@
         </footer>
 
         <div class="btn-container">          
-            <a href="{{ route('add-to-cart') }}" class="btn btn-success">ADD TO CART</a>
+            <a href="{{ route('add-to-cart') }}" data-id="{{ $product->id }}" class="btn btn-success add-to-cart">ADD TO CART</a>
             <button type="button" class="btn btn-secondary" id="product_view_close">Close</button>
         </div>
     </article>
+</div> --}}
+
+<div id="cart_div" class="cart-div">
+    <div class="cart">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <th></th>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Price [Tk]</th>
+            <th>Units</th>
+            <th></th>
+            <th>Sub-Total [Tk]</th>
+            <th>Discount [Tk]</th>
+            <th>Total [Tk]</th>
+        </thead>
+
+        <tbody>
+            @foreach ($sell->sellOrders as $so)
+                <tr>
+                    <td>
+                        <button data-id="{{ $so->id }}" class="btn btn-danger product delete">X</button>         
+                    </td>
+                    <td>{{ $loop->iteration.'.' }}</td>
+                    <td>{{ $so->product->name }}</td>
+                    <td class="right">{{ number_format($so->product->price,2) }}</td>
+                    <td class="right">{{ $so->units }}</td>
+                    <td>
+                        <button data-id="{{ $so->id }}" class="btn btn-success product add">+</button>
+                        <button data-id="{{ $so->id }}" class="btn btn-warning product sub">-</button>
+                    </td>
+                    <td class="right">{{ number_format($so->price,2) }}</td>
+                    <td class="right">{{ number_format($so->discount,2) }}</td>
+                    <td class="right">{{ number_format($so->price - $so->discount,2) }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="7" rowspan="3">
+                    Order Count: <span>{{ count($sell->sellOrders) }}</span>
+                    Unit Count: <span>{{ $sell->units }}</span>
+                </td>
+                <td>Total</td>
+                <td class="right"><span>{{ number_format($sell->sub_total,2) }}</span></td>
+            </tr>
+
+            <tr>
+                <td>Discount</td>
+                <td><input type="number"></td>
+            </tr>
+
+            <tr>
+                <td>Grand Total</td>
+                <td class="right"><span>{{ number_format($sell->sub_total - $sell->discount,2) }}</span></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="btn-container">
+        <button class="btn btn-primary">Confirm</button>
+        <button class="btn btn-secondary">Close</button>
+        <button class="btn btn-danger">Clear All</button>
+    </div>
+</div>
 </div>
 
 @push("CSS")
     <link rel="stylesheet" href="{{ asset('css/default/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/default/cart.css') }}">
 @endpush
 
 @push("JS")

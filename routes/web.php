@@ -33,4 +33,5 @@ Route::get('logout',[LoginController::class,'logout'])->name('logout');
 // home routes
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/add-to-cart',[HomeController::class,'addToCart'])->name('add-to-cart');
+Route::get('/update-cart',[HomeController::class,'updateCart'])->name('update-cart');
 Route::get('/home-product-view',[HomeController::class,'productView'])->name('home-product-view');

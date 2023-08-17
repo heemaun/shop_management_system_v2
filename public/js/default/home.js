@@ -16,14 +16,12 @@ $("#product_view_trigger,#product_view_close").click(function(){
             data: {
                 id: id,
             },
-            beforeSend: function(){
-                console.log(id);
-            },
             success: function(response){
                 console.log(response);
                 $("#product_name").text(response.product.name);
                 $("#product_details").text(response.product.details);
                 $("#product_price").text("Price: "+response.product.price+" Tk");
+                $("#product_details_div .add-to-cart").attr("data-id",response.product.id);
             }
         });
     }
@@ -66,6 +64,60 @@ $("#login_form").submit(function (e) {
             else{
                 window.location = response.url;
             }
+        }
+    });
+});
+
+$(".products,#product_details_div").on("click",".add-to-cart",function(e){
+    e.preventDefault();
+    let id = $(this).attr("data-id");
+
+    $.ajax({
+        url: "/add-to-cart",
+        type: "GET",
+        dataType: "json",
+        data:{
+            id: id,
+        },
+        success: function(response){
+            console.log(response);
+            if(response.status === "error"){
+                toastr.error(response.message);
+            }
+            else if(response.status == "info"){
+                toastr.info(response.message)
+            }
+            else{
+                toastr.success(response.message);
+            }
+        }
+    });
+});
+
+$("#cart_div").on("click",".add,.sub,.delete",function(){
+    let id = $(this).attr("data-id");
+    let sign = 0;
+
+    if($(this).hasClass("add")){
+        sign = 1;
+    }
+
+    else if($(this).hasClass("sub")){
+        sign = 2;
+    }
+
+    $.ajax({
+        url: "/update-cart",
+        type: "GET",
+        data:{
+            id:id,
+            sign:sign,
+        },
+        beforeSend: function(){
+            console.log(id,sign);
+        },
+        success: function(response){
+            console.log(response);
         }
     });
 });
