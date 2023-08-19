@@ -1,26 +1,89 @@
-.cart table thead th {
+.cart-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(191, 191, 191, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -30;
+  opacity: 0;
+  transition: z-index 0.25s ease-in-out, opacity 0.75s ease-in-out 0.25s;
+}
+.cart-div .cart {
+  background: hsl(0, 0%, 75%);
+  padding: 1rem;
+  border: 0.1rem solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+.cart-div .cart .table-container {
+  max-height: 75vh;
+  max-width: 100%;
+  overflow: auto;
+  position: relative;
+}
+.cart-div .cart .table-container table {
+  margin: 0;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+.cart-div .cart .table-container table thead {
+  position: sticky;
+  top: 0;
+}
+.cart-div .cart .table-container table thead th {
   text-align: center;
   vertical-align: middle;
+  white-space: nowrap;
 }
-.cart table tbody tr td {
+.cart-div .cart .table-container table tbody tr td {
   text-align: center;
   vertical-align: middle;
+  white-space: nowrap;
 }
-.cart table tbody tr td button {
+.cart-div .cart .table-container table tbody tr td button {
   width: 38px;
   aspect-ratio: 1;
 }
-.cart table tfoot tr td {
+.cart-div .cart .table-container table tfoot {
+  position: sticky;
+  bottom: 0;
+}
+.cart-div .cart .table-container table tfoot tr td {
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
+  white-space: nowrap;
 }
-.cart table tfoot tr td span {
+.cart-div .cart .table-container table tfoot tr td input {
+  width: 2rem;
+}
+.cart-div .cart .table-container table tfoot tr td span {
   font-weight: normal;
 }
-.cart table .left {
+.cart-div .cart .table-container table .left {
   text-align: right;
 }
-.cart table .right {
+.cart-div .cart .table-container table .right {
   text-align: right;
+}
+.cart-div .cart .btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: white;
+  padding: 0.5rem;
+}
+
+.show {
+  opacity: 1;
+  z-index: 30;
 }/*# sourceMappingURL=cart.css.map */

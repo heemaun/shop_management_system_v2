@@ -13,3 +13,7 @@ toastr.options = {
     "timeOut": 2000,
     "extendedTimeOut": 500
 }
+
+$("#side_bar_toggle").click(function () {
+    $("aside").toggleClass("aside-show");
+});

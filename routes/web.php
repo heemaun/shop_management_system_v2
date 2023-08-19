@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -25,6 +26,7 @@ Route::resource('/sell-orders',SellOrderController::class);
 Route::resource('/settings',SettingController::class);
 Route::resource('/statuses',StatusController::class);
 Route::resource('/users',UserController::class);
+Route::resource('/cart',CartController::class);
 
 //login routes
 Route::post('login',[LoginController::class,'login'])->name('login');
@@ -32,6 +34,6 @@ Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
 // home routes
 Route::get('/',[HomeController::class,'home'])->name('home');
-Route::get('/add-to-cart',[HomeController::class,'addToCart'])->name('add-to-cart');
-Route::get('/update-cart',[HomeController::class,'updateCart'])->name('update-cart');
 Route::get('/home-product-view',[HomeController::class,'productView'])->name('home-product-view');
+Route::get('/home-category-search',[HomeController::class,'searchCategory'])->name('home-category-search');
+Route::get('/home-product-search',[HomeController::class,'searchProduct'])->name('home-product-search');
