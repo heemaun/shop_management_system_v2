@@ -4,8 +4,8 @@ $("#login_trigger,#login_close").click(function(){
 
 $("#login_form").submit(function (e) {
     e.preventDefault();
-    let username = $("#username").val();
-    let password = $("#password").val();
+    let username = $("#login_username").val();
+    let password = $("#login_password").val();
 
     $.ajax({
         url: "/login",

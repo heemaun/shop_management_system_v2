@@ -1,0 +1,36 @@
+.user-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.user-create form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  gap: 0.5rem;
+}
+.user-create form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.user-create form .form-group .form-label {
+  margin: 0;
+}
+.user-create form .form-group textarea {
+  height: 10rem;
+}
+.user-create form .form-group .error {
+  color: red;
+}
+.user-create form .column-2 {
+  grid-column: 1/-1;
+}
+.user-create form .btn-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}/*# sourceMappingURL=create.css.map */

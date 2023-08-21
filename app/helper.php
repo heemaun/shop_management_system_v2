@@ -9,7 +9,15 @@ function getDeletedStatusId()
 
 function getNonDeletedStatusesIds()
 {
-    return Status::where('name','!=','Deleted')->get('id');
+    $statuses = Status::where('name','!=','Deleted')->get('id');
+
+    $statuses_ids = array();
+
+    foreach($statuses as $status){
+        array_push($statuses_ids,$status->id);
+    }
+
+    return $statuses_ids;
 }
 
 function getActiveStatusId()

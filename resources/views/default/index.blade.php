@@ -42,6 +42,8 @@
                 <a href="{{ route('logout') }}" class="login-controls" title="Logout"><img src="{{ asset('image/logout.png') }}" alt=""></a>
     
                 @else
+
+                <a href="{{ route('users.create') }}" title="New User Registration"><img src="{{ asset('image/add_user.png') }}" alt=""></a>
     
                 <span id="login_trigger" class="login-controls" title="Login"><img src="{{ asset('image/login.png') }}" alt=""></span>
     
@@ -49,14 +51,16 @@
             </div>        
         </header>
         
-        @yield("content")
+        <section class="content">
+            @yield("content")
+        </section>
 
         @if (Auth::check())
 
         <aside>
             <nav>
                 <ul>
-                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a href="{{ route('users.create') }}">Users</a></li>
                     <li><a href="{{ route('users.index') }}">Account</a></li>
                     <li><a href="{{ route('users.index') }}">Products</a></li>
                     <li><a href="{{ route('users.index') }}">Purchases</a></li>
@@ -130,15 +134,15 @@
                 <legend>Login</legend>
         
                 <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" class="form-control" placeholder="enter your username" autocomplete="off">
-                    <span class="error" id="username_error"></span>
+                    <label for="login_username" class="form-label">Username</label>
+                    <input type="text" id="login_username" class="form-control" placeholder="enter your username" autocomplete="off">
+                    <span class="error" id="login_username_error"></span>
                 </div>
         
                 <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="enter your password" autocomplete="off">
-                    <span class="error" id="password_error"></span>
+                    <label for="login_password" class="form-label">Password</label>
+                    <input type="password" id="login_password" class="form-control" placeholder="enter your password" autocomplete="off">
+                    <span class="error" id="login_password_error"></span>
                 </div>
         
                 <span>Don't have an account? <a href="{{ route('users.create') }}">Register Here</a></span>

@@ -7,9 +7,13 @@
 }
 
 html body {
-  max-width: 1920px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0rem 0.5rem;
+  min-height: 100vh;
+}
+html body .content {
+  background-color: hsla(0, 0%, 50%, 0.25);
 }
 html body .main-header {
   display: flex;

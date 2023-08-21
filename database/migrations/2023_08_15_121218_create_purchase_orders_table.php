@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('status_id')->constrained('statuses','id');
-            $table->foreignId('admin_id')->constrained('users','id');
-            $table->foreignId('purchase_id')->constrained('purchases','id');
-            $table->foreignId('product_id')->constrained('products','id');
+            $table->foreignId('status_id')->constrained('statuses','id')->onDelete('cascade');
+            $table->foreignId('admin_id')->constrained('users','id')->onDelete('cascade');
+            $table->foreignId('purchase_id')->constrained('purchases','id')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products','id')->onDelete('cascade');
             $table->float('units')->default(0);
             $table->float('price')->default(0);
             $table->float('discount')->default(0);

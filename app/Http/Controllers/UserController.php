@@ -2,66 +2,303 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
+use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        if(strcmp($request->key,'search')){
+            $statuses_ids = '';
+
+            if(strcmp($request->status_id,'All')==0){
+                $statuses_ids = getNonDeletedStatusesIds();
+            }
+
+            else{
+                $statuses_ids = $request->status_id;
+            }
+
+            $users = User::whereIn('status_id',$statuses_ids)
+                            ->where(function($query) use($request){
+                                $query->where('name','LIKE','%'.$request->search.'%')
+                                        ->orWhere('username','LIKE','%'.$request->search.'%')
+                                        ->orWhere('phone','LIKE','%'.$request->search.'%')
+                                        ->orWhere('email','LIKE','%'.$request->search.'%');
+                            })
+                            ->orderBy('name','ASC')
+                            ->orderBy('status_id','ASC')
+                            ->get();
+                        
+            return view('user.serch',compact('users'));
+        }
+
+        $statuses = Status::all();
         
-        return view('user.index',compact('users'));
+        $users = User::where('status_id',getStatusID('Active'))
+                            ->get();
+        
+        return view('user.index',compact('users','statuses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = Validator::make($request->all(),[
+            'name'                  => 'required|min:3|max:20',
+            'username'              => 'required|min:3|max:20|unique:users,username',
+            'gender'                => 'required|in:Male,Female,Other',
+            'address'               => 'required|min:10|max:100',
+            'dob'                   => 'required|date_format:Y-m-d|before_or_equal:'.date('Y-m-d',strtotime(date('Y-m-d') . '-18 years')),
+            'email'                 => 'required|email|unique:users,email',
+            'phone'                 => 'required|numeric|unique:users,phone',
+            'password'              => [
+                                        'required','confirmed','max:20',Password::min(8)
+                                                                                ->letters()
+                                                                                ->mixedCase()
+                                                                                ->numbers()
+                                                                                ->symbols()
+                                                                                ->uncompromised()        
+                                    ],
+            'password_confirmation' => [
+                                        'required','max:20',Password::min(8)
+                                                                                    ->letters()
+                                                                                    ->mixedCase()
+                                                                                    ->numbers()
+                                                                                    ->symbols()
+                                                                                    ->uncompromised()        
+                                    ],
+        ],$message=[
+            'dob.required' => 'The date of birth field is required',
+            'dob.before_or_equal' => 'You have to be atleast 18 years old',
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status'    => 'errors',
+                'message'   => $data->errors(),
+            ]);
+        }
+
+        $data = $data->validate();
+
+        DB::beginTransaction();
+
+        try{
+            $user = User::create([
+                'status_id' => getStatusID('Active'),
+                'name'      => $data['name'],
+                'username'  => $data['username'],
+                'gender'    => $data['gender'],
+                'address'   => $data['address'],
+                'dob'       => $data['dob'],
+                'email'     => $data['email'],
+                'phone'     => $data['phone'],
+                'password'  => Hash::make($data['password']),
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'User created successfully',
+                'route'     => route('users.show',$user),
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(User $user)
     {
-        //
+        return view('user.show',compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(User $user)
     {
-        //
+        $statuses = Status::all();
+
+        return view('user.edit',compact('user','statuses'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $user)
     {
-        //
+        if(strcmp($request->key,'change_password')==0){
+            $data = Validator::make($request->all(),[
+                'old_password'              => [
+                                                'required','confirmed','max:20',Password::min(8)
+                                                                                        ->letters()
+                                                                                        ->mixedCase()
+                                                                                        ->numbers()
+                                                                                        ->symbols()
+                                                                                        ->uncompromised()        
+                                            ],
+                'new_password'              => [
+                                                'required','confirmed','max:20',Password::min(8)
+                                                                                        ->letters()
+                                                                                        ->mixedCase()
+                                                                                        ->numbers()
+                                                                                        ->symbols()
+                                                                                        ->uncompromised()        
+                                            ],
+                'new_password_confirmation' => [
+                                                'same:new_password','required','max:20',Password::min(8)
+                                                                                                ->letters()
+                                                                                                ->mixedCase()
+                                                                                                ->numbers()
+                                                                                                ->symbols()
+                                                                                                ->uncompromised()        
+                                            ],
+            ]);
+        }
+
+        else{
+            $data = Validator::make($request->all(),[
+                'status_id' => 'required|exists:statuses,id,'.getStatusID('Deleted'), 
+                'name'      => 'required|min:3|max:20',
+                'username'  => 'required|min:3|max:20|unique:users,username,'.$user->id,
+                'gender'    => 'required|in:Male,Female,Other',
+                'address'   => 'required|min:10|max:100',
+                'dob'       => 'required|date_format:Y-m-d|before_or_equal:'.date('Y-m-d',strtotime(date('Y-m-d') . '-18 years')),
+                'email'     => 'required|email|unique,users,email,'.$user->id,
+                'phone'     => 'required|numeric|unique:users,phone,'.$user->id,
+            ]);
+        }
+
+        if($data->fails()){
+            return response()->json([
+                'status'    => 'errors',
+                'message'   => $data->errors(),
+            ]);
+        }
+
+        $data = $data->validate();
+
+        DB::beginTransaction();
+
+        try{
+            if(strcmp($request->key,'change_password')==0){
+                if(Hash::check($data['old_password'],$user->password)){
+                    $user->password = Hash::make($data['password']);
+                }
+
+                return response()->json([
+                    'status'    => 'error',
+                    'message'   => 'Password does not match',
+                ]);
+            }
+
+            else{
+                $user->status_id    = $data['status_id'];
+                $user->name         = $data['name'];
+                $user->username     = $data['username'];
+                $user->gender       = $data['gender'];
+                $user->address      = $data['address'];
+                $user->dob          = $data['dob'];
+                $user->email        = $data['email'];
+                $user->phone        = $data['phone'];
+            }            
+
+            $user->save();
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => (strcmp($request->key,'change_password')==0) ? 'Password changed successfully' : 'User updated successfully',
+                'route'     => (strcmp($request->key,'change_password')==0) ? route('home') : route('users.show',$user),
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
+    public function destroy(Request $request,User $user)
     {
-        //
+        $data = Validator::make($request->all(),[
+            'password' => [
+                'required',Password::min(8)
+                                    ->letters()
+                                    ->mixedCase()
+                                    ->numbers()
+                                    ->symbols()
+                                    ->uncompromised(),
+            ]
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status'    => 'error',
+                'message'   => $data->errors(),
+            ]);
+        }
+
+        $data = $data->validate();
+
+        if(!Hash::check($data['password'],Auth::user()->password)){
+            return response()->json([
+                'status'    => 'error',
+                'message'   => 'Incorrect password',
+            ]);
+        }
+
+        else if(Auth::user()->id === $user->id){
+            return response()->json([
+                'status'    => 'error',
+                'message'   => 'You can not delete your own ID',
+            ]);
+        }
+
+        else if(Auth::user()->id === 1){
+            return response()->json([
+                'status'    => 'error',
+                'message'   => 'This user can not be deleted',
+            ]);
+        }
+
+        DB::beginTransaction();
+
+        try{
+            if(strcmp($request->soft_delete,'true')==0){
+                $user->status_id = getStatusID('Deleted');
+
+                $user->save();
+            }
+            
+            else{
+                $user->delete();
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'User deleted successfully',
+                'route'     => route('users.index'),
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 }

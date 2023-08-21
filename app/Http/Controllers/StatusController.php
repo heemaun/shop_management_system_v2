@@ -3,63 +3,170 @@
 namespace App\Http\Controllers;
 
 use App\Models\Status;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password as RulesPassword;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(strcmp($request->key,'search')){
+            $statuses = Status::where('name','LIKE','%'.$request->name.'%')
+                                ->orderBy('name','ASC')
+                                ->orderBy('status_id','ASC')
+                                ->get();
+                        
+            return view('status.serch',compact('statuses'));
+        }
+
+        $statuses = Status::all();
+        
+        return view('status.index',compact('statuses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('status.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = Validator::make($request->all(),[
+            'name'      => 'required|min:3|max:20',
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status'    => 'ererrorsror',
+                'message'   => $data->errors(),
+            ]);
+        }
+
+        $data = $data->validate();
+
+        DB::beginTransaction();
+
+        try{
+            $status = Status::create([
+                'name' => $data['name'],
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Status created successfully',
+                'route'     => route('statuses.show',$status),
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Status $status)
     {
-        //
+        return view('status.show',compact('status'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Status $status)
     {
-        //
+        $statuses = Status::all();
+
+        return view('status.edit',compact('status','statuses'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Status $status)
     {
-        //
+        $data = Validator::make($request->all(),[
+            'name' => 'required|min:3|max:20',
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status'    => 'errors',
+                'message'   => $data->errors(),
+            ]);
+        }
+
+        $data = $data->validate();
+
+        DB::beginTransaction();
+
+        try{
+            $status->name = $data['name'];
+
+            $status->save();
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Status updated successfully',
+                'route'     => route('statuses.show',$status),
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Status $status)
+    public function destroy(Request $request,Status $status)
     {
-        //
+        $data = Validator::make($request->all(),[
+            'password' => [
+                'required',Password::min(8)
+                                    ->letters()
+                                    ->mixedCase()
+                                    ->numbers()
+                                    ->symbols()
+                                    ->uncompromised(),
+            ]
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status'    => 'error',
+                'message'   => $data->errors(),
+            ]);
+        }
+
+        $data = $data->validate();
+
+        if(!Hash::check($data['password'],Auth::user()->password)){
+            return response()->json([
+                'status'    => 'error',
+                'message'   => 'Incorrect password',
+            ]);
+        }
+
+        DB::beginTransaction();
+
+        try{
+            $status->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Status deleted successfully',
+                'route'     => route('statuses.index'),
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 }

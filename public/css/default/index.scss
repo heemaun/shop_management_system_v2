@@ -9,9 +9,14 @@
 
 html{
     body{
-        max-width: 1920px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 0rem .5rem;
+        min-height: 100vh;
+        
+        .content{
+            background-color: hsla(0, 0%, 50%,.25);
+        }
 
         .main-header{
             display: flex;

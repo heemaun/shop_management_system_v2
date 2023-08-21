@@ -69,7 +69,7 @@ class Dataseeder extends Seeder
             $category = Category::create([
                 'status_id'             => rand(1,count(Status::all())),
                 'admin_id'              => rand(1,count(User::all())),
-                'parent_category_id'    => null,
+                // 'parent_category_id'    => null,
                 'name'                  => $faker->colorName(),
             ]);
             

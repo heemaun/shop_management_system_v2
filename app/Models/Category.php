@@ -14,7 +14,7 @@ class Category extends Model
     protected $fillable = [
         'status_id',
         'admin_id',
-        'parent_category',
+        // 'parent_category',
         'name',
     ];
 
@@ -28,15 +28,15 @@ class Category extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function parentCategory()
-    {
-        return $this->belongsTo(Category::class);
-    }
+    // public function parentCategory()
+    // {
+    //     return $this->belongsTo(Category::class);
+    // }
 
-    public function childrenCategory()
-    {
-        return $this->hasMany(Category::class);
-    }
+    // public function childrenCategory()
+    // {
+    //     return $this->hasMany(Category::class);
+    // }
     
     public function products()
     {

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('status_id')->constrained('statuses','id');
-            $table->foreignId('admin_id')->constrained('users','id');
-            $table->foreignId('parent_category_id')->nullable()->constrained('categories','id');
+            $table->foreignId('status_id')->constrained('statuses','id')->onDelete('cascade');
+            $table->foreignId('admin_id')->constrained('users','id')->onDelete('cascade');
+            // $table->foreignId('parent_category_id')->nullable()->constrained('categories','id')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
         });

@@ -14,6 +14,7 @@
   display: grid;
   gap: 1rem;
   background-color: hsl(0, 0%, 90%);
+  padding: 1rem;
 }
 .home .products h2 {
   text-align: center;
@@ -53,11 +54,10 @@
 }
 .home .products .products-list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  padding-bottom: 1rem;
 }
 .home .products .products-list article {
   display: flex;
@@ -70,9 +70,11 @@
   background: hsl(0, 0%, 80%);
   gap: 0.5rem;
   transition: all 0.25s linear 0.1s;
+  min-width: 250px;
+  max-width: 30%;
 }
 .home .products .products-list article section img {
-  width: 250px;
+  width: 100%;
   aspect-ratio: 16/9;
   -o-object-fit: cover;
      object-fit: cover;

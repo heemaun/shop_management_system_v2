@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('status_id')->constrained('statuses','id');
+            $table->foreignId('status_id')->constrained('statuses','id')->onDelete('cascade');
             $table->string('username')->unique();
             $table->string('name');
             $table->enum('gender',['Male','Female','Other']);
