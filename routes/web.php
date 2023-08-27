@@ -12,6 +12,7 @@ use App\Http\Controllers\SellController;
 use App\Http\Controllers\SellOrderController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::resource('/settings',SettingController::class);
 Route::resource('/statuses',StatusController::class);
 Route::resource('/users',UserController::class);
 Route::resource('/cart',CartController::class);
+Route::resource('/transactions',TransactionController::class);
 
 //login routes
 Route::post('login',[LoginController::class,'login'])->name('login');

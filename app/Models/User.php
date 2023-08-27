@@ -49,6 +49,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+    
     public function accounts()
     {
         return $this->hasMany(Account::class);

@@ -76,7 +76,7 @@ function setProductList(product_search,category_search,key)
 }
 
 $("#product_view_trigger,#product_view_close").click(function () {
-    if (!$("#product_details_div").hasClass("show")) {
+    if (!$("#product_details_div").hasClass("product-show")) {
         let id = $(this).attr("data-id");
 
         $.ajax({
@@ -94,5 +94,5 @@ $("#product_view_trigger,#product_view_close").click(function () {
         });
     }
 
-    $("#product_details_div").toggleClass("show");
+    $("#product_details_div").toggleClass("product-show");
 });

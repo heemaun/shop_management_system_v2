@@ -15,15 +15,15 @@
         @foreach ($sell->sellOrders as $so)
             <tr>
                 <td>
-                    <button data-id="{{ $so->id }}" class="btn btn-danger product delete">X</button>         
+                    <button data-id="{{ $so->id }}" class="button shadow click-shadow red delete">X</button>         
                 </td>
                 <td>{{ $loop->iteration.'.' }}</td>
                 <td>{{ $so->product->name }}</td>
                 <td class="right">{{ number_format($so->product->price,2) }}</td>
                 <td class="right">{{ $so->units }}</td>
                 <td>
-                    <button data-id="{{ $so->id }}" class="btn btn-success product add">+</button>
-                    <button data-id="{{ $so->id }}" class="btn btn-warning product sub">-</button>
+                    <button data-id="{{ $so->id }}" class="button shadow click-shadow green add">+</button>
+                    <button data-id="{{ $so->id }}" class="button shadow click-shadow yellow sub">-</button>
                 </td>
                 <td class="right">{{ number_format(($so->price * $so->units),2) }}</td>
                 <td class="right">{{ number_format($so->discount,2) }}</td>
@@ -38,17 +38,17 @@
                 Order Count: <span>{{ count($sell->sellOrders) }}</span>
                 Unit Count: <span>{{ $sell->units }}</span>
             </td>
-            <td>Total</td>
+            <td class="right">Total</td>
             <td class="right"><span>{{ number_format($sell->sub_total,2) }}</span></td>
         </tr>
 
         <tr>
-            <td>Discount</td>
-            <td><input type="number"></td>
+            <td class="right">Discount</td>
+            <td class="right"><input type="number" class="text-field"></td>
         </tr>
 
         <tr>
-            <td>Grand Total</td>
+            <td class="right">Grand Total</td>
             <td class="right"><span>{{ number_format($sell->sub_total - $sell->discount,2) }}</span></td>
         </tr>
     </tfoot>

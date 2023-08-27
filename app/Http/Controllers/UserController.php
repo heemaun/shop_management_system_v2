@@ -6,9 +6,11 @@ use Exception;
 use App\Models\User;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
@@ -16,7 +18,18 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
+        if(!array_key_exists('key',$request->all())){
+            $statuses = Status::all();
+        
+            $users = User::where('status_id',getStatusID('Active'))
+                            ->orderBy('name','ASC')
+                            ->orderBy('status_id','ASC')
+                            ->get();
+            
+            return view('user.index',compact('users','statuses'));
+        }
+
+        else if(strcmp($request->key,'search') == 0){
             $statuses_ids = '';
 
             if(strcmp($request->status_id,'All')==0){
@@ -24,7 +37,7 @@ class UserController extends Controller
             }
 
             else{
-                $statuses_ids = $request->status_id;
+                $statuses_ids = [$request->status_id];
             }
 
             $users = User::whereIn('status_id',$statuses_ids)
@@ -38,15 +51,8 @@ class UserController extends Controller
                             ->orderBy('status_id','ASC')
                             ->get();
                         
-            return view('user.serch',compact('users'));
-        }
-
-        $statuses = Status::all();
-        
-        $users = User::where('status_id',getStatusID('Active'))
-                            ->get();
-        
-        return view('user.index',compact('users','statuses'));
+            return view('user.search',compact('users'));
+        }        
     }
 
     public function create()
@@ -111,9 +117,10 @@ class UserController extends Controller
 
             DB::commit();
 
+            Session::flash('user_added','User created successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'User created successfully',
                 'route'     => route('users.show',$user),
             ]);
         }catch(Exception $e){
@@ -131,7 +138,11 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $statuses = Status::all();
+        $statuses = Status::where('name','!=','Deleted')->get();
+
+        if($user->status_id = getDeletedStatusId()){
+            $statuses = Status::all();
+        }
 
         return view('user.edit',compact('user','statuses'));
     }
@@ -168,15 +179,35 @@ class UserController extends Controller
         }
 
         else{
+            $statuses = Status::where('name','!=','Deleted')->get('id');
+
+            $statuses_ids = array();
+
+            foreach($statuses as $status){
+                array_push($statuses_ids,$status->id);
+            }
+
+            if($user->status_id = getDeletedStatusId()){
+                array_push($statuses_ids,getDeletedStatusId());
+            }
+
             $data = Validator::make($request->all(),[
-                'status_id' => 'required|exists:statuses,id,'.getStatusID('Deleted'), 
+                'status_id' => [
+                                'required',
+                                Rule::in($statuses_ids),
+                                ],
                 'name'      => 'required|min:3|max:20',
                 'username'  => 'required|min:3|max:20|unique:users,username,'.$user->id,
                 'gender'    => 'required|in:Male,Female,Other',
                 'address'   => 'required|min:10|max:100',
                 'dob'       => 'required|date_format:Y-m-d|before_or_equal:'.date('Y-m-d',strtotime(date('Y-m-d') . '-18 years')),
-                'email'     => 'required|email|unique,users,email,'.$user->id,
+                'email'     => 'required|email|unique:users,email,'.$user->id,
                 'phone'     => 'required|numeric|unique:users,phone,'.$user->id,
+            ],$message=[
+                'dob.required' => 'The date of birth field is required',
+                'dob.before_or_equal' => 'You have to be atleast 18 years old',
+                'status_id.required' => 'Status filed is required',
+                'status_id.in' => 'This status is not appicable',
             ]);
         }
 
@@ -218,9 +249,10 @@ class UserController extends Controller
 
             DB::commit();
 
+            Session::flash('user_updated',(strcmp($request->key,'change_password')==0) ? 'Password changed successfully' : 'User updated successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => (strcmp($request->key,'change_password')==0) ? 'Password changed successfully' : 'User updated successfully',
                 'route'     => (strcmp($request->key,'change_password')==0) ? route('home') : route('users.show',$user),
             ]);
         }catch(Exception $e){
@@ -235,12 +267,7 @@ class UserController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 
@@ -267,7 +294,7 @@ class UserController extends Controller
             ]);
         }
 
-        else if(Auth::user()->id === 1){
+        else if($user->id == 1){
             return response()->json([
                 'status'    => 'error',
                 'message'   => 'This user can not be deleted',
@@ -288,6 +315,8 @@ class UserController extends Controller
             }
 
             DB::commit();
+
+            Session::flash('user_deleted','User deleted successfully');
 
             return response()->json([
                 'status'    => 'success',

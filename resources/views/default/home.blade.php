@@ -1,7 +1,7 @@
 @extends('default.index')
 @section('content')
 
-<div class="home" id="home">  
+<div class="home">  
     <main>
         <h1>Shop Management System V2</h1>
     </main>    
@@ -11,13 +11,13 @@
 
         <div class="search-bar">
             <div class="form-group">     
-                <label for="product_search" class="form-label">Search product by name</label>     
-                <input type="text" id="product_search" placeholder="search product by name" class="form-control streched">
+                <label for="product_search" class="label">Search product by name</label>     
+                <input type="text" id="product_search" placeholder="search product by name" class="text-field streched">
             </div>
             
             <div class="form-group">
-                <label for="category_search" class="form-label">Search product by category name</label>     
-                <input type="text" id="category_search" placeholder="search product by category name" class="form-control">
+                <label for="category_search" class="label">Search product by category name</label>     
+                <input type="text" id="category_search" placeholder="search product by category name" class="text-field">
     
                 <div class="result">
                     <ul id="result_ul">
@@ -32,48 +32,50 @@
                     <header>
                         <h3>{{ $product->name }}</h3>
                     </header>
+
                     <section>
                         <img src="{{ asset('image/default_product.jpg') }}" alt="">
-                    </section>
-                    <footer>
                         <span>{{ 'Price: '.$product->price.' Tk' }}</span>
+                    </section>
 
-                        <div class="btn-container">
+                    <footer>
+                        <div class="button-container">
                             @if (Auth::check())
                                 
-                            <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="btn btn-success add-to-cart">ADD TO CART</a>
+                            <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="button shadow click-shadow success add-to-cart">ADD TO CART</a>
 
                             @endif
 
-                            <button type="button" data-id="{{ $product->id }}" class="btn btn-primary" id="product_view_trigger">View Details</button>
+                            <button type="button shadow click-shadow" data-id="{{ $product->id }}" class="button shadow click-shadow blue" id="product_view_trigger">View Details</button>
                         </div>
                     </footer>
-
                 </article>
             @endforeach
         </div>        
     </section>    
 </div>
 
-
-
 <div id="product_details_div" class="product-details">
     <article>
         <header>
             <h3 id="product_name">Product Name</h3>
         </header>
+
         <section>
             <img src="{{ asset('image/default_product.jpg') }}" alt="">
+
+            <span id="product_price">Price: 500 Tk</span>
+
             <p id="product_details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quisquam ut repellendus vitae nulla doloremque qui deleniti blanditiis minus tempore.</p>
         </section>
-        <footer>
-            <span id="product_price">Price: 500 Tk</span>
-        </footer>
 
-        <div class="btn-container">          
-            <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="btn btn-success add-to-cart">ADD TO CART</a>
-            <button type="button" class="btn btn-secondary" id="product_view_close">Close</button>
-        </div>
+        <footer>            
+            <div class="button-container">          
+                <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="button shadow click-shadow blue add-to-cart">ADD TO CART</a>
+
+                <button type="button shadow click-shadow" class="button shadow click-shadow gray" id="product_view_close">Close</button>
+            </div>
+        </footer>
     </article>
 </div>
 

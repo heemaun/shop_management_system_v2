@@ -17,3 +17,10 @@ toastr.options = {
 $("#side_bar_toggle").click(function () {
     $("aside").toggleClass("aside-show");
 });
+
+contentOnloadPosition();
+
+function contentOnloadPosition(){
+    $("#content").css("margin-left",$("aside").css("width"));
+    $("#content").css("padding-top",$(".main-header").css("height"));
+}

@@ -1,0 +1,206 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0rem;
+    padding: 0rem;
+}
+
+.label{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.text-field{
+    border: 2px solid gray;
+    outline: none;
+    padding: .5rem;
+    margin: .5rem 0rem;
+    font-size: larger;
+    display: block;            
+    border-radius: .25rem;
+    transition: all .2s .1s;
+    width: 100%;
+    
+    &:hover,&:focus{
+        box-shadow: inset 0rem 0rem .25rem .25rem hsl(178, 49%, 90%);
+    }
+}
+
+.button{
+    --text-color: hsl(0, 0%, 0%);
+    --background-color: hsl(0, 0%, 100%);
+    --border-color: hsl(0, 0%, 0%);
+
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+
+    text-decoration: none;
+    outline: none;
+    padding: .5rem;
+    border-radius: .25rem;
+    font-size: large;
+    font-weight: normal;
+    font-family: inherit;    
+    cursor: pointer;
+    transition: all .1s;
+    display: inline-block;
+
+    &:hover{
+        --background-color: hsl(0, 0%, 90%);
+    }
+    
+    &:active{
+        --background-color: hsl(0, 0%, 95%);
+        transform: translateY(.1rem);
+    }
+}
+
+.violet{
+    --text-color: black;
+    --background-color: hsl(300, 76%, 72%);
+    --border-color: hsl(300, 76%, 72%);
+    
+    &:hover{
+        --background-color: hsl(300, 76%, 62%);
+        --border-color: hsl(300, 76%, 62%);
+    }
+    
+    &:active{
+        --background-color: hsl(300, 76%, 77%);
+        --border-color: hsl(300, 76%, 77%);
+    }
+}
+
+.indigo{
+    --text-color: white;
+    --background-color: hsl(275, 100%, 25%);
+    --border-color: hsl(275, 100%, 25%);
+    
+    &:hover{
+        --background-color: hsl(275, 100%, 15%);
+        --border-color: hsl(275, 100%, 15%);
+    }
+    
+    &:active{
+        --background-color: hsl(275, 100%, 30%);
+        --border-color: hsl(275, 100%, 30%);
+    }
+}
+
+.blue{
+    --text-color: white;
+    --background-color: hsl(240,100%,50%);
+    --border-color: hsl(240, 100%, 50%);
+    
+    &:hover{
+        --background-color: hsl(240, 100%, 40%);
+        --border-color: hsl(240, 100%, 40%);
+    }
+    
+    &:active{
+        --background-color: hsl(240, 100%, 55%);
+        --border-color: hsl(240, 100%, 55%);
+    }
+}
+
+.green{
+    --text-color: white;
+    --background-color: hsl(120, 100%, 25%);
+    --border-color: hsl(120, 100%, 25%);
+    
+    &:hover{
+        --background-color: hsl(120, 100%, 15%);
+        --border-color: hsl(120, 100%, 15%);
+    }
+    
+    &:active{
+        --background-color: hsl(120, 100%, 30%);
+        --border-color: hsl(120, 100%, 30%);
+    }
+}
+
+.yellow{
+    --text-color: black;
+    --background-color: hsl(60, 100%, 50%);
+    --border-color: hsl(60, 100%, 50%);
+    
+    &:hover{
+        --background-color: hsl(60, 100%, 40%);
+        --border-color: hsl(60, 100%, 40%);
+    }
+    
+    &:active{
+        --background-color: hsl(60, 100%, 55%);
+        --border-color: hsl(60, 100%, 55%);
+    }
+}
+
+.orange{
+    --text-color: hsl(200,18,46);
+    --background-color: hsl(39, 100%, 50%);
+    --border-color: hsl(39, 100%, 50%);
+    
+    &:hover{
+        --background-color: hsl(39, 100%, 40%);
+        --border-color: hsl(39, 100%, 40%);
+    }
+    
+    &:active{
+        --background-color: hsl(39, 100%, 55%);
+        --border-color: hsl(39, 100%, 55%);
+    }
+}
+
+.red{
+    --text-color: white;
+    --background-color: hsl(0, 100%, 50%);
+    --border-color: hsl(0, 100%, 50%);
+    
+    &:hover{
+        --background-color: hsl(0, 100%, 40%);
+        --border-color: hsl(0, 100%, 40%);
+    }
+    
+    &:active{
+        --background-color: hsl(0, 100%, 55%);
+        --border-color: hsl(0, 100%, 55%);
+    }
+}
+
+.gray{
+    --text-color: white;
+    --background-color: hsl(0, 0%, 50%);
+    --border-color: hsl(0, 0%, 50%);
+    
+    &:hover{
+        --background-color: hsl(0, 0%, 40%);
+        --border-color: hsl(0, 0%, 40%);
+    }
+    
+    &:active{
+        --background-color: hsl(0, 0%, 55%);
+        --border-color: hsl(0, 0%, 55%);
+    }
+}
+
+.outline{
+    border: 2px solid var(--border-color);
+    background: none;
+    color: black;
+    text-shadow: 1px 1px gray;
+    
+    &:hover{
+        color: var(--text-color);
+        background: var(--background-color);       
+    }
+}
+
+.shadow{    
+    box-shadow: 0rem .1rem 0rem .1rem rgba($color: gray, $alpha: .5);
+}
+
+.click-shadow{
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--border-color);
+    }    
+}

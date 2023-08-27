@@ -1,1 +1,45 @@
-/*# sourceMappingURL=index.css.map */
+.user-index {
+  gap: 0.5rem;
+  padding: 1rem;
+}
+.user-index .controls {
+  display: flex;
+  justify-content: stretch;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: hsl(0, 0%, 75%);
+}
+.user-index .controls .form-group .form-label {
+  margin: 0;
+}
+.user-index .controls .stretch {
+  flex-grow: 1;
+}
+.user-index .table-container {
+  padding: 0.5rem;
+  background-color: hsl(0, 0%, 75%);
+}
+.user-index .table-container table {
+  margin: 0;
+}
+.user-index .table-container table thead tr th {
+  text-align: center;
+  vertical-align: middle;
+}
+.user-index .table-container table tbody tr {
+  cursor: pointer;
+}
+.user-index .table-container table tbody tr td {
+  text-align: center;
+  vertical-align: middle;
+}
+.user-index .table-container table tbody tr .left {
+  text-align: left;
+}
+.user-index .table-container table tbody tr .right {
+  text-align: right;
+}
+.user-index .table-container table tbody .no-data {
+  color: red;
+}/*# sourceMappingURL=index.css.map */

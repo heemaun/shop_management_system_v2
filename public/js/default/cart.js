@@ -5,22 +5,23 @@ function loadCartIndex()
         type: "GET",
         success: function(response){
             if(response.count == 0){
-                $("#cart_trigger span").text("");
-                $("#cart_trigger span").css("background","none");
+                $("#item_count").text("");
+                $("#item_count").css("background","none");
             }
             
             else{
-                $("#cart_trigger span").text(response.count);
-                $("#cart_trigger span").css("background","red");
+                $("#item_count").text(response.count);
+                $("#item_count").css("background","red");
             }
         }
     });
 }
 
+getCartView();
 loadCartIndex();
 
 $("#cart_trigger,#cart_close").click(function(){
-    $("#cart_div").toggleClass("show");
+    $("#cart_div").toggleClass("cart-show");
     getCartView();
 });
 
@@ -71,6 +72,7 @@ function getCartView()
         type: "GET",
         success: function(response){
             $("#cart_div .cart .table-container table").html(response);
+            loadCartIndex();
         }
     });
 }

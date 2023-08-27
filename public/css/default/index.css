@@ -1,150 +1,195 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+:root {
+  --1st-bg-color-hue: 30;
+  --1st-bg-color-saturation: 50%;
+  --1st-bg-color-light: 50%;
+  --1st-bg-color: hsl(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light));
+  --2nd-bg-color: hsl(90, 50%, 60%);
+  --3rd-bg-color: hsl(150, 50%, 70%);
+  --4th-bg-color: hsl(210, 50%, 80%);
+  --5th-bg-color: hsl(240, 50%, 90%);
+  --6th-bg-color: hsl(270, 50%, 100%);
+  --1st-color: hsl(0, 50%, 0%);
+  --2nd-color: hsl(0, 50%, 10%);
+  --3rd-color: hsl(0, 50%, 20%);
+  --4th-color: hsl(0, 50%, 30%);
+  --5th-color: hsl(0, 50%, 40%);
+  --6th-color: hsl(0, 50%, 50%);
+  --1st-font-size: 36px;
+  --2nd-font-size: 32px;
+  --3rd-font-size: 28px;
+  --4th-font-size: 24px;
+  --5th-font-size: 20px;
+  --6th-font-size: 16px;
+  --1st-font-weight: 900;
+  --2nd-font-weight: 800;
+  --3rd-font-weight: 700;
+  --4th-font-weight: 600;
+  --5th-font-weight: 300;
+  --6th-font-weight: 100;
+  --1st-font-family: "roboto",
+  --2nd-font-family: "roboto",
+  --3rd-font-family: "roboto",
+  --4th-font-family: "roboto",
+  --5th-font-family: "roboto",
+  --6th-font-family: "roboto",
+  --1st-font-style: italic,
+  --2nd-font-style: normal,
+  --3rd-font-style: italic,
+  --4th-font-style: normal,
+  --5th-font-style: normal,
+  --6th-font-style: italic,
+  --1st-border-radius: 30px;
+  --2nd-border-radius: 25px;
+  --3rd-border-radius: 20px;
+  --4th-border-radius: 15px;
+  --5th-border-radius: 10px;
+  --6th-border-radius: 5px;
+  --logo-color: black;
+  --logo-font-size: 37px;
+  --logo-font-weight: 900;
+  --nav-color: black;
+  --nav-font-size: 17px;
+  --nav-font-weight: 400;
+  --banner-color: red;
+  --banner-font-size: 40px;
+  --banner-font-weight: 900;
+}
+
 *, *::after, *::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
-html body {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0rem 0.5rem;
-  min-height: 100vh;
+html body .wrapper {
+  background-color: var(--1st-bg-color);
+  color: var(--1st-color);
 }
-html body .content {
-  background-color: hsla(0, 0%, 50%, 0.25);
-}
-html body .main-header {
+html body .wrapper .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
-  background-color: hsl(0, 0%, 80%);
+  z-index: 20;
   position: sticky;
   top: 0;
-  width: 100%;
-  z-index: 20;
+  background-color: var(--2nd-bg-color);
+  color: var(--2nd-color);
 }
-html body .main-header .logo {
+html body .wrapper .main-header .logo {
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
-  color: inherit;
-  font-weight: bold;
-  font-size: xx-large;
+  color: var(--logo-color);
+  font-size: var(--logo-font-size);
+  font-weight: var(--logo-font-weight);
 }
-html body .main-header nav ul {
-  margin: 0;
-  padding: 0;
+html body .wrapper .main-header nav {
+  color: var(--nav-color);
+  font-size: var(--nav-font-size);
+  font-weight: var(--nav-font-weight);
+}
+html body .wrapper .main-header nav ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-html body .main-header nav ul li {
+html body .wrapper .main-header nav ul li {
   list-style: none;
 }
-html body .main-header nav ul li a {
+html body .wrapper .main-header nav ul li a {
   text-decoration: none;
   display: block;
-  padding: 1rem 1rem;
-  color: inherit;
+  padding: 16px;
+  color: var(--2nd-color);
 }
-html body .main-header nav ul li a:hover {
-  text-decoration: underline;
+html body .wrapper .main-header nav ul li a:hover {
+  color: var(--2nd-bg-color);
+  background-color: var(--2nd-color);
 }
-html body .main-header .controls .cart-trigger {
+html body .wrapper .main-header .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+html body .wrapper .main-header .controls .cart-trigger {
   position: relative;
-  cursor: pointer;
+  transition: all 0.5s;
 }
-html body .main-header .controls .cart-trigger span {
+html body .wrapper .main-header .controls .cart-trigger:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+html body .wrapper .main-header .controls .cart-trigger .item-count {
   position: absolute;
-  top: -15px;
+  top: 0px;
   right: -5px;
-  border-radius: 50%;
-  height: 1.75rem;
+  background: red;
+  color: white;
+  width: 32px;
   aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0.125rem;
   display: grid;
-  place-content: center;
-  color: white;
+  place-items: center;
 }
-html body .main-header .controls .login-controls {
-  text-decoration: none;
-  color: inherit;
+html body .wrapper .main-header .controls .login-controls, html body .wrapper .main-header .controls .registration {
+  transition: all 0.5s;
 }
-html body .main-header .controls .login-controls:hover {
+html body .wrapper .main-header .controls .login-controls:hover, html body .wrapper .main-header .controls .registration:hover {
   cursor: pointer;
-  text-decoration: underline;
+  transform: translateY(-5px);
 }
-html body aside {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 100vh;
-  background-color: hsl(0, 0%, 80%);
+html body .wrapper aside {
+  position: sticky;
+  top: 51px;
+  left: 0px;
+  height: calc(100vh - 52px);
+  width: -moz-min-content;
+  width: min-content;
+  background-color: violet;
   z-index: 10;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateX(-100%);
-  transition: all 1s linear;
+  background-color: var(--2nd-bg-color);
+  color: var(--2nd-color);
 }
-html body aside nav ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-html body aside nav ul li {
+html body .wrapper aside nav ul li {
   list-style: none;
-  width: 100%;
 }
-html body aside nav ul li a {
-  text-decoration: none;
-  color: inherit;
+html body .wrapper aside nav ul li a {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
+  text-decoration: none;
+  color: black;
 }
-html body aside nav ul li a:hover {
+html body .wrapper aside nav ul li a:hover {
   color: white;
-  background-color: hsl(0, 0%, 60%);
+  background-color: black;
 }
-html body aside .side-bar-toggle {
-  position: absolute;
-  top: 50vh;
-  left: 100%;
-  transform: rotate(270deg);
-  transition: all 0.5s linear 1s;
-  cursor: pointer;
+html body .wrapper aside nav ul li .active {
+  background-color: gray;
 }
-html body .aside-show {
-  transform: translateX(0%);
+html body .wrapper .content-login {
+  margin-top: -100vh;
 }
-html body .aside-show .side-bar-toggle {
-  transform: rotate(90deg);
-}
-html body footer {
+html body .wrapper .footer {
+  position: sticky;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0rem;
-  border-top: 0.1rem dotted gray;
-  background: hsl(0, 0%, 75%);
+  padding: 1rem;
+  z-index: 20;
+  background-color: var(--2nd-bg-color);
+  color: var(--2nd-color);
 }
-html body footer p {
-  margin: 0;
-  padding: 0;
-}
-html body footer p a {
-  color: inherit;
+html body .wrapper .footer p a {
   text-decoration: none;
-  font-weight: bold;
+  color: inherit;
 }
-html body footer p a:hover {
+html body .wrapper .footer p a:hover {
   text-decoration: underline;
 }/*# sourceMappingURL=index.css.map */
