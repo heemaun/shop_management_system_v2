@@ -11,12 +11,12 @@
 
         <div class="search-bar">
             <div class="form-group">     
-                <label for="product_search" class="label">Search product by name</label>     
+                <label for="product_search" >Search product by name</label>     
                 <input type="text" id="product_search" placeholder="search product by name" class="text-field streched">
             </div>
             
             <div class="form-group">
-                <label for="category_search" class="label">Search product by category name</label>     
+                <label for="category_search" >Search product by category name</label>     
                 <input type="text" id="category_search" placeholder="search product by category name" class="text-field">
     
                 <div class="result">

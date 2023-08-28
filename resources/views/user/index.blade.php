@@ -1,15 +1,17 @@
 @extends('default.index')
 @section('content')
 <div class="user-index">
+    <h2>User Index</h2>
+
     <div class="controls">
         <div class="form-group stretch">
-            <label for="search" class="form-label">Search User By Name</label>
-            <input type="text" id="search" name="search" placeholder="search user by name, email, phone" class="form-control">
+            <label for="search" >Search User By Name</label>
+            <input type="text" id="search" name="search" placeholder="search user by name, email, phone" class="text-field">
         </div>
 
         <div class="form-group">
-            <label for="Status" class="form-label">Select A Status</label>
-            <select name="status_id" id="status_id" class="form-select">
+            <label for="Status" >Select A Status</label>
+            <select name="status_id" id="status_id" class="select">
                 <option value="All">Select a option</option>
                 @foreach ($statuses as $status)
                     <option value="{{ $status->id }}">{{ $status->name }}</option>
@@ -18,12 +20,12 @@
         </div>
 
         <div class="form-group">
-            <a href="{{ route('users.create') }}" class="btn btn-success">Create</a>
+            <a href="{{ route('users.create') }}" class="button shadow click-shadow green">Create</a>
         </div>
     </div>
 
     <div class="table-container">
-        <table class="table table-bordered table-striped table-hover">
+        <table class="table">
             <thead>
                 <tr>
                     <th>No</th>

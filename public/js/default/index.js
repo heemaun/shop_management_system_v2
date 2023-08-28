@@ -23,4 +23,11 @@ contentOnloadPosition();
 function contentOnloadPosition(){
     $("#content").css("margin-left",$("aside").css("width"));
     $("#content").css("padding-top",$(".main-header").css("height"));
+
+    let fotterHeight = $(".footer").css("height").substring(0,($(".footer").css("height").length - 2));
+    let contentHeight = $("#content").css("height").substring(0,($("#content").css("height").length - 2));
+
+    $("#content").css("min-height",(contentHeight-fotterHeight)+"px");
+
+    console.log(fotterHeight,contentHeight);
 }

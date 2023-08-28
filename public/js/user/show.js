@@ -1,5 +1,5 @@
 $("#delete_trigger,#delete_form_close").click(function(){
-    $("#user_delete_div").toggleClass("show");
+    $("#user_delete_div").toggleClass("delete-show");
 });
 
 $("#delete_form").submit(function(e){

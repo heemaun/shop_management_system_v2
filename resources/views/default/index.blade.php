@@ -60,9 +60,9 @@
                         <li><a href="{{ route('products.index') }}" class="{{ (Str_contains(Request::route()->getName(),'products')) ? 'active' : '' }}">Products</a></li>
                         <li><a href="{{ route('purchases.index') }}" class="{{ (Str_contains(Request::route()->getName(),'purchases')) ? 'active' : '' }}">Purchases</a></li>
                         <li><a href="{{ route('sells.index') }}" class="{{ (Str_contains(Request::route()->getName(),'sells')) ? 'active' : '' }}">Sells</a></li>
-                        <li><a href="{{ route('settings.index') }}" class="{{ (Str_contains(Request::route()->getName(),'settings')) ? 'active' : '' }}">settings</a></li>
-                        <li><a href="{{ route('statuses.index') }}" class="{{ (Str_contains(Request::route()->getName(),'statuses')) ? 'active' : '' }}">statuses</a></li>
-                        <li><a href="{{ route('transactions.index') }}" class="{{ (Str_contains(Request::route()->getName(),'transactions')) ? 'active' : '' }}">transactions</a></li>
+                        <li><a href="{{ route('settings.index') }}" class="{{ (Str_contains(Request::route()->getName(),'settings')) ? 'active' : '' }}">Settings</a></li>
+                        <li><a href="{{ route('statuses.index') }}" class="{{ (Str_contains(Request::route()->getName(),'statuses')) ? 'active' : '' }}">Statuses</a></li>
+                        <li><a href="{{ route('transactions.index') }}" class="{{ (Str_contains(Request::route()->getName(),'transactions')) ? 'active' : '' }}">Transactions</a></li>
                     </ul>
                 </nav>
 
@@ -137,14 +137,14 @@
                 <legend>Login</legend>
 
                 <div class="form-group">
-                    <label for="login_username" class="label">Username</label>
+                    <label for="login_username" >Username</label>
                     <input type="text" id="login_username" class="text-field" placeholder="enter your username"
                         autocomplete="off">
                     <span class="error" id="login_username_error"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="login_password" class="label">Password</label>
+                    <label for="login_password" >Password</label>
                     <input type="password" id="login_password" class="text-field"
                         placeholder="enter your password" autocomplete="off">
                     <span class="error" id="login_password_error"></span>
@@ -154,7 +154,7 @@
 
                 <div class="button-container">
                     <button type="submit" class="button shadow click-shadow blue">Login</button>
-                    <button type="button shadow click-shadow" class="button shadow click-shadow gray" id="login_close">Close</button>
+                    <button type="button" class="button shadow click-shadow gray" id="login_close">Close</button>
                 </div>
             </form>
         </div>

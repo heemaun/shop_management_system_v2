@@ -1,68 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-:root {
-  --1st-bg-color-hue: 30;
-  --1st-bg-color-saturation: 50%;
-  --1st-bg-color-light: 50%;
-  --1st-bg-color: hsl(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light));
-  --2nd-bg-color: hsl(90, 50%, 60%);
-  --3rd-bg-color: hsl(150, 50%, 70%);
-  --4th-bg-color: hsl(210, 50%, 80%);
-  --5th-bg-color: hsl(240, 50%, 90%);
-  --6th-bg-color: hsl(270, 50%, 100%);
-  --1st-color: hsl(0, 50%, 0%);
-  --2nd-color: hsl(0, 50%, 10%);
-  --3rd-color: hsl(0, 50%, 20%);
-  --4th-color: hsl(0, 50%, 30%);
-  --5th-color: hsl(0, 50%, 40%);
-  --6th-color: hsl(0, 50%, 50%);
-  --1st-font-size: 36px;
-  --2nd-font-size: 32px;
-  --3rd-font-size: 28px;
-  --4th-font-size: 24px;
-  --5th-font-size: 20px;
-  --6th-font-size: 16px;
-  --1st-font-weight: 900;
-  --2nd-font-weight: 800;
-  --3rd-font-weight: 700;
-  --4th-font-weight: 600;
-  --5th-font-weight: 300;
-  --6th-font-weight: 100;
-  --1st-font-family: "roboto",
-  --2nd-font-family: "roboto",
-  --3rd-font-family: "roboto",
-  --4th-font-family: "roboto",
-  --5th-font-family: "roboto",
-  --6th-font-family: "roboto",
-  --1st-font-style: italic,
-  --2nd-font-style: normal,
-  --3rd-font-style: italic,
-  --4th-font-style: normal,
-  --5th-font-style: normal,
-  --6th-font-style: italic,
-  --1st-border-radius: 30px;
-  --2nd-border-radius: 25px;
-  --3rd-border-radius: 20px;
-  --4th-border-radius: 15px;
-  --5th-border-radius: 10px;
-  --6th-border-radius: 5px;
-  --logo-color: black;
-  --logo-font-size: 37px;
-  --logo-font-weight: 900;
-  --nav-color: black;
-  --nav-font-size: 17px;
-  --nav-font-weight: 400;
-  --banner-color: red;
-  --banner-font-size: 40px;
-  --banner-font-weight: 900;
-}
-
-*, *::after, *::before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Ubuntu", sans-serif;
-}
-
 html body .wrapper {
   background-color: var(--1st-bg-color);
   color: var(--1st-color);
@@ -155,6 +91,11 @@ html body .wrapper aside {
   background-color: var(--2nd-bg-color);
   color: var(--2nd-color);
 }
+html body .wrapper aside nav {
+  color: var(--nav-color);
+  font-size: var(--nav-font-size);
+  font-weight: var(--nav-font-weight);
+}
 html body .wrapper aside nav ul li {
   list-style: none;
 }
@@ -162,14 +103,22 @@ html body .wrapper aside nav ul li a {
   display: block;
   padding: 0.5rem 0.5rem;
   text-decoration: none;
-  color: black;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  transition: transform 0.2s ease-in-out 0.1s;
 }
 html body .wrapper aside nav ul li a:hover {
-  color: white;
-  background-color: black;
+  color: var(--2nd-bg-color);
+  background-color: var(--2nd-color);
+  transform: scale(1.1) translateX(5px);
 }
 html body .wrapper aside nav ul li .active {
-  background-color: gray;
+  background-color: hsl(var(--2nd-bg-color-hue), var(--2nd-bg-color-saturation), calc(var(--2nd-bg-color-light) + 15% - 5%));
+  color: hsl(var(--2nd-color-hue), var(--2nd-color-saturation), calc(var(--2nd-color-light) + 15% - 5%));
+}
+html body .wrapper .content {
+  min-height: 100vh;
 }
 html body .wrapper .content-login {
   margin-top: -100vh;

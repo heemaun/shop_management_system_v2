@@ -7,8 +7,12 @@
 
     .infos{
         display: grid;
+        padding: .5rem;
         gap: .5rem;
-        flex-grow: 2;        
+        flex-grow: 2;   
+        
+        background-color: var(--3rd-bg-color);
+        color: var(--3rd-color);
         
         h2{
             text-align: center;
@@ -19,12 +23,12 @@
             justify-content: space-between;
             align-items: flex-end;
             border-bottom: .1rem dashed gray;
-            padding: 0;
-            margin: 0;
+            padding: .5rem;
+
+            background-color: var(--4th-bg-color);
+            color: var(--4th-color);
             
             label{
-                padding: 0;
-                margin: 0;
                 font-size: larger;
                 font-weight: bolder;
             }
@@ -42,6 +46,10 @@
             justify-content: center;
             align-items: center;
             gap: .5rem;
+            padding: .5rem;
+
+            background-color: var(--4th-bg-color);
+            color: var(--4th-color);
         }
     }
     
@@ -50,11 +58,12 @@
         min-width: 200px;
         flex-grow: 2;
         padding: .5rem;
-        border: 1rem solid gray;
-        border-radius: 5%;
+        border: 1rem solid var(--3rd-color);
+
+        background-color: var(--3rd-bg-color);
+        color: var(--3rd-color);
         
         img{
-            border-radius: 5%;
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
@@ -70,40 +79,51 @@
     height: 100vh;
     display: grid;
     place-content: center;
-    background-color: hsla(0, 0%, 50%,.5);
-    z-index: -30;
-    opacity: 0;    
-    transition: z-index .25s ease-in-out,
-                opacity .75s ease-in-out .25s;
-
+    z-index: 30;   
+    transition: all 1s;
+    transform: translateY(-100%);
+    
+    color: var(--1st-color);
+    background-color: hsla(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light), .5);
+    
     form{
         border: .1rem solid gray;
-        background: hsl(0, 0%, 75%);
         padding: 1rem;
         min-width: 500px;
         max-width: 90%;
         display: grid;
         gap: .5rem;
+        
+        background-color: var(--2nd-bg-color);
+        color: var(--2nd-color);
 
         legend{
             text-align: center;
         }
 
         .form-group{
+            padding: .5rem;
+            
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);
+
             label{
                 margin: 0;
             }
         }
-
+        
         .btn-container{
+            padding: .5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);
         }
     }
 }
 
-.show{
-    opacity: 1;
-    z-index: 30;
+.delete-show{
+    transform: translateY(0%);
 }

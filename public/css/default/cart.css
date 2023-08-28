@@ -36,56 +36,21 @@
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
 }
-.cart-div .cart .table-container table {
-  margin: 0;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  border-collapse: collapse;
-  background-color: var(--4th-bg-color);
-  color: var(--4th-color);
-}
 .cart-div .cart .table-container table thead {
   position: sticky;
   top: 0;
-  background-color: var(--5th-bg-color);
-  color: var(--5th-color);
-}
-.cart-div .cart .table-container table thead th {
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  padding: 0.5rem 1rem;
 }
 .cart-div .cart .table-container table tbody {
   max-height: 75vh;
   overflow-y: auto;
 }
-.cart-div .cart .table-container table tbody tr td {
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  padding: 0.25rem 0.5rem;
-}
 .cart-div .cart .table-container table tbody tr td button {
   width: 38px;
   aspect-ratio: 1;
 }
-.cart-div .cart .table-container table tbody tr:nth-child(2n) {
-  background-color: var(--6th-bg-color);
-  color: var(--6th-color);
-}
 .cart-div .cart .table-container table tfoot {
   position: sticky;
   bottom: 0;
-  background-color: var(--5th-bg-color);
-  color: var(--5th-color);
-}
-.cart-div .cart .table-container table tfoot tr td {
-  text-align: center;
-  vertical-align: middle;
-  font-weight: bold;
-  white-space: nowrap;
-  padding: 0.5rem 1rem;
 }
 .cart-div .cart .table-container table tfoot tr td input {
   width: 100%;
@@ -93,9 +58,13 @@
 }
 .cart-div .cart .table-container table tfoot tr td span {
   font-weight: normal;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
 }
 .cart-div .cart .table-container table .left {
-  text-align: right;
+  text-align: left;
 }
 .cart-div .cart .table-container table .right {
   text-align: right;

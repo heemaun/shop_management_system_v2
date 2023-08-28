@@ -7,17 +7,24 @@
 .user-edit form {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(6, 1fr);
   gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
 }
 .user-edit form legend {
   grid-column: 1/-1;
   margin: 0;
   padding: 0;
   text-align: center;
+  font-size: var(--1st-font-size);
 }
 .user-edit form .form-group {
+  padding: 0.5rem;
   grid-column: span 3;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
 }
 .user-edit form .form-group .form-label {
   margin: 0;
@@ -34,9 +41,12 @@
 .user-edit form .column-3 {
   grid-column: span 2;
 }
-.user-edit form .btn-container {
+.user-edit form .button-container {
   grid-column: 1/-1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
 }/*# sourceMappingURL=edit.css.map */

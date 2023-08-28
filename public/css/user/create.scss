@@ -7,17 +7,27 @@
     form{
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(2,50%);
+        grid-template-columns: repeat(2,1fr);
         gap: .5rem;
+        padding: .5rem;
+
+        background-color: var(--3rd-bg-color);
+        color: var(--3rd-color);
 
         legend{
             grid-column: 1 / -1;
             margin: 0;
             padding: 0;
             text-align: center;
+            font-size: var(--1st-font-size);
         }
 
         .form-group{
+            padding: .5rem;
+
+            background-color: var(--4th-bg-color);
+            color: var(--4th-color);
+
             .form-label{
                 margin: 0;
             }
@@ -35,11 +45,15 @@
             grid-column: 1 / -1;
         }
         
-        .btn-container{
+        .button-container{
             grid-column: 1 / -1;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: .5rem;
+
+            background-color: var(--4th-bg-color);
+            color: var(--4th-color);
         }
     }
 }

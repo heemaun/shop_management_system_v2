@@ -1,6 +1,13 @@
 .user-index{
+    display: flex;
+    flex-direction: column;
     gap: .5rem;
-    padding: 1rem;
+    height: 100%;
+    padding: 1rem;    
+
+    h2{
+        text-align: center;
+    }
 
     .controls{
         display: flex;
@@ -8,12 +15,11 @@
         align-items: flex-end;
         gap: .5rem;
         padding: .5rem;
-        background-color: hsl(0, 0%, 75%);
+
+        color: var(--2nd-color);
+        background-color: var(--2nd-bg-color);
 
         .form-group{
-            .form-label{
-                margin: 0;
-            }
         }
         
         .stretch{
@@ -23,41 +29,32 @@
     
     .table-container{
         padding: .5rem;
-        background-color: hsl(0, 0%, 75%);
+        
+        color: var(--2nd-color);
+        background-color: var(--2nd-bg-color);
         
         table{
-            margin: 0;
 
-            thead{
+            thead{        
                 tr{
                     th{
-                        text-align: center;
-                        vertical-align: middle;
                     }
                 }
             }
             
             tbody{
-                tr{
-                    td{
-                        text-align: center;
-                        vertical-align: middle;
-                    }
-
-                    .left{
-                        text-align: left;
-                    }
-
-                    .right{
-                        text-align: right;
-                    }
-
-                    cursor: pointer;
-                }
-
                 .no-data{
                     color: red;
+                    font-size: xx-large;
                 }
+            }
+
+            .left{
+                text-align: left;
+            }
+    
+            .right{
+                text-align: right;
             }
         }
     }

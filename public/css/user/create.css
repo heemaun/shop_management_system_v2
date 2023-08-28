@@ -7,14 +7,23 @@
 .user-create form {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
 }
 .user-create form legend {
   grid-column: 1/-1;
   margin: 0;
   padding: 0;
   text-align: center;
+  font-size: var(--1st-font-size);
+}
+.user-create form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
 }
 .user-create form .form-group .form-label {
   margin: 0;
@@ -28,9 +37,12 @@
 .user-create form .column-2 {
   grid-column: 1/-1;
 }
-.user-create form .btn-container {
+.user-create form .button-container {
   grid-column: 1/-1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
 }/*# sourceMappingURL=create.css.map */
