@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Setting;
 use App\Models\Status;
 
 function getDeletedStatusId()
@@ -54,5 +55,10 @@ function getStatusID($name)
 
 //     return $formatter->format($number);
 // }
+
+    function getSettings($key)
+    {
+        return Setting::where('key',$key)->first()->value;
+    }
 
 ?>

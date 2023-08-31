@@ -8,10 +8,12 @@ html body .wrapper .main-header {
   justify-content: space-between;
   align-items: center;
   z-index: 20;
-  position: sticky;
+  position: fixed;
   top: 0;
-  background-color: var(--2nd-bg-color);
-  color: var(--2nd-color);
+  left: 0;
+  width: 100%;
+  background-color: var(--nav-bg-color);
+  color: var(--nav-color);
 }
 html body .wrapper .main-header .logo {
   display: flex;
@@ -21,6 +23,14 @@ html body .wrapper .main-header .logo {
   color: var(--logo-color);
   font-size: var(--logo-font-size);
   font-weight: var(--logo-font-weight);
+  font-family: var(--logo-font-family);
+  font-style: var(--logo-font-style);
+}
+html body .wrapper .main-header .logo svg {
+  stroke: var(--logo-color);
+  fill: var(--logo-color);
+  width: var(--logo-font-size);
+  height: var(--logo-font-size);
 }
 html body .wrapper .main-header nav {
   color: var(--nav-color);
@@ -39,11 +49,11 @@ html body .wrapper .main-header nav ul li a {
   text-decoration: none;
   display: block;
   padding: 16px;
-  color: var(--2nd-color);
+  color: inherit;
 }
 html body .wrapper .main-header nav ul li a:hover {
-  color: var(--2nd-bg-color);
-  background-color: var(--2nd-color);
+  color: var(--nav-bg-color);
+  background-color: var(--nav-color);
 }
 html body .wrapper .main-header .controls {
   display: flex;
@@ -58,6 +68,12 @@ html body .wrapper .main-header .controls .cart-trigger {
 html body .wrapper .main-header .controls .cart-trigger:hover {
   cursor: pointer;
   transform: translateY(-5px);
+}
+html body .wrapper .main-header .controls .cart-trigger svg {
+  stroke: var(--logo-color);
+  fill: var(--logo-color);
+  width: var(--logo-font-size);
+  height: var(--logo-font-size);
 }
 html body .wrapper .main-header .controls .cart-trigger .item-count {
   position: absolute;
@@ -75,21 +91,26 @@ html body .wrapper .main-header .controls .cart-trigger .item-count {
 html body .wrapper .main-header .controls .login-controls, html body .wrapper .main-header .controls .registration {
   transition: all 0.5s;
 }
+html body .wrapper .main-header .controls .login-controls svg, html body .wrapper .main-header .controls .registration svg {
+  stroke: var(--logo-color);
+  fill: var(--logo-color);
+  width: var(--logo-font-size);
+  height: var(--logo-font-size);
+}
 html body .wrapper .main-header .controls .login-controls:hover, html body .wrapper .main-header .controls .registration:hover {
   cursor: pointer;
   transform: translateY(-5px);
 }
 html body .wrapper aside {
-  position: sticky;
-  top: 51px;
-  left: 0px;
-  height: calc(100vh - 52px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
   width: -moz-min-content;
   width: min-content;
-  background-color: violet;
   z-index: 10;
-  background-color: var(--2nd-bg-color);
-  color: var(--2nd-color);
+  background-color: var(--nav-bg-color);
+  color: var(--nav-color);
 }
 html body .wrapper aside nav {
   color: var(--nav-color);
@@ -106,34 +127,35 @@ html body .wrapper aside nav ul li a {
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
+  font-family: inherit;
   transition: transform 0.2s ease-in-out 0.1s;
 }
 html body .wrapper aside nav ul li a:hover {
-  color: var(--2nd-bg-color);
-  background-color: var(--2nd-color);
+  color: var(--nav-bg-color);
+  background-color: var(--nav-color);
   transform: scale(1.1) translateX(5px);
 }
 html body .wrapper aside nav ul li .active {
-  background-color: hsl(var(--2nd-bg-color-hue), var(--2nd-bg-color-saturation), calc(var(--2nd-bg-color-light) + 15% - 5%));
-  color: hsl(var(--2nd-color-hue), var(--2nd-color-saturation), calc(var(--2nd-color-light) + 15% - 5%));
+  filter: brightness(150%) saturate(50%);
+  background-color: var(--nav-bg-color);
+  color: var(--nav-color);
 }
 html body .wrapper .content {
   min-height: 100vh;
 }
-html body .wrapper .content-login {
-  margin-top: -100vh;
-}
 html body .wrapper .footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   z-index: 20;
-  background-color: var(--2nd-bg-color);
-  color: var(--2nd-color);
+  background-color: var(--nav-bg-color);
+  color: var(--nav-color);
 }
 html body .wrapper .footer p a {
   text-decoration: none;

@@ -6,44 +6,29 @@
   height: 100vh;
   display: grid;
   place-content: center;
-  background-color: rgba(191, 191, 191, 0.5);
-  z-index: -30;
-  opacity: 0;
-  transition: z-index 0.25s ease-in-out, opacity 0.75s ease-in-out 0.25s;
+  z-index: 30;
+  transform: translateY(-100%);
+  transition: all 1s;
+  background: hsla(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light), 0.75);
+  color: var(--1st-color);
 }
-.login-div form {
-  background: white;
-  padding: 1rem;
-  border: 0.1rem solid gray;
-  min-width: 500px;
-  max-width: 90%;
-  box-shadow: 0.1rem 0.1rem 1rem gray;
-  display: grid;
-  gap: 0.5rem;
-}
-.login-div form legend {
-  text-align: center;
-  text-transform: uppercase;
-}
-.login-div form label, .login-div form input {
-  margin: 0;
+.login-div form span {
+  font-size: var(--default-font-size);
+  font-style: var(--default-font-style);
+  font-weight: var(--default-font-weight);
+  font-family: var(--default-font-family);
 }
 .login-div form span a {
   color: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-family: inherit;
 }
 .login-div form span a:hover {
   color: blue;
 }
-.login-div form .error {
-  color: red;
-}
-.login-div form .btn-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .show {
-  opacity: 1;
-  z-index: 30;
+  transform: translateY(0%);
 }/*# sourceMappingURL=login.css.map */

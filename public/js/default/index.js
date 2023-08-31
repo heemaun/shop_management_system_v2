@@ -21,13 +21,10 @@ $("#side_bar_toggle").click(function () {
 contentOnloadPosition();
 
 function contentOnloadPosition(){
-    $("#content").css("margin-left",$("aside").css("width"));
-    $("#content").css("padding-top",$(".main-header").css("height"));
+    let headerHeight = $(".main-header").css("height");
+    let footerHeight = $(".footer").css("height");
+    let asideWidth = $("aside").css("width");
 
-    let fotterHeight = $(".footer").css("height").substring(0,($(".footer").css("height").length - 2));
-    let contentHeight = $("#content").css("height").substring(0,($("#content").css("height").length - 2));
-
-    $("#content").css("min-height",(contentHeight-fotterHeight)+"px");
-
-    console.log(fotterHeight,contentHeight);
+    $("#content").css("padding",headerHeight+" 0px "+footerHeight+" "+asideWidth);
+    $("aside").css("padding-top",headerHeight);
 }

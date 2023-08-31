@@ -1,0 +1,253 @@
+.settings-index{
+    background-color: var(--2nd-bg-color);
+    color: var(--2nd-color);
+    padding: 1rem;
+    
+    // h2{
+        
+    // }
+
+    .backgrounds-and-colors{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: .5rem;
+        padding: .5rem;
+        
+        background-color: var(--3rd-bg-color);
+        color: var(--3rd-color);            
+
+        .container{
+            // flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: .5rem;
+
+            .demo{
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: .5rem;
+                padding: .5rem;
+    
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);
+    
+                // h3{
+    
+                // }
+    
+                .first-div{
+                    // flex-grow: 1;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: .5rem;
+                    padding: .5rem;
+    
+                    background-color: var(--1st-bg-color);
+                    color: var(--1st-color);
+                    
+                    .first-span{
+                        color: inherit;
+                    }
+                    
+                    .second-div{
+                        // flex-grow: 1;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: .5rem;
+                        padding: .5rem;
+    
+                        background-color: var(--2nd-bg-color);
+                        color: var(--2nd-color);
+                        
+                        span{
+                            color: inherit;
+                        }
+                        
+                        .third-div{
+                            // flex-grow: 1;
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: .5rem;
+                            padding: .5rem;
+    
+                            background-color: var(--3rd-bg-color);
+                            color: var(--3rd-color);
+    
+                            span{
+                                color: inherit;
+                            }
+                            
+                            .fourth-div{
+                                // flex-grow: 1;
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-between;
+                                align-items: center;
+                                gap: .5rem;
+                                padding: .5rem;
+    
+                                background-color: var(--4th-bg-color);
+                                color: var(--4th-color);
+    
+                                span{
+                                    color: inherit;
+                                }
+                                
+                                .fifth-div{
+                                    // flex-grow: 1;
+                                    width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    gap: .5rem;
+                                    padding: .5rem;
+    
+                                    background-color: var(--5th-bg-color);
+                                    color: var(--5th-color);
+    
+                                    span{
+                                        color: inherit;
+                                    }
+                                    
+                                    .sixth-div{
+                                        // flex-grow: 1;
+                                        width: 100%;
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: flex-start;
+                                        align-items: center;
+                                        gap: .5rem;
+                                        padding: .5rem;
+                                        height: min-content;
+    
+                                        background-color: var(--6th-bg-color);
+                                        color: var(--6th-color);
+                                        
+                                        span{
+                                            color: inherit;
+                                        }
+
+                                        
+                                        .nav{
+                                            padding: 0rem 1rem;
+                                            display: flex;
+                                            justify-content: space-between;
+                                            align-items: center;
+                                            width: 100%;
+
+                                            color: var(--nav-color);
+                                            background-color: var(--nav-bg-color);                                            
+                                            font-size: var(--nav-font-size);
+                                            font-family: var(--nav-font-family);
+                                            font-weight: var(--nav-font-weight);
+                                            font-style: var(--nav-font-style);
+
+                                            .logo{
+                                                color: var(--logo-color);
+                                                font-size: var(--logo-font-size);
+                                                font-family: var(--logo-font-family);
+                                                font-weight: var(--logo-font-weight);
+                                                font-style: var(--logo-font-style);
+                                            }      
+                                            
+                                            ul{
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+
+                                                li{
+                                                    list-style: none;
+                                                    padding: .5rem 1rem;
+                                                    white-space: nowrap;
+
+                                                    font-size: inherit;
+                                                    font-family: inherit;
+                                                    font-weight: inherit;
+                                                    font-style: inherit;
+
+                                                    &:hover{
+                                                        background-color: var(--nav-color);
+                                                        color: var(--nav-bg-color);  
+                                                        
+                                                        cursor: pointer;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .banner{
+                                            color: var(--banner-color);
+                                            font-size: var(--banner-font-size);                                            
+                                            font-family: var(--banner-font-family);
+                                            font-weight: var(--banner-font-weight);
+                                            font-style: var(--banner-font-style);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .controls{     
+                display: grid;
+                gap: .5rem;
+                overflow-y: auto;
+                
+                background-color: var(--3rd-bg-color);
+                color: var(--3rd-color);
+                
+                .sections{
+                    padding: .5rem;
+                    
+                    background-color: var(--4th-bg-color);
+                    color: var(--4th-color);
+                    
+                    .form-group{
+                        padding: .5rem;
+                        
+                        background-color: var(--5th-bg-color);
+                        color: var(--5th-color);
+                        // label{
+    
+                        // }
+    
+                        // input{
+    
+                        // }
+                    }
+                }
+            }
+        }
+
+        .button-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: .5rem;
+            padding: .5rem;
+
+            background-color: var(--4th-bg-color);
+            color: var(--4th-color);
+        }
+
+    }
+}
