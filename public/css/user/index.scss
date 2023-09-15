@@ -34,7 +34,6 @@
         background-color: var(--2nd-bg-color);
         
         table{
-
             thead{        
                 tr{
                     th{
@@ -43,9 +42,15 @@
             }
             
             tbody{
-                .no-data{
-                    color: red;
-                    font-size: xx-large;
+                tr{                    
+                    .no-data{
+                        color: red;
+                        font-size: xx-large;
+                    }
+                }
+
+                .clickable{
+                    cursor: pointer;
                 }
             }
 

@@ -89,6 +89,25 @@
             --banner-font-style: {{ getSettings('--banner-font-style') }};
             --banner-font-family: {{ getSettings('--banner-font-family') }};
 
+            --button-default-bg-color: {{ getSettings('--button-default-bg-color') }};
+            --button-default-color: {{ getSettings('--button-default-color') }};
+            --button-primary-bg-color: {{ getSettings('--button-primary-bg-color') }};
+            --button-primary-color: {{ getSettings('--button-primary-color') }};
+            --button-secondary-bg-color: {{ getSettings('--button-secondary-bg-color') }};
+            --button-secondary-color: {{ getSettings('--button-secondary-color') }};
+            --button-success-bg-color: {{ getSettings('--button-success-bg-color') }};
+            --button-success-color: {{ getSettings('--button-success-color') }};
+            --button-info-bg-color: {{ getSettings('--button-info-bg-color') }};
+            --button-info-color: {{ getSettings('--button-info-color') }};
+            --button-warning-bg-color: {{ getSettings('--button-warning-bg-color') }};
+            --button-warning-color: {{ getSettings('--button-warning-color') }};
+            --button-danger-bg-color: {{ getSettings('--button-danger-bg-color') }};
+            --button-danger-color: {{ getSettings('--button-danger-color') }};
+            --button-light-bg-color: {{ getSettings('--button-light-bg-color') }};
+            --button-light-color: {{ getSettings('--button-light-color') }};
+            --button-dark-bg-color: {{ getSettings('--button-dark-bg-color') }};
+            --button-dark-color: {{ getSettings('--button-dark-color') }};
+
         }
     </style>
     <link rel="stylesheet" href="{{ asset('css/my-design/my-design.css') }}">
@@ -162,10 +181,14 @@
             @yield('content')
         </section>        
 
+        @if (strcmp(Request::route()->getName(), 'settings.index') != 0)
+
         <footer class="footer"> 
             <p>All rights reserve by <a href="https://zamanscorp.com">Zamans Corp</a></p>
             <p>&copy 2021 - {{ date('Y') }}</p>
         </footer>
+
+        @endif        
     </div>
 
     @if (Auth::check())

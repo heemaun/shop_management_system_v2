@@ -4,6 +4,7 @@
 
 html{
     body{        
+        background-color: var(--1st-bg-color);
         .wrapper{   
             background-color: var(--1st-bg-color);
             color: var(--1st-color);
@@ -139,14 +140,9 @@ html{
                 color: var(--nav-color);  
 
                 nav{
-                    color: var(--nav-color);
-                    font-size: var(--nav-font-size);
-                    font-weight: var(--nav-font-weight);
 
                     ul{        
                         li{
-                            list-style: none;
-
                             a{   
                                 display: block;
                                 padding: .5rem .5rem;

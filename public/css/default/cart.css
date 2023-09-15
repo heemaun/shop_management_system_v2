@@ -10,8 +10,8 @@
   z-index: 30;
   transform: translateY(-100%);
   transition: all 1s;
-  background: hsla(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light), 0.75);
-  color: var(--1st-color);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
 }
 .cart-div .cart {
   padding: 1rem;

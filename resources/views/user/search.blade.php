@@ -1,11 +1,13 @@
 @if (count($users) == 0)
 
-<span class="no-data">No Data Found!</span>
+<tr>
+    <td class="no-data" colspan="6">No Data Found</td>
+</tr>
 
 @else
 
 @foreach ($users as $user)
-    <tr data-href="{{ route('users.show',$user->id) }}">
+    <tr class="clickable" data-href="{{ route('users.show',$user->id) }}">
         <td class="right">{{ $loop->iteration }}</td>
         <td>{{ $user->status->name }}</td>
         <td>{{ $user->name }}</td>

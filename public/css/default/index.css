@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+html body {
+  background-color: var(--1st-bg-color);
+}
 html body .wrapper {
   background-color: var(--1st-bg-color);
   color: var(--1st-color);
@@ -111,14 +114,6 @@ html body .wrapper aside {
   z-index: 10;
   background-color: var(--nav-bg-color);
   color: var(--nav-color);
-}
-html body .wrapper aside nav {
-  color: var(--nav-color);
-  font-size: var(--nav-font-size);
-  font-weight: var(--nav-font-weight);
-}
-html body .wrapper aside nav ul li {
-  list-style: none;
 }
 html body .wrapper aside nav ul li a {
   display: block;

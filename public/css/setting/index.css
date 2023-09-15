@@ -1,36 +1,60 @@
 .settings-index {
-  background-color: var(--2nd-bg-color);
-  color: var(--2nd-color);
-  padding: 1rem;
+  padding: 0rem 1rem 1rem 1rem;
 }
-.settings-index .backgrounds-and-colors {
+.settings-index nav ul {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.settings-index nav ul li {
+  list-style: none;
+  padding: 0.5rem 1rem;
+  flex-grow: 1;
+  text-align: center;
+}
+.settings-index nav ul li:hover {
+  background-color: var(--nav-color);
+  color: var(--nav-bg-color);
+  cursor: pointer;
+}
+.settings-index nav ul .active {
+  filter: brightness(150%) saturate(50%);
+}
+.settings-index .panels {
+  position: relative;
+}
+.settings-index .panels .backgrounds-and-colors {
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   gap: 0.5rem;
   padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
 }
-.settings-index .backgrounds-and-colors .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+.settings-index .panels .backgrounds-and-colors .container {
+  display: grid;
   gap: 0.5rem;
 }
-.settings-index .backgrounds-and-colors .container .demo {
-  flex-grow: 1;
+.settings-index .panels .backgrounds-and-colors .container .output {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
+  height: 100%;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div {
+  flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -41,10 +65,11 @@
   background-color: var(--1st-bg-color);
   color: var(--1st-color);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .first-span {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .first-span {
   color: inherit;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div {
+  flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -55,10 +80,11 @@
   background-color: var(--2nd-bg-color);
   color: var(--2nd-color);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div span {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div span {
   color: inherit;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div {
+  flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,10 +95,11 @@
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div span {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div span {
   color: inherit;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div {
+  flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -83,10 +110,11 @@
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div span {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div span {
   color: inherit;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div {
+  flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -97,14 +125,15 @@
   background-color: var(--5th-bg-color);
   color: var(--5th-color);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div span {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div span {
   color: inherit;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div {
+  flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
@@ -113,10 +142,10 @@
   background-color: var(--6th-bg-color);
   color: var(--6th-color);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div span {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div span {
   color: inherit;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav {
   padding: 0rem 1rem;
   display: flex;
   justify-content: space-between;
@@ -129,19 +158,19 @@
   font-weight: var(--nav-font-weight);
   font-style: var(--nav-font-style);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav .logo {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav .logo {
   color: var(--logo-color);
   font-size: var(--logo-font-size);
   font-family: var(--logo-font-family);
   font-weight: var(--logo-font-weight);
   font-style: var(--logo-font-style);
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav ul {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav ul li {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav ul li {
   list-style: none;
   padding: 0.5rem 1rem;
   white-space: nowrap;
@@ -150,36 +179,54 @@
   font-weight: inherit;
   font-style: inherit;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav ul li:hover {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .nav ul li:hover {
   background-color: var(--nav-color);
   color: var(--nav-bg-color);
   cursor: pointer;
 }
-.settings-index .backgrounds-and-colors .container .demo .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .banner {
+.settings-index .panels .backgrounds-and-colors .container .output .first-div .second-div .third-div .fourth-div .fifth-div .sixth-div .banner {
   color: var(--banner-color);
   font-size: var(--banner-font-size);
   font-family: var(--banner-font-family);
   font-weight: var(--banner-font-weight);
   font-style: var(--banner-font-style);
 }
-.settings-index .backgrounds-and-colors .container .controls {
-  display: grid;
+.settings-index .panels .backgrounds-and-colors .container .controls {
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   overflow-y: auto;
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
 }
-.settings-index .backgrounds-and-colors .container .controls .sections {
+.settings-index .panels .backgrounds-and-colors .container .controls .sections {
+  flex-grow: 1;
+  display: grid;
+  gap: 0.5rem;
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
 }
-.settings-index .backgrounds-and-colors .container .controls .sections .form-group {
+.settings-index .panels .backgrounds-and-colors .container .controls .sections .form-group {
   padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
   background-color: var(--5th-bg-color);
   color: var(--5th-color);
 }
-.settings-index .backgrounds-and-colors .button-container {
+.settings-index .panels .backgrounds-and-colors .container .controls .sections .form-group label {
+  white-space: nowrap;
+}
+.settings-index .panels .backgrounds-and-colors .container .controls .sections .form-group input {
+  width: 2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  padding: none;
+  background: none;
+}
+.settings-index .panels .backgrounds-and-colors .button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -187,4 +234,170 @@
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
+}
+.settings-index .panels .fonts {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-y: auto;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.settings-index .panels .fonts .sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.settings-index .panels .fonts .sections h3 {
+  grid-column: 1/-1;
+}
+.settings-index .panels .fonts .sections .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0.5rem;
+  flex-grow: 1;
+  background-color: var(--5th-bg-color);
+  color: var(--5th-color);
+}
+.settings-index .panels .fonts .sections .form-group label {
+  white-space: nowrap;
+}
+.settings-index .panels .fonts .sections .form-group input, .settings-index .panels .fonts .sections .form-group select {
+  text-align: center;
+}
+.settings-index .panels .fonts .sections .form-group input[type=range] {
+  padding: 0.5rem 0rem;
+}
+.settings-index .panels .fonts .sections .output {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  flex-grow: 1;
+  background-color: var(--5th-bg-color);
+  color: var(--5th-color);
+}
+.settings-index .panels .fonts .sections .output * {
+  white-space: nowrap;
+}
+.settings-index .panels .fonts .sections .output .logo {
+  color: var(--logo-color);
+  font-size: var(--logo-font-size);
+  font-family: var(--logo-font-family);
+  font-weight: var(--logo-font-weight);
+  font-style: var(--logo-font-style);
+}
+.settings-index .panels .fonts .sections .output .default-text {
+  font-size: var(--default-text-font-size);
+  font-family: var(--default-text-font-family);
+  font-weight: var(--default-text-font-weight);
+  font-style: var(--default-text-font-style);
+}
+.settings-index .panels .fonts .button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.settings-index .panels .buttons {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-y: auto;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.settings-index .panels .buttons .buttons-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.settings-index .panels .buttons .controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.5rem;
+  overflow-y: auto;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.settings-index .panels .buttons .controls .section {
+  flex-grow: 1;
+  display: grid;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.settings-index .panels .buttons .controls .section .form-group {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--5th-bg-color);
+  color: var(--5th-color);
+}
+.settings-index .panels .buttons .controls .section .form-group label {
+  white-space: nowrap;
+}
+.settings-index .panels .buttons .controls .section .form-group input {
+  width: 2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  padding: none;
+  background: none;
+}
+.settings-index .panels .buttons .button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.settings-index .panels .miscellaneous {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: green;
+  color: var(--3rd-color);
+}
+.settings-index .panels .div-active {
+  display: flex;
 }/*# sourceMappingURL=index.css.map */

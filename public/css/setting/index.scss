@@ -1,65 +1,81 @@
 .settings-index{
-    background-color: var(--2nd-bg-color);
-    color: var(--2nd-color);
-    padding: 1rem;
-    
+    padding: 0rem 1rem 1rem 1rem;   
     // h2{
         
     // }
 
-    .backgrounds-and-colors{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: stretch;
-        gap: .5rem;
-        padding: .5rem;
-        
-        background-color: var(--3rd-bg-color);
-        color: var(--3rd-color);            
-
-        .container{
-            // flex-grow: 1;
+    nav{
+        ul{
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: .5rem;
+            align-items: center;
+            width: 100%;
 
-            .demo{
+            li{
+                list-style: none;
+                padding: .5rem 1rem;
                 flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
+                text-align: center;
+
+                &:hover{
+                    background-color: var(--nav-color);
+                    color: var(--nav-bg-color);  
+                    
+                    cursor: pointer;
+                }
+            }
+
+            .active{
+                filter:brightness(150%) saturate(50%);
+                // background-color: var(--nav-bg-color);
+                // color: var(--nav-color);
+            }
+        }
+    }
+
+    .panels{
+        position: relative;
+
+        .backgrounds-and-colors{
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: .5rem;
+            padding: .5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);            
+    
+            .container{
+                display: grid;
+                // grid-template-columns: auto auto auto;
+
                 gap: .5rem;
-                padding: .5rem;
     
-                background-color: var(--4th-bg-color);
-                color: var(--4th-color);
-    
-                // h3{
-    
-                // }
-    
-                .first-div{
-                    // flex-grow: 1;
-                    width: 100%;
+                .output{
+                    // grid-column: span 2;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
+                    justify-content: flex-start;
                     align-items: center;
                     gap: .5rem;
                     padding: .5rem;
-    
-                    background-color: var(--1st-bg-color);
-                    color: var(--1st-color);
-                    
-                    .first-span{
-                        color: inherit;
-                    }
-                    
-                    .second-div{
-                        // flex-grow: 1;
+                    height: 100%;
+        
+                    background-color: var(--4th-bg-color);
+                    color: var(--4th-color);
+        
+                    // h3{
+        
+                    // }
+        
+                    .first-div{
+                        flex-grow: 1;
                         width: 100%;
                         display: flex;
                         flex-direction: column;
@@ -67,16 +83,16 @@
                         align-items: center;
                         gap: .5rem;
                         padding: .5rem;
-    
-                        background-color: var(--2nd-bg-color);
-                        color: var(--2nd-color);
+        
+                        background-color: var(--1st-bg-color);
+                        color: var(--1st-color);
                         
-                        span{
+                        .first-span{
                             color: inherit;
                         }
                         
-                        .third-div{
-                            // flex-grow: 1;
+                        .second-div{
+                            flex-grow: 1;
                             width: 100%;
                             display: flex;
                             flex-direction: column;
@@ -84,16 +100,16 @@
                             align-items: center;
                             gap: .5rem;
                             padding: .5rem;
-    
-                            background-color: var(--3rd-bg-color);
-                            color: var(--3rd-color);
-    
+        
+                            background-color: var(--2nd-bg-color);
+                            color: var(--2nd-color);
+                            
                             span{
                                 color: inherit;
                             }
                             
-                            .fourth-div{
-                                // flex-grow: 1;
+                            .third-div{
+                                flex-grow: 1;
                                 width: 100%;
                                 display: flex;
                                 flex-direction: column;
@@ -101,16 +117,16 @@
                                 align-items: center;
                                 gap: .5rem;
                                 padding: .5rem;
-    
-                                background-color: var(--4th-bg-color);
-                                color: var(--4th-color);
-    
+        
+                                background-color: var(--3rd-bg-color);
+                                color: var(--3rd-color);
+        
                                 span{
                                     color: inherit;
                                 }
                                 
-                                .fifth-div{
-                                    // flex-grow: 1;
+                                .fourth-div{
+                                    flex-grow: 1;
                                     width: 100%;
                                     display: flex;
                                     flex-direction: column;
@@ -118,86 +134,103 @@
                                     align-items: center;
                                     gap: .5rem;
                                     padding: .5rem;
-    
-                                    background-color: var(--5th-bg-color);
-                                    color: var(--5th-color);
-    
+        
+                                    background-color: var(--4th-bg-color);
+                                    color: var(--4th-color);
+        
                                     span{
                                         color: inherit;
                                     }
                                     
-                                    .sixth-div{
-                                        // flex-grow: 1;
+                                    .fifth-div{
+                                        flex-grow: 1;
                                         width: 100%;
                                         display: flex;
                                         flex-direction: column;
-                                        justify-content: flex-start;
+                                        justify-content: space-between;
                                         align-items: center;
                                         gap: .5rem;
                                         padding: .5rem;
-                                        height: min-content;
-    
-                                        background-color: var(--6th-bg-color);
-                                        color: var(--6th-color);
-                                        
+        
+                                        background-color: var(--5th-bg-color);
+                                        color: var(--5th-color);
+        
                                         span{
                                             color: inherit;
                                         }
-
                                         
-                                        .nav{
-                                            padding: 0rem 1rem;
+                                        .sixth-div{
+                                            flex-grow: 1;
+                                            width: 100%;
                                             display: flex;
+                                            flex-direction: column;
                                             justify-content: space-between;
                                             align-items: center;
-                                            width: 100%;
-
-                                            color: var(--nav-color);
-                                            background-color: var(--nav-bg-color);                                            
-                                            font-size: var(--nav-font-size);
-                                            font-family: var(--nav-font-family);
-                                            font-weight: var(--nav-font-weight);
-                                            font-style: var(--nav-font-style);
-
-                                            .logo{
-                                                color: var(--logo-color);
-                                                font-size: var(--logo-font-size);
-                                                font-family: var(--logo-font-family);
-                                                font-weight: var(--logo-font-weight);
-                                                font-style: var(--logo-font-style);
-                                            }      
+                                            gap: .5rem;
+                                            padding: .5rem;
+                                            height: min-content;
+        
+                                            background-color: var(--6th-bg-color);
+                                            color: var(--6th-color);
                                             
-                                            ul{
+                                            span{
+                                                color: inherit;
+                                            }    
+                                            
+                                            .nav{
+                                                padding: 0rem 1rem;
                                                 display: flex;
                                                 justify-content: space-between;
                                                 align-items: center;
-
-                                                li{
-                                                    list-style: none;
-                                                    padding: .5rem 1rem;
-                                                    white-space: nowrap;
-
-                                                    font-size: inherit;
-                                                    font-family: inherit;
-                                                    font-weight: inherit;
-                                                    font-style: inherit;
-
-                                                    &:hover{
-                                                        background-color: var(--nav-color);
-                                                        color: var(--nav-bg-color);  
-                                                        
-                                                        cursor: pointer;
+                                                width: 100%;
+    
+                                                color: var(--nav-color);
+                                                background-color: var(--nav-bg-color);                                            
+                                                font-size: var(--nav-font-size);
+                                                font-family: var(--nav-font-family);
+                                                font-weight: var(--nav-font-weight);
+                                                font-style: var(--nav-font-style);
+    
+                                                .logo{
+                                                    color: var(--logo-color);
+                                                    font-size: var(--logo-font-size);
+                                                    font-family: var(--logo-font-family);
+                                                    font-weight: var(--logo-font-weight);
+                                                    font-style: var(--logo-font-style);
+                                                }      
+                                                
+                                                ul{
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+    
+                                                    li{
+                                                        list-style: none;
+                                                        padding: .5rem 1rem;
+                                                        white-space: nowrap;
+    
+                                                        font-size: inherit;
+                                                        font-family: inherit;
+                                                        font-weight: inherit;
+                                                        font-style: inherit;
+    
+                                                        &:hover{
+                                                            background-color: var(--nav-color);
+                                                            color: var(--nav-bg-color);  
+                                                            
+                                                            cursor: pointer;
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
-
-                                        .banner{
-                                            color: var(--banner-color);
-                                            font-size: var(--banner-font-size);                                            
-                                            font-family: var(--banner-font-family);
-                                            font-weight: var(--banner-font-weight);
-                                            font-style: var(--banner-font-style);
+    
+                                            .banner{
+                                                color: var(--banner-color);
+                                                font-size: var(--banner-font-size);                                            
+                                                font-family: var(--banner-font-family);
+                                                font-weight: var(--banner-font-weight);
+                                                font-style: var(--banner-font-style);
+                                            }
                                         }
                                     }
                                 }
@@ -205,49 +238,273 @@
                         }
                     }
                 }
+                
+                .controls{  
+                    // grid-column: span 1;   
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: .5rem;
+                    overflow-y: auto;
+                    
+                    background-color: var(--3rd-bg-color);
+                    color: var(--3rd-color);
+                    
+                    .sections{
+                        flex-grow: 1;
+                        display: grid;
+                        gap: .5rem;
+                        padding: .5rem;
+                        
+                        background-color: var(--4th-bg-color);
+                        color: var(--4th-color);
+                        
+                        .form-group{
+                            padding: .5rem;
+                            display: flex;
+                            justify-content: space-between;
+                            
+                            background-color: var(--5th-bg-color);
+                            color: var(--5th-color);
+
+                            label{
+                                white-space: nowrap;
+                            }
+
+                            input{
+                                width: 2rem;
+                                aspect-ratio: 1;
+                                border-radius: 50%;
+                                border: none;
+                                outline: none;
+                                padding: none;
+                                background: none;
+                            }
+                        }
+                    }
+                }
             }
+    
+            .button-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: .5rem;
+                padding: .5rem;
+    
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);
+            }
+    
+        }
+    
+        .fonts{
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: .5rem;
+            padding: .5rem;        
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;    
+            overflow-y: auto;
             
-            .controls{     
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);  
+            
+            .sections{
                 display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                padding: .5rem;
+                gap: .5rem;
+                
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);  
+
+                h3{
+                    grid-column: 1/-1;
+                }
+                
+                .form-group{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    padding: .5rem;
+                    flex-grow: 1;
+
+                    background-color: var(--5th-bg-color);
+                    color: var(--5th-color); 
+
+                    label{
+                        white-space: nowrap;
+                    }
+
+                    input,select{
+                        text-align: center;
+                    }
+
+                    input[type=range]{
+                        padding: .5rem 0rem;
+                    }
+                }
+                
+                .output{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: .5rem;
+                    flex-grow: 1;
+
+                    background-color: var(--5th-bg-color);
+                    color: var(--5th-color); 
+
+                    *{
+                        white-space: nowrap;
+                    }
+
+                    .logo{
+                        color: var(--logo-color);
+                        font-size: var(--logo-font-size);
+                        font-family: var(--logo-font-family);
+                        font-weight: var(--logo-font-weight);
+                        font-style: var(--logo-font-style);
+                    }
+
+                    .default-text{
+                        font-size: var(--default-text-font-size);
+                        font-family: var(--default-text-font-family);
+                        font-weight: var(--default-text-font-weight);
+                        font-style: var(--default-text-font-style);
+                    }
+                }
+            }
+
+            .button-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: .5rem;
+                gap: .5rem;
+                
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color); 
+            }
+        }
+
+        .buttons{
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: .5rem;
+            padding: .5rem;        
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;    
+            overflow-y: auto;
+            
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);  
+
+            .buttons-list{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: .5rem;
+                gap: .5rem;
+                
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);  
+            }
+
+            .controls{
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
                 gap: .5rem;
                 overflow-y: auto;
                 
                 background-color: var(--3rd-bg-color);
                 color: var(--3rd-color);
-                
-                .sections{
+
+                .section{
+                    flex-grow: 1;
+                    display: grid;
                     padding: .5rem;
+                    gap: .5rem;
                     
                     background-color: var(--4th-bg-color);
-                    color: var(--4th-color);
+                    color: var(--4th-color);  
                     
                     .form-group{
                         padding: .5rem;
+                        display: flex;
+                        justify-content: space-between;
                         
                         background-color: var(--5th-bg-color);
                         color: var(--5th-color);
-                        // label{
-    
-                        // }
-    
-                        // input{
-    
-                        // }
+
+                        label{
+                            white-space: nowrap;
+                        }
+
+                        input{
+                            width: 2rem;
+                            aspect-ratio: 1;
+                            border-radius: 50%;
+                            border: none;
+                            outline: none;
+                            padding: none;
+                            background: none;
+                        }
                     }
                 }
             }
-        }
 
-        .button-container{
-            display: flex;
+            .button-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: .5rem;
+                padding: .5rem;
+    
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);
+            }
+        }
+    
+        .miscellaneous{
+            display: none;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
+            align-items: stretch;
             gap: .5rem;
-            padding: .5rem;
-
-            background-color: var(--4th-bg-color);
-            color: var(--4th-color);
+            padding: .5rem;        
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            // height: 75vh;            
+            
+            background-color: green;
+            color: var(--3rd-color);  
         }
-
-    }
+    
+        .div-active{
+            display: flex;
+        }
+    }    
 }
+
+// html{
+//     body{
+//         .wrapper{
+//             background-color: white;
+//             color: black;
+//         }
+//     }
+// }

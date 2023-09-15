@@ -82,6 +82,7 @@
     z-index: 30;   
     transition: all 1s;
     transform: translateY(-100%);
+    backdrop-filter: blur(2px);
     
     color: var(--1st-color);
     background-color: hsla(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light), .5);

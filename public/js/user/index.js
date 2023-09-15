@@ -24,6 +24,6 @@ function search()
     });
 }
 
-$("tbody").on("click","tr",function(){
+$("tbody").on("click",".clickable",function(){
     window.location = $(this).attr("data-href");
 });

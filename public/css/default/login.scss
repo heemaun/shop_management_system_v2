@@ -8,10 +8,8 @@
     place-content: center;
     z-index: 30;
     transform: translateY(-100%);
-    transition: all 1s;
-
-    background: hsla(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light), .75);
-    color: var(--1st-color);
+    transition: all 1s;    
+    backdrop-filter: blur(2px);
 
     form{
         // padding: 1rem;

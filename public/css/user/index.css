@@ -25,9 +25,12 @@
   color: var(--2nd-color);
   background-color: var(--2nd-bg-color);
 }
-.user-index .table-container table tbody .no-data {
+.user-index .table-container table tbody tr .no-data {
   color: red;
   font-size: xx-large;
+}
+.user-index .table-container table tbody .clickable {
+  cursor: pointer;
 }
 .user-index .table-container table .left {
   text-align: left;

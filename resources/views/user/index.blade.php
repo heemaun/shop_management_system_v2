@@ -39,7 +39,7 @@
 
             <tbody>
                 @foreach ($users as $user)
-                    <tr data-href="{{ route('users.show',$user->id) }}">
+                    <tr data-href="{{ route('users.show',$user->id) }}" class="clickable">
                         <td class="right">{{ $loop->iteration }}</td>
                         <td>{{ $user->status->name }}</td>
                         <td>{{ $user->name }}</td>

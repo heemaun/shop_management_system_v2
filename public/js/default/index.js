@@ -25,6 +25,12 @@ function contentOnloadPosition(){
     let footerHeight = $(".footer").css("height");
     let asideWidth = $("aside").css("width");
 
-    $("#content").css("padding",headerHeight+" 0px "+footerHeight+" "+asideWidth);
+    if(window.location.pathname == "/settings"){
+        $("#content").css("padding",headerHeight+" 0px 0px "+asideWidth);
+    }
+    else{
+        $("#content").css("padding",headerHeight+" 0px "+footerHeight+" "+asideWidth);
+    }
+
     $("aside").css("padding-top",headerHeight);
 }
