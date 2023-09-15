@@ -58,11 +58,15 @@ function getStatusID($name)
 
     function getSettings($key,$fromSettings = false)
     {
-        if((str_contains($key,'size') || str_contains($key,'radius')) && $fromSettings){
-            return substr(Setting::where('key',$key)->first()->value,0,-2);
+        try{
+            if((str_contains($key,'size') || str_contains($key,'radius')) && $fromSettings){
+                return substr(Setting::where('key',$key)->first()->value,0,-2);
+            }
+    
+            return Setting::where('key',$key)->first()->value;
+        }catch(Exception $e){
+            dd($e);
         }
-
-        return Setting::where('key',$key)->first()->value;
     }
 
 ?>

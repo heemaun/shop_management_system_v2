@@ -46,7 +46,7 @@
 
                             @endif
 
-                            <button type="button shadow click-shadow" data-id="{{ $product->id }}" class="button shadow click-shadow blue" id="product_view_trigger">View Details</button>
+                            <button type="button shadow click-shadow" data-id="{{ $product->id }}" class="button shadow click-shadow primary" id="product_view_trigger">View Details</button>
                         </div>
                     </footer>
                 </article>

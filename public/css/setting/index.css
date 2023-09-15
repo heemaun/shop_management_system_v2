@@ -395,8 +395,72 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: green;
+  background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
+}
+.settings-index .panels .miscellaneous .output {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.settings-index .panels .miscellaneous .output .section1 {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: var(--5th-bg-color);
+  color: var(--4th-color);
+  border-radius: var(--section1-border-radius);
+}
+.settings-index .panels .miscellaneous .output .section1 form {
+  background-color: var(--6th-bg-color);
+  color: var(--6th-color);
+}
+.settings-index .panels .miscellaneous .output .section1 form .section2 {
+  padding: 0.5rem;
+  background-color: var(--5th-bg-color);
+  color: var(--5th-color);
+  border-radius: var(--section2-border-radius);
+}
+.settings-index .panels .miscellaneous .output .section1 form .section2 .hidden-div {
+  display: flex;
+  gap: 0.5rem;
+}
+.settings-index .panels .miscellaneous .output .section1 form .section2 .hidden-div .section3 {
+  width: 50%;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+  border-radius: var(--section3-border-radius);
+}
+.settings-index .panels .miscellaneous .controls {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.settings-index .panels .miscellaneous .controls .form-group {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  background-color: var(--5th-bg-color);
+  color: var(--5th-color);
+}
+.settings-index .panels .miscellaneous .controls .form-group input {
+  padding: 0.25rem 0rem;
+}
+.settings-index .panels .miscellaneous .button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
 }
 .settings-index .panels .div-active {
   display: flex;

@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            <a href="{{ route('users.create') }}" class="button shadow click-shadow green">Create</a>
+            <a href="{{ route('users.create') }}" class="button shadow click-shadow success">Create</a>
         </div>
     </div>
 

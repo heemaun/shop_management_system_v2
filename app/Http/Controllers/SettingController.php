@@ -192,6 +192,17 @@ class SettingController extends Controller
                 '--button-dark-color'           => 'required|regex:"^#([A-Fa-f0-9]{6})$"',
             ]);
         }
+        
+        else if(strcmp($request->key,'border radius')==0){
+            $data = Validator::make($request->all(),[
+                '--text-field-border-radius' => 'required|numeric|min:0|max:100',
+                '--button-border-radius' => 'required|numeric|min:0|max:100',
+                '--form-border-radius' => 'required|numeric|min:0|max:100',
+                '--section1-border-radius' => 'required|numeric|min:0|max:100',
+                '--section2-border-radius' => 'required|numeric|min:0|max:100',
+                '--section3-border-radius' => 'required|numeric|min:0|max:100',
+            ]);
+        }
 
         if($data->fails()){
             return response()->json([

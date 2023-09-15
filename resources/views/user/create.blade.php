@@ -66,11 +66,11 @@
         </div>
 
         <div class="button-container">
-            <button class="button shadow click-shadow red" type="button">Clear All</button>
+            <button class="button shadow click-shadow danger" type="button">Clear All</button>
             
             <div>
-                <button class="button shadow click-shadow blue" type="submit">Store</button>
-                <a href="{{ (Auth::check()) ? route('users.index') : route('home') }}" class="button shadow click-shadow gray">Back</a>
+                <button class="button shadow click-shadow primary" type="submit">Store</button>
+                <a href="{{ (Auth::check()) ? route('users.index') : route('home') }}" class="button shadow click-shadow secondary">Back</a>
             </div>
         </div>
     </form>

@@ -15,15 +15,15 @@
         @foreach ($sell->sellOrders as $so)
             <tr>
                 <td>
-                    <button data-id="{{ $so->id }}" class="button shadow click-shadow red delete">X</button>         
+                    <button data-id="{{ $so->id }}" class="button shadow click-shadow danger delete">X</button>         
                 </td>
                 <td>{{ $loop->iteration.'.' }}</td>
                 <td>{{ $so->product->name }}</td>
                 <td class="right">{{ number_format($so->product->price,2) }}</td>
                 <td class="right">{{ $so->units }}</td>
                 <td>
-                    <button data-id="{{ $so->id }}" class="button shadow click-shadow green add">+</button>
-                    <button data-id="{{ $so->id }}" class="button shadow click-shadow yellow sub">-</button>
+                    <button data-id="{{ $so->id }}" class="button shadow click-shadow success add">+</button>
+                    <button data-id="{{ $so->id }}" class="button shadow click-shadow warning sub">-</button>
                 </td>
                 <td class="right">{{ number_format(($so->price * $so->units),2) }}</td>
                 <td class="right">{{ number_format($so->discount,2) }}</td>

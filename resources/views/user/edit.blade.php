@@ -66,10 +66,10 @@
         </div>
 
         <div class="button-container">
-            <button class="button shadow click-shadow red" type="button">Clear All</button>
+            <button class="button shadow click-shadow danger" type="button">Clear All</button>
             <div>
-                <button class="button shadow click-shadow blue" type="submit">update</button>
-                <a href="{{ route('users.show',$user->id) }}" class="button shadow click-shadow gray">Back</a>
+                <button class="button shadow click-shadow primary" type="submit">update</button>
+                <a href="{{ route('users.show',$user->id) }}" class="button shadow click-shadow secondary">Back</a>
             </div>
         </div>
     </form>

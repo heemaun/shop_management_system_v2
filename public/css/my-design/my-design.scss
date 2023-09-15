@@ -220,15 +220,13 @@ select{
 }
 
 .form{
-    padding: 1rem;
-    // min-width: 500px;
-    // max-width: 90%;
+    padding: .5rem;
     box-shadow: .1rem .1rem 1rem gray;
     display: grid;
     gap: .5rem;    
     
     border: .1rem solid var(--2nd-color);
-    border-radius: var(--div2-border-radius);
+    border-radius: var(--form-border-radius);
     background-color: var(--2nd-bg-color);
     color: var(--2nd-color);
 
@@ -245,7 +243,7 @@ select{
 
         background-color: var(--3rd-bg-color);
         color: var(--2rd-color);
-        border-radius: var(--div3-border-radius);
+        border-radius: var(--section2-border-radius);
 
         // label{
 
@@ -273,7 +271,7 @@ select{
 
         background-color: var(--3rd-bg-color);
         color: var(--2rd-color);
-        border-radius: var(--div3-border-radius);
+        border-radius: var(--section2-border-radius);
     }
 }
 
@@ -333,6 +331,7 @@ nav{
     &:active{
         filter: saturate(125%) brightness(125%);
         transform: translateY(.1rem);
+        box-shadow: 0 0 2rem .1rem var(--button-dark-bg-color);
     }
 }
 
@@ -340,41 +339,73 @@ nav{
     color: var(--button-primary-color);
     background-color: var(--button-primary-bg-color);
     border: 1px solid var(--button-primary-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-primary-bg-color);
+    }  
 }
 .secondary{
     color: var(--button-secondary-color);
     background-color: var(--button-secondary-bg-color);
     border: 1px solid var(--button-secondary-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-secondary-bg-color);
+    }  
 }
 .success{
     color: var(--button-success-color);
     background-color: var(--button-success-bg-color);
     border: 1px solid var(--button-success-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-success-bg-color);
+    }  
 }
 .info{
     color: var(--button-info-color);
     background-color: var(--button-info-bg-color);
     border: 1px solid var(--button-info-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-info-bg-color);
+    }  
 }
 .warning{
     color: var(--button-warning-color);
     background-color: var(--button-warning-bg-color);
     border: 1px solid var(--button-warning-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-warning-bg-color);
+    }  
 }
 .danger{
     color: var(--button-danger-color);
     background-color: var(--button-danger-bg-color);
     border: 1px solid var(--button-danger-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-danger-bg-color);
+    }  
 }
 .light{
     color: var(--button-light-color);
     background-color: var(--button-light-bg-color);
     border: 1px solid var(--button-light-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-light-bg-color);
+    }  
 }
 .dark{
     color: var(--button-dark-color);
     background-color: var(--button-dark-bg-color);
     border: 1px solid var(--button-dark-color);
+
+    &:active{
+        box-shadow: 0 0 2rem .1rem var(--button-dark-bg-color);
+    }  
 }
 
 .outline{
@@ -393,8 +424,8 @@ nav{
     box-shadow: 0rem .1rem 0rem .1rem rgba($color: gray, $alpha: .5);
 }
 
-.click-shadow{
-    &:active{
-        box-shadow: 0 0 2rem .1rem var(--border-color);
-    }    
-}
+// .click-shadow{
+//     &:active{
+//         box-shadow: 0 0 2rem .1rem var(--border-color);
+//     }    
+// }

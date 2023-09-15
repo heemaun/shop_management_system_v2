@@ -12,11 +12,11 @@
             <div class="btn-container">
                 @if (Auth::check())
                     
-                <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="button shadow click-shadow green add-to-cart">ADD TO CART</a>
+                <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="button shadow click-shadow success add-to-cart">ADD TO CART</a>
 
                 @endif
 
-                <button type="button shadow click-shadow" data-id="{{ $product->id }}" class="button shadow click-shadow blue" id="product_view_trigger">View Details</button>
+                <button type="button shadow click-shadow" data-id="{{ $product->id }}" class="button shadow click-shadow info" id="product_view_trigger">View Details</button>
             </div>
         </footer>
 

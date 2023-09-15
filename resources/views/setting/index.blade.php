@@ -6,15 +6,15 @@
 
     <nav id="nav">
         <ul>
-            <li data-target="backgrounds_and_colors">Backgrounds & Colors</li>
+            <li class="active" data-target="backgrounds_and_colors">Backgrounds & Colors</li>
             <li data-target="fonts">Fonts</li>
-            <li class="active" data-target="buttons">Buttons</li>
+            <li data-target="buttons">Buttons</li>
             <li data-target="miscellaneous">Miscellaneous</li>
         </ul>
     </nav>
 
     <div class="panels">
-        <div class="backgrounds-and-colors" id="backgrounds_and_colors">       
+        <div class="backgrounds-and-colors div-active" id="backgrounds_and_colors">       
             <div class="container">
                 <div class="output">
                     <h3>Demo</h3>
@@ -158,8 +158,8 @@
             </div>
     
             <div class="button-container">
-                <button class="button shadow click-shadow red" id="bg_color_clear">Clear</button>
-                <button class="button shadow click-shadow green" id="bg_color_save">Save</button>
+                <a href="{{ route('settings.index') }}" class="button shadow danger">Clear</a>
+                <button class="button shadow click-shadow success" id="bg_color_save">Save</button>
             </div>
         </div>
     
@@ -704,13 +704,13 @@
                 </div>
             </div>
             <div class="button-container">
-                <button class="button shadow click-shadow red" id="font_clear">Clear</button>
-                <button class="button shadow click-shadow green" id="font_save">Save</button>
+                <a href="{{ route('settings.index') }}" class="button shadow danger">Clear</a>
+                <button class="button shadow click-shadow success" id="font_save">Save</button>
                 {{-- <button class="button shadow click-shadow gray">Back</button> --}}
             </div>
         </div>
 
-        <div class="buttons div-active" id="buttons">
+        <div class="buttons" id="buttons">
             <div class="buttons-list">
                 <button id="button-default" class="button">Default</button>
                 <button id="primary" class="button primary">Primary</button>
@@ -817,14 +817,84 @@
             </div>
 
             <div class="button-container">
-                <button class="button shadow click-shadow red" id="buttons_clear">Clear</button>
-                <button class="button shadow click-shadow green" id="buttons_save">Save</button>
+                <a href="{{ route('settings.index') }}" class="button shadow danger">Clear</a>
+                <button class="button shadow click-shadow success" id="buttons_save">Save</button>
                 {{-- <button class="button shadow click-shadow gray">Back</button> --}}
             </div>
         </div>
 
         <div class="miscellaneous" id="miscellaneous">
-            
+            <div class="output">
+                <h3>Demo Output</h3>
+                <div class="section1" id="section1-border-radius">
+                    <h3>Section Level 1</h3>
+
+                    <form id="form-border-radius" class="form">
+                        <h4>Form</h4>
+
+                        <div class="section2" id="section2-border-radius">
+                            <h3>Section Level 2</h3>
+                            
+                            <div class="hidden-div">
+                                <div class="section3 section3-border-radius" id="section3-border-radius">
+                                    <h3>Section Level 3</h3>
+
+                                    <input type="text" class="text-field" value="Text Field" id="text-field-border-radius">
+                                </div>
+                                <div class="section3 section3-border-radius" id="section3-border-radius">
+                                    <h3>Section Level 3</h3>
+
+                                    <button class="button" type="button" id="button-border-radius">Button</button>
+                                </div>
+                            </div>
+                        </div>                        
+                    </form>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="form-group">
+                    <label for="--text-field-border-radius">Text Field & Dropdown Border Radius <span>{{ '['.getSettings('--text-field-border-radius',false).']' }}</span></label>
+
+                    <input id="--text-field-border-radius" type="range" min="0" max="100" step="2" value="{{ getSettings('--text-field-border-radius',true) }}" class="text-field" data-target="text-field-border-radius" onchange="loadMiscellaneous(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="--button-border-radius">Button Border Radius <span>{{ '['.getSettings('--button-border-radius',false).']' }}</span></label>
+
+                    <input id="--button-border-radius" type="range" min="0" max="100" step="2" value="{{ getSettings('--button-border-radius',true) }}" class="text-field" data-target="button-border-radius" onchange="loadMiscellaneous(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="--form-border-radius">Form Border Radius <span>{{ '['.getSettings('--form-border-radius',false).']' }}</span></label>
+
+                    <input id="--form-border-radius" type="range" min="0" max="100" step="2" value="{{ getSettings('--form-border-radius',true) }}" class="text-field" data-target="form-border-radius" onchange="loadMiscellaneous(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="--section1-border-radius">Section 1 Border Radius <span>{{ '['.getSettings('--section1-border-radius',false).']' }}</span></label>
+
+                    <input id="--section1-border-radius" type="range" min="0" max="100" step="2" value="{{ getSettings('--section1-border-radius',true) }}" class="text-field" data-target="section1-border-radius" onchange="loadMiscellaneous(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="--section2-border-radius">Section 2 Border Radius <span>{{ '['.getSettings('--section2-border-radius',false).']' }}</span></label>
+
+                    <input id="--section2-border-radius" type="range" min="0" max="100" step="2" value="{{ getSettings('--section2-border-radius',true) }}" class="text-field" data-target="section2-border-radius" onchange="loadMiscellaneous(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="--section3-border-radius">Section 3 Border Radius <span>{{ '['.getSettings('--section3-border-radius',false).']' }}</span></label>
+
+                    <input id="--section3-border-radius" type="range" min="0" max="100" step="2" value="{{ getSettings('--section3-border-radius',true) }}" class="text-field" data-target="section3-border-radius" onchange="loadMiscellaneous(this)">
+                </div>
+            </div>
+
+            <div class="button-container">
+                <a href="{{ route('settings.index') }}" class="button shadow danger">Clear</a>
+                <button class="button shadow click-shadow success" id="miscellaneous_save">Save</button>
+                {{-- <button class="button shadow click-shadow gray">Back</button> --}}
+            </div>
         </div>
     </div>   
 

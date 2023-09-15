@@ -490,8 +490,93 @@
             width: 100%;
             // height: 75vh;            
             
-            background-color: green;
+            background-color: var(--3rd-bg-color);
             color: var(--3rd-color);  
+            
+            .output{   
+                padding: .5rem;        
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color); 
+
+                .section1{
+                    display: grid;
+                    gap: .5rem;
+                    padding: 1rem;        
+
+                    background-color: var(--5th-bg-color);
+                    color: var(--4th-color);  
+                    border-radius: var(--section1-border-radius);
+                    
+                    form{                  
+                        background-color: var(--6th-bg-color);
+                        color: var(--6th-color); 
+                        
+                        .section2{
+                            padding: .5rem;
+                            
+                            background-color: var(--5th-bg-color);
+                            color: var(--5th-color); 
+                            border-radius: var(--section2-border-radius);
+                            
+                            .hidden-div{
+                                display: flex;
+                                gap: .5rem;
+
+                                .section3{
+                                    width: 50%;
+                                    display: grid;
+                                    gap: .5rem;
+                                    padding: .5rem;        
+        
+                                    background-color: var(--4th-bg-color);
+                                    color: var(--4th-color);  
+                                    border-radius: var(--section3-border-radius);                                    
+                                }
+                            }
+                            
+                        }                        
+                    }
+                }
+            }
+
+            .controls{
+                padding: .5rem;  
+                display: grid;
+                grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+                gap: .5rem;
+
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color); 
+
+                .form-group{
+                    padding: .5rem; 
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: auto auto;
+
+                    background-color: var(--5th-bg-color);
+                    color: var(--5th-color);  
+
+                    label{
+
+                    }
+
+                    input{
+                        padding: .25rem 0rem;
+                    }
+                }
+            }
+
+            .button-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: .5rem;
+                padding: .5rem;
+    
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);
+            }
         }
     
         .div-active{

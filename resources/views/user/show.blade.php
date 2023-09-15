@@ -55,9 +55,9 @@
             </div>
 
             <div class="btn-container">
-                <a href="{{ route('users.index') }}" class="button shadow click-shadow gray">Back</a>
-                <a href="{{ route('users.edit', $user->id) }}" class="button shadow click-shadow green">Edit</a>
-                <button type="button" id="delete_trigger" class="button shadow click-shadow red">Delete</button>
+                <a href="{{ route('users.index') }}" class="button shadow click-shadow secondary">Back</a>
+                <a href="{{ route('users.edit', $user->id) }}" class="button shadow click-shadow success">Edit</a>
+                <button type="button" id="delete_trigger" class="button shadow click-shadow danger">Delete</button>
             </div>
         </div>
 
@@ -86,8 +86,8 @@
             </div>
 
             <div class="btn-container">
-                <button type="submit" class="button shadow click-shadow red">Delete</button>
-                <button type="button" class="button shadow click-shadow gray" id="delete_form_close">Close</button>
+                <button type="submit" class="button shadow click-shadow danger">Delete</button>
+                <button type="button" class="button shadow click-shadow secondary" id="delete_form_close">Close</button>
             </div>
         </form>
     </div>

@@ -65,7 +65,7 @@ class Dataseeder extends Seeder
             'password'  => Hash::make('11111111'),
         ]);
 
-        for($x=0;$x<5;$x++){
+        for($x=0;$x<50;$x++){
             $category = Category::create([
                 'status_id'             => rand(1,count(Status::all())),
                 'admin_id'              => rand(1,count(User::all())),
@@ -73,7 +73,7 @@ class Dataseeder extends Seeder
                 'name'                  => $faker->colorName(),
             ]);
             
-            for($y=0;$y<5;$y++){
+            for($y=0;$y<50;$y++){
                 Product::create([
                     'status_id'     => rand(1,count(Status::all())),
                     'admin_id'      => rand(1,count(User::all())),

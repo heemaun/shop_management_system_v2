@@ -291,10 +291,6 @@ function loadMultiDemo(element)
     $("."+key).css("font-family",fontFamily);
 }
 
-$("#font_clear,#bg_color_clear").click(function(){
-    window.location = "/settings";
-});
-
 function loadButton(element)
 {
     let id = $(element).attr("id");
@@ -359,6 +355,62 @@ $("#buttons_save").click(function(){
             // console.log(
             //     buttonDefaultBgColor,buttonPrimaryBgColor,buttonSecondaryBgColor,buttonSuccessBgColor,buttonInfoBgColor,buttonWarningBgColor,buttonDangerBgColor,buttonLightBgColor,buttonDarkBgColor,buttonDefaultColor,buttonPrimaryColor,buttonSecondaryColor,buttonSuccessColor,buttonInfoColor,buttonWarningColor,buttonDangerColor,buttonLightColor,buttonDarkColor,
             // );
+        },
+        success: function(response){
+            if(response.status == "errors"){
+                $.each(response.errors,function(key,value){
+                    $("#"+key+"-error").text(value[0]);
+                });
+            }
+
+            else if(response.status == "okay"){
+                toastr.info("Nothing to save");
+            }
+
+            else if(response.status == "exception"){
+                toastr.warning(response.message);
+            }
+
+            else if(response.status == "success"){
+                window.location = response.url;
+            }
+        }
+    });
+});
+
+function loadMiscellaneous(element)
+{
+    let target = $(element).attr("data-target");
+    let value = $(element).val();
+
+    $("#"+target+",."+target).css("border-radius",value+"px");
+}
+
+$("#miscellaneous_save").click(function(){
+    let textFieldBorderRadius = $("#--text-field-border-radius").val();
+    let buttonBorderRadius = $("#--button-border-radius").val();
+    let formBorderRadius = $("#--form-border-radius").val();
+    let section1BorderRadius = $("#--section1-border-radius").val();
+    let section2BorderRadius = $("#--section2-border-radius").val();
+    let section3BorderRadius = $("#--section3-border-radius").val();
+
+    $.ajax({
+        url: "/settings/update",
+        type: "PUT",
+        dataType: "json",
+        data: {
+            "--text-field-border-radius": textFieldBorderRadius,
+            "--button-border-radius": buttonBorderRadius,
+            "--form-border-radius": formBorderRadius,
+            "--section1-border-radius": section1BorderRadius,
+            "--section2-border-radius": section2BorderRadius,
+            "--section3-border-radius": section3BorderRadius,
+            key: "border radius",
+        },
+        beforeSend: function(){
+            console.log(
+                textFieldBorderRadius,buttonBorderRadius,formBorderRadius,section1BorderRadius,section2BorderRadius,section3BorderRadius
+            );
         },
         success: function(response){
             if(response.status == "errors"){

@@ -255,32 +255,32 @@ class SettingsSeeder extends Seeder
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--text-field-border-radius',
-            'value'     => '5px',
+            'value'     => '4px',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--button-border-radius',
-            'value'     => '5px',
+            'value'     => '2px',
         ]);
         Setting::create([
             'admin_id'  => 1,
-            'key'       => '--div1-border-radius',
-            'value'     => '5px',
+            'key'       => '--section1-border-radius',
+            'value'     => '16px',
         ]);
         Setting::create([
             'admin_id'  => 1,
-            'key'       => '--div2-border-radius',
-            'value'     => '5px',
+            'key'       => '--section2-border-radius',
+            'value'     => '8px',
         ]);
         Setting::create([
             'admin_id'  => 1,
-            'key'       => '--div3-border-radius',
-            'value'     => '5px',
+            'key'       => '--section3-border-radius',
+            'value'     => '4px',
         ]);
         Setting::create([
             'admin_id'  => 1,
-            'key'       => '--div4-border-radius',
-            'value'     => '5px',
+            'key'       => '--form-border-radius',
+            'value'     => '8px',
         ]);
         //border-radius-ends
        

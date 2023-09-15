@@ -65,10 +65,10 @@
 
             --text-field-border-radius: {{ getSettings('--text-field-border-radius') }};
             --button-border-radius: {{ getSettings('--button-border-radius') }};
-            --div1-border-radius: {{ getSettings('--div1-border-radius') }};
-            --div2-border-radius: {{ getSettings('--div2-border-radius') }};
-            --div3-border-radius: {{ getSettings('--div3-border-radius') }};
-            --div4-border-radius: {{ getSettings('--div4-border-radius') }};
+            --section1-border-radius: {{ getSettings('--section1-border-radius') }};
+            --section2-border-radius: {{ getSettings('--section2-border-radius') }};
+            --section3-border-radius: {{ getSettings('--section3-border-radius') }};
+            --form-border-radius: {{ getSettings('--form-border-radius') }};
 
             --logo-color: {{ getSettings('--logo-color') }};
             --logo-font-size: {{ getSettings('--logo-font-size') }};
@@ -232,11 +232,11 @@
                 </div>
 
                 <div class="button-container">
-                    <button class="button shadow click-shadow red" id="cart_clear_all">Clear All</button>
+                    <button class="button shadow click-shadow danger" id="cart_clear_all">Clear All</button>
 
                     <div>
-                        <button class="button shadow click-shadow blue">Confirm</button>
-                        <button class="button shadow click-shadow gray" id="cart_close">Close</button>
+                        <button class="button shadow click-shadow primary">Confirm</button>
+                        <button class="button shadow click-shadow secondary" id="cart_close">Close</button>
                     </div>
                 </div>
             </div>
@@ -266,9 +266,9 @@
                 <span>Don't have an account? <a href="{{ route('users.create') }}">Register Here</a></span>
 
                 <div class="button-container">
-                    <button type="submit" class="button shadow click-shadow blue">Login</button>
+                    <button type="submit" class="button shadow click-shadow primary">Login</button>
                     
-                    <button type="button" class="button shadow click-shadow gray" id="login_close">Close</button>
+                    <button type="button" class="button shadow click-shadow secondary" id="login_close">Close</button>
                 </div>
             </form>
         </div>

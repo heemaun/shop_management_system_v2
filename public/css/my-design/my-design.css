@@ -163,12 +163,12 @@ select {
 }
 
 .form {
-  padding: 1rem;
+  padding: 0.5rem;
   box-shadow: 0.1rem 0.1rem 1rem gray;
   display: grid;
   gap: 0.5rem;
   border: 0.1rem solid var(--2nd-color);
-  border-radius: var(--div2-border-radius);
+  border-radius: var(--form-border-radius);
   background-color: var(--2nd-bg-color);
   color: var(--2nd-color);
 }
@@ -183,7 +183,7 @@ select {
   padding: 0.5rem;
   background-color: var(--3rd-bg-color);
   color: var(--2rd-color);
-  border-radius: var(--div3-border-radius);
+  border-radius: var(--section2-border-radius);
 }
 .form .form-group .error {
   font-size: var(--default-font-size);
@@ -199,7 +199,7 @@ select {
   padding: 0.5rem;
   background-color: var(--3rd-bg-color);
   color: var(--2rd-color);
-  border-radius: var(--div3-border-radius);
+  border-radius: var(--section2-border-radius);
 }
 
 nav {
@@ -252,6 +252,7 @@ nav ul li {
 .button:active {
   filter: saturate(125%) brightness(125%);
   transform: translateY(0.1rem);
+  box-shadow: 0 0 2rem 0.1rem var(--button-dark-bg-color);
 }
 
 .primary {
@@ -259,11 +260,17 @@ nav ul li {
   background-color: var(--button-primary-bg-color);
   border: 1px solid var(--button-primary-color);
 }
+.primary:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-primary-bg-color);
+}
 
 .secondary {
   color: var(--button-secondary-color);
   background-color: var(--button-secondary-bg-color);
   border: 1px solid var(--button-secondary-color);
+}
+.secondary:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-secondary-bg-color);
 }
 
 .success {
@@ -271,11 +278,17 @@ nav ul li {
   background-color: var(--button-success-bg-color);
   border: 1px solid var(--button-success-color);
 }
+.success:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-success-bg-color);
+}
 
 .info {
   color: var(--button-info-color);
   background-color: var(--button-info-bg-color);
   border: 1px solid var(--button-info-color);
+}
+.info:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-info-bg-color);
 }
 
 .warning {
@@ -283,11 +296,17 @@ nav ul li {
   background-color: var(--button-warning-bg-color);
   border: 1px solid var(--button-warning-color);
 }
+.warning:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-warning-bg-color);
+}
 
 .danger {
   color: var(--button-danger-color);
   background-color: var(--button-danger-bg-color);
   border: 1px solid var(--button-danger-color);
+}
+.danger:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-danger-bg-color);
 }
 
 .light {
@@ -295,11 +314,17 @@ nav ul li {
   background-color: var(--button-light-bg-color);
   border: 1px solid var(--button-light-color);
 }
+.light:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-light-bg-color);
+}
 
 .dark {
   color: var(--button-dark-color);
   background-color: var(--button-dark-bg-color);
   border: 1px solid var(--button-dark-color);
+}
+.dark:active {
+  box-shadow: 0 0 2rem 0.1rem var(--button-dark-bg-color);
 }
 
 .outline {
@@ -315,8 +340,4 @@ nav ul li {
 
 .shadow {
   box-shadow: 0rem 0.1rem 0rem 0.1rem rgba(128, 128, 128, 0.5);
-}
-
-.click-shadow:active {
-  box-shadow: 0 0 2rem 0.1rem var(--border-color);
 }/*# sourceMappingURL=my-design.css.map */
