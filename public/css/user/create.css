@@ -6,10 +6,8 @@
 }
 .user-create form {
   width: 100%;
-  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  padding: 0.5rem;
+  box-shadow: none;
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
 }

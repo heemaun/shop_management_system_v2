@@ -6,16 +6,30 @@
     <div class="controls">
         <div class="form-group stretch">
             <label for="search" >Search User By Name</label>
-            <input type="text" id="search" name="search" placeholder="search user by name, email, phone" class="text-field">
+            <input type="text" id="search" name="search" placeholder="search user by name, email, phone" class="text-field" onkeyup="search()">
         </div>
 
         <div class="form-group">
-            <label for="Status" >Select A Status</label>
-            <select name="status_id" id="status_id" class="select">
+            <label for="Status_id" >Select A Status</label>
+            <select id="status_id" name="status_id" onchange="search()">
                 <option value="All">Select a option</option>
                 @foreach ($statuses as $status)
                     <option value="{{ $status->id }}">{{ $status->name }}</option>
                 @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="row_count">Item Count</label>
+            <select id="row_count" name="row_count" onchange="search()">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
             </select>
         </div>
 
@@ -50,6 +64,8 @@
                 @endforeach
             </tbody>
         </table>
+
+        {{ $users->links() }}
     </div>
 </div>
 

@@ -5,31 +5,30 @@
 
 // setSettingsCSS();
 
-function loadBGAndColor()
-{
-    $(".first-div").css("background-color",$("#bg_1").val());
-    $(".second-div").css("background-color",$("#bg_2").val());
-    $(".third-div").css("background-color",$("#bg_3").val());
-    $(".fourth-div").css("background-color",$("#bg_4").val());
-    $(".fifth-div").css("background-color",$("#bg_5").val());
-    $(".sixth-div").css("background-color",$("#bg_6").val());
-    
-    $(".first-div").css("color",$("#color_1").val());
-    $(".second-div").css("color",$("#color_2").val());
-    $(".third-div").css("color",$("#color_3").val());
-    $(".fourth-div").css("color",$("#color_4").val());
-    $(".fifth-div").css("color",$("#color_5").val());
-    $(".sixth-div").css("color",$("#color_6").val());
+function loadBGAndColor() {
+    $(".first-div").css("background-color", $("#bg_1").val());
+    $(".second-div").css("background-color", $("#bg_2").val());
+    $(".third-div").css("background-color", $("#bg_3").val());
+    $(".fourth-div").css("background-color", $("#bg_4").val());
+    $(".fifth-div").css("background-color", $("#bg_5").val());
+    $(".sixth-div").css("background-color", $("#bg_6").val());
 
-    $(".logo").css("color",$("#logo_color").val());
-    $(".banner").css("color",$("#banner_color").val());
-    $(".nav").css("color",$("#nav_color").val());
-    $(".nav").css("background-color",$("#nav_bg").val());
+    $(".first-div").css("color", $("#color_1").val());
+    $(".second-div").css("color", $("#color_2").val());
+    $(".third-div").css("color", $("#color_3").val());
+    $(".fourth-div").css("color", $("#color_4").val());
+    $(".fifth-div").css("color", $("#color_5").val());
+    $(".sixth-div").css("color", $("#color_6").val());
+
+    $(".logo").css("color", $("#logo_color").val());
+    $(".banner").css("color", $("#banner_color").val());
+    $(".nav").css("color", $("#nav_color").val());
+    $(".nav").css("background-color", $("#nav_bg").val());
 }
 
 // $(".test").change(loadBGAndColor());
 
-$("#bg_color_save").click(function(){
+$("#bg_color_save").click(function () {
     let bg1 = $("#bg_1").val();
     let bg2 = $("#bg_2").val();
     let bg3 = $("#bg_3").val();
@@ -72,69 +71,68 @@ $("#bg_color_save").click(function(){
             "--nav-bg-color": nav_bg,
             "key": "colors",
         },
-        beforeSend: function(){
+        beforeSend: function () {
             // console.log(bg1,bg2,bg3,bg4,bg5,bg6,color1,color2,color3,color4,color5,color6,logo_color,banner_color,nav_color,nav_bg);
         },
-        success: function(response){
-            if(response.status == "errors"){
-                $.each(response.errors,function(key,value){
-                    $("#"+key+"-error").text(value[0]);
+        success: function (response) {
+            if (response.status == "errors") {
+                $.each(response.errors, function (key, value) {
+                    $("#" + key + "-error").text(value[0]);
                 });
             }
 
-            else if(response.status == "okay"){
+            else if (response.status == "okay") {
                 toastr.info("Nothing to save");
             }
 
-            else if(response.status == "exception"){
+            else if (response.status == "exception") {
                 toastr.warning(response.message);
             }
 
-            else if(response.status == "success"){
+            else if (response.status == "success") {
                 window.location = response.url;
             }
         }
     });
 });
 
-$("#nav ul li").click(function(){
-    if(!$(this).hasClass("active")){
+$("#nav ul li").click(function () {
+    if (!$(this).hasClass("active")) {
         $("#nav ul li").removeClass("active");
         $(this).addClass("active");
-    
+
         $(".panels div").removeClass("div-active");
-        $("#"+$(this).attr("data-target")).addClass("div-active");
+        $("#" + $(this).attr("data-target")).addClass("div-active");
     }
 });
 
-$("input[type=range]").change(function(){
-    $(this).siblings("label").children("span").text("["+$(this).val()+"px]");
+$("input[type=range]").change(function () {
+    $(this).siblings("label").children("span").text("[" + $(this).val() + "px]");
 });
 
-function loadDemo(element)
-{
+function loadDemo(element) {
     let key = $(element).attr("data-target");
 
-    if(key == "nav-item"){
+    if (key == "nav-item") {
         key = "nav";
     }
 
-    let fontSize = $("#--"+key+"-font-size").val();
-    let fontWeight = $("#--"+key+"-font-weight").val();
-    let fontStyle = $("#--"+key+"-font-style").val();
-    let fontFamily = $("#--"+key+"-font-family").val(); 
-    
-    if(key == "nav"){
+    let fontSize = $("#--" + key + "-font-size").val();
+    let fontWeight = $("#--" + key + "-font-weight").val();
+    let fontStyle = $("#--" + key + "-font-style").val();
+    let fontFamily = $("#--" + key + "-font-family").val();
+
+    if (key == "nav") {
         key = "nav-item";
     }
 
-    $("#"+key).css("font-size",fontSize+"px");
-    $("#"+key).css("font-weight",fontWeight);
-    $("#"+key).css("font-style",fontStyle);
-    $("#"+key).css("font-family",fontFamily);
+    $("#" + key).css("font-size", fontSize + "px");
+    $("#" + key).css("font-weight", fontWeight);
+    $("#" + key).css("font-style", fontStyle);
+    $("#" + key).css("font-family", fontFamily);
 }
 
-$("#font_save").click(function(){
+$("#font_save").click(function () {
     let h2FontSize = $("#--h2-font-size").val();
     let h2FontWeight = $("#--h2-font-weight").val();
     let h2FontStyle = $("#--h2-font-style").val();
@@ -231,46 +229,45 @@ $("#font_save").click(function(){
             "--banner-font-style": bannerFontStyle,
             "key": "fonts"
         },
-        beforeSend: function(){
-            console.log(h2FontFamily,h2FontSize,h2FontStyle,h2FontWeight,
-                h3FontFamily,h3FontSize,h3FontStyle,h3FontWeight,
-                h4FontFamily,h4FontSize,h4FontStyle,h4FontWeight,
-                textFieldFontFamily,textFieldFontSize,textFieldFontStyle,textFieldFontWeight,
-                labelFontFamily,labelFontSize,labelFontStyle,labelFontWeight,
-                defaultFontFamily,defaultFontSize,defaultFontStyle,defaultFontWeight,
-                thFontFamily,thFontSize,thFontStyle,thFontWeight,
-                tdFontFamily,tdFontSize,tdFontStyle,tdFontWeight,
-                logoFontFamily,logoFontSize,logoFontStyle,logoFontWeight,
-                navFontFamily,navFontSize,navFontStyle,navFontWeight,
-                bannerFontFamily,bannerFontSize,bannerFontStyle,bannerFontWeight,);
+        beforeSend: function () {
+            console.log(h2FontFamily, h2FontSize, h2FontStyle, h2FontWeight,
+                h3FontFamily, h3FontSize, h3FontStyle, h3FontWeight,
+                h4FontFamily, h4FontSize, h4FontStyle, h4FontWeight,
+                textFieldFontFamily, textFieldFontSize, textFieldFontStyle, textFieldFontWeight,
+                labelFontFamily, labelFontSize, labelFontStyle, labelFontWeight,
+                defaultFontFamily, defaultFontSize, defaultFontStyle, defaultFontWeight,
+                thFontFamily, thFontSize, thFontStyle, thFontWeight,
+                tdFontFamily, tdFontSize, tdFontStyle, tdFontWeight,
+                logoFontFamily, logoFontSize, logoFontStyle, logoFontWeight,
+                navFontFamily, navFontSize, navFontStyle, navFontWeight,
+                bannerFontFamily, bannerFontSize, bannerFontStyle, bannerFontWeight,);
         },
-        success: function(response){
-            if(response.status == "errors"){
-                $.each(response.errors,function(key,value){
-                    $("#"+key+"-error").text(value[0]);
+        success: function (response) {
+            if (response.status == "errors") {
+                $.each(response.errors, function (key, value) {
+                    $("#" + key + "-error").text(value[0]);
                 });
             }
 
-            else if(response.status == "okay"){
+            else if (response.status == "okay") {
                 toastr.info("Nothing to save");
             }
 
-            else if(response.status == "exception"){
+            else if (response.status == "exception") {
                 toastr.warning(response.message);
             }
 
-            else if(response.status == "success"){
+            else if (response.status == "success") {
                 window.location = response.url;
             }
         }
     });
 });
 
-function loadMultiDemo(element)
-{
+function loadMultiDemo(element) {
     let key = $(element).attr("data-target");
 
-    if(key == "nav-item"){
+    if (key == "nav-item") {
         key = "nav";
     }
 
@@ -279,34 +276,33 @@ function loadMultiDemo(element)
     let fontSize = $("#--text-field-font-size").val();
     let fontWeight = $("#--text-field-font-weight").val();
     let fontStyle = $("#--text-field-font-style").val();
-    let fontFamily = $("#--text-field-font-family").val(); 
-    
-    if(key == "nav"){
+    let fontFamily = $("#--text-field-font-family").val();
+
+    if (key == "nav") {
         key = "nav-item";
     }
 
-    $("."+key).css("font-size",fontSize+"px");
-    $("."+key).css("font-weight",fontWeight);
-    $("."+key).css("font-style",fontStyle);
-    $("."+key).css("font-family",fontFamily);
+    $("." + key).css("font-size", fontSize + "px");
+    $("." + key).css("font-weight", fontWeight);
+    $("." + key).css("font-style", fontStyle);
+    $("." + key).css("font-family", fontFamily);
 }
 
-function loadButton(element)
-{
+function loadButton(element) {
     let id = $(element).attr("id");
     let target = $(element).attr("data-target");
     let value = $(element).val();
 
-    if(id.includes("bg")){
-        $("#"+target).css("background-color",value);
+    if (id.includes("bg")) {
+        $("#" + target).css("background-color", value);
     }
-    
-    else{
-        $("#"+target).css("color",value);
+
+    else {
+        $("#" + target).css("color", value);
     }
 }
 
-$("#buttons_save").click(function(){
+$("#buttons_save").click(function () {
     let buttonDefaultBgColor = $("#--button-default-bg-color").val();
     let buttonDefaultColor = $("#--button-default-color").val();
     let buttonPrimaryBgColor = $("#--button-primary-bg-color").val();
@@ -351,42 +347,41 @@ $("#buttons_save").click(function(){
             "--button-dark-color": buttonDarkColor,
             key: "buttons",
         },
-        beforeSend: function(){
+        beforeSend: function () {
             // console.log(
             //     buttonDefaultBgColor,buttonPrimaryBgColor,buttonSecondaryBgColor,buttonSuccessBgColor,buttonInfoBgColor,buttonWarningBgColor,buttonDangerBgColor,buttonLightBgColor,buttonDarkBgColor,buttonDefaultColor,buttonPrimaryColor,buttonSecondaryColor,buttonSuccessColor,buttonInfoColor,buttonWarningColor,buttonDangerColor,buttonLightColor,buttonDarkColor,
             // );
         },
-        success: function(response){
-            if(response.status == "errors"){
-                $.each(response.errors,function(key,value){
-                    $("#"+key+"-error").text(value[0]);
+        success: function (response) {
+            if (response.status == "errors") {
+                $.each(response.errors, function (key, value) {
+                    $("#" + key + "-error").text(value[0]);
                 });
             }
 
-            else if(response.status == "okay"){
+            else if (response.status == "okay") {
                 toastr.info("Nothing to save");
             }
 
-            else if(response.status == "exception"){
+            else if (response.status == "exception") {
                 toastr.warning(response.message);
             }
 
-            else if(response.status == "success"){
+            else if (response.status == "success") {
                 window.location = response.url;
             }
         }
     });
 });
 
-function loadMiscellaneous(element)
-{
+function loadMiscellaneous(element) {
     let target = $(element).attr("data-target");
     let value = $(element).val();
 
-    $("#"+target+",."+target).css("border-radius",value+"px");
+    $("#" + target + ",." + target).css("border-radius", value + "px");
 }
 
-$("#miscellaneous_save").click(function(){
+$("#miscellaneous_save").click(function () {
     let textFieldBorderRadius = $("#--text-field-border-radius").val();
     let buttonBorderRadius = $("#--button-border-radius").val();
     let formBorderRadius = $("#--form-border-radius").val();
@@ -407,29 +402,41 @@ $("#miscellaneous_save").click(function(){
             "--section3-border-radius": section3BorderRadius,
             key: "border radius",
         },
-        beforeSend: function(){
+        beforeSend: function () {
             console.log(
-                textFieldBorderRadius,buttonBorderRadius,formBorderRadius,section1BorderRadius,section2BorderRadius,section3BorderRadius
+                textFieldBorderRadius, buttonBorderRadius, formBorderRadius, section1BorderRadius, section2BorderRadius, section3BorderRadius
             );
         },
-        success: function(response){
-            if(response.status == "errors"){
-                $.each(response.errors,function(key,value){
-                    $("#"+key+"-error").text(value[0]);
+        success: function (response) {
+            if (response.status == "errors") {
+                $.each(response.errors, function (key, value) {
+                    $("#" + key + "-error").text(value[0]);
                 });
             }
 
-            else if(response.status == "okay"){
+            else if (response.status == "okay") {
                 toastr.info("Nothing to save");
             }
 
-            else if(response.status == "exception"){
+            else if (response.status == "exception") {
                 toastr.warning(response.message);
             }
 
-            else if(response.status == "success"){
+            else if (response.status == "success") {
                 window.location = response.url;
             }
         }
     });
+});
+
+$("#banner_img,#banner_view_div_close").click(function () {
+    $("#banner_view_div").toggleClass("banner-view-div-show");
+});
+
+$("#banner_button_change").click(function () {
+    $("#banner_input").click();
+});
+
+$("#banner_input").change(function(){
+    console.log($(this).val());
 });

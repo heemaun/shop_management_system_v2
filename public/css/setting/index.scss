@@ -1,8 +1,5 @@
 .settings-index{
     padding: 0rem 1rem 1rem 1rem;   
-    // h2{
-        
-    // }
 
     nav{
         ul{
@@ -27,15 +24,13 @@
 
             .active{
                 filter:brightness(150%) saturate(50%);
-                // background-color: var(--nav-bg-color);
-                // color: var(--nav-color);
             }
         }
     }
 
     .panels{
         position: relative;
-
+        
         .backgrounds-and-colors{
             display: none;
             flex-direction: column;
@@ -50,15 +45,13 @@
             
             background-color: var(--3rd-bg-color);
             color: var(--3rd-color);            
-    
+            border-radius: var(--section2-border-radius);
+            
             .container{
                 display: grid;
-                // grid-template-columns: auto auto auto;
-
                 gap: .5rem;
     
                 .output{
-                    // grid-column: span 2;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-start;
@@ -69,11 +62,8 @@
         
                     background-color: var(--4th-bg-color);
                     color: var(--4th-color);
-        
-                    // h3{
-        
-                    // }
-        
+                    border-radius: var(--section2-border-radius);
+                    
                     .first-div{
                         flex-grow: 1;
                         width: 100%;
@@ -86,6 +76,7 @@
         
                         background-color: var(--1st-bg-color);
                         color: var(--1st-color);
+                        border-radius: var(--section3-border-radius);
                         
                         .first-span{
                             color: inherit;
@@ -100,9 +91,10 @@
                             align-items: center;
                             gap: .5rem;
                             padding: .5rem;
-        
+                            
                             background-color: var(--2nd-bg-color);
                             color: var(--2nd-color);
+                            border-radius: var(--section3-border-radius);
                             
                             span{
                                 color: inherit;
@@ -120,7 +112,8 @@
         
                                 background-color: var(--3rd-bg-color);
                                 color: var(--3rd-color);
-        
+                                border-radius: var(--section3-border-radius);
+                                
                                 span{
                                     color: inherit;
                                 }
@@ -137,7 +130,8 @@
         
                                     background-color: var(--4th-bg-color);
                                     color: var(--4th-color);
-        
+                                    border-radius: var(--section3-border-radius);
+                                    
                                     span{
                                         color: inherit;
                                     }
@@ -154,7 +148,8 @@
         
                                         background-color: var(--5th-bg-color);
                                         color: var(--5th-color);
-        
+                                        border-radius: var(--section3-border-radius);
+                                        
                                         span{
                                             color: inherit;
                                         }
@@ -172,6 +167,7 @@
         
                                             background-color: var(--6th-bg-color);
                                             color: var(--6th-color);
+                                            border-radius: var(--section3-border-radius);
                                             
                                             span{
                                                 color: inherit;
@@ -239,8 +235,7 @@
                     }
                 }
                 
-                .controls{  
-                    // grid-column: span 1;   
+                .controls{   
                     display: flex;
                     flex-wrap: wrap;
                     gap: .5rem;
@@ -248,6 +243,7 @@
                     
                     background-color: var(--3rd-bg-color);
                     color: var(--3rd-color);
+
                     
                     .sections{
                         flex-grow: 1;
@@ -257,6 +253,7 @@
                         
                         background-color: var(--4th-bg-color);
                         color: var(--4th-color);
+                        border-radius: var(--section2-border-radius);
                         
                         .form-group{
                             padding: .5rem;
@@ -265,7 +262,8 @@
                             
                             background-color: var(--5th-bg-color);
                             color: var(--5th-color);
-
+                            border-radius: var(--section2-border-radius);
+                            
                             label{
                                 white-space: nowrap;
                             }
@@ -290,9 +288,10 @@
                 align-items: center;
                 gap: .5rem;
                 padding: .5rem;
-    
+                
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color);
+                border-radius: var(--section2-border-radius);
             }
     
         }
@@ -312,6 +311,7 @@
             
             background-color: var(--3rd-bg-color);
             color: var(--3rd-color);  
+            border-radius: var(--section2-border-radius);
             
             .sections{
                 display: grid;
@@ -321,7 +321,8 @@
                 
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color);  
-
+                border-radius: var(--section3-border-radius);
+                
                 h3{
                     grid-column: 1/-1;
                 }
@@ -333,14 +334,15 @@
                     align-items: center;
                     padding: .5rem;
                     flex-grow: 1;
-
+                    
                     background-color: var(--5th-bg-color);
                     color: var(--5th-color); 
-
+                    border-radius: var(--section3-border-radius);
+                    
                     label{
                         white-space: nowrap;
                     }
-
+                    
                     input,select{
                         text-align: center;
                     }
@@ -360,7 +362,8 @@
 
                     background-color: var(--5th-bg-color);
                     color: var(--5th-color); 
-
+                    border-radius: var(--section3-border-radius);
+                    
                     *{
                         white-space: nowrap;
                     }
@@ -391,6 +394,7 @@
                 
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color); 
+                border-radius: var(--section3-border-radius);
             }
         }
 
@@ -409,7 +413,8 @@
             
             background-color: var(--3rd-bg-color);
             color: var(--3rd-color);  
-
+            border-radius: var(--section2-border-radius);
+            
             .buttons-list{
                 display: flex;
                 justify-content: center;
@@ -420,8 +425,9 @@
                 
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color);  
+                border-radius: var(--section3-border-radius);
             }
-
+            
             .controls{
                 display: grid;
                 grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
@@ -430,7 +436,8 @@
                 
                 background-color: var(--3rd-bg-color);
                 color: var(--3rd-color);
-
+                border-radius: var(--section3-border-radius);
+                
                 .section{
                     flex-grow: 1;
                     display: grid;
@@ -439,6 +446,7 @@
                     
                     background-color: var(--4th-bg-color);
                     color: var(--4th-color);  
+                    border-radius: var(--section3-border-radius);
                     
                     .form-group{
                         padding: .5rem;
@@ -447,7 +455,8 @@
                         
                         background-color: var(--5th-bg-color);
                         color: var(--5th-color);
-
+                        border-radius: var(--section3-border-radius);
+                        
                         label{
                             white-space: nowrap;
                         }
@@ -474,6 +483,163 @@
     
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color);
+                border-radius: var(--section3-border-radius);
+            }
+        }
+
+        .logo-banner{
+            display: none;
+            flex-direction: column;
+            gap: .5rem;
+            padding: .5rem;
+            
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color); 
+            border-radius: var(--section2-border-radius);
+            
+            .sections{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: .5rem;
+                padding: .5rem;
+                
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color); 
+                border-radius: var(--section3-border-radius);
+                
+                .form-group{
+                    flex-grow: 1;
+                    padding: .5rem;
+                    
+                    background-color: var(--5th-bg-color);
+                    color: var(--5th-color); 
+                    border-radius: var(--section3-border-radius);
+                }
+            }
+            
+            .banner-section{
+                padding: .5rem;
+                
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color); 
+                border-radius: var(--section3-border-radius);
+                
+                form{
+                    padding: .5rem;
+
+                    background-color: var(--4th-bg-color);
+                    color: var(--4th-color); 
+
+                    .form-group{
+                        padding: .5rem;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        background-color: var(--5th-bg-color);
+                        color: var(--5th-color); 
+                        border-radius: var(--section3-border-radius);
+                        
+                        .banner-image-div{
+                            padding: .5rem;
+                            position: relative;
+                            width: 50%;
+                            aspect-ratio: 16/9;
+                            cursor: pointer;
+                            
+                            background-color: var(--1st-bg-color);
+                            color: var(--6th-color); 
+                            border-radius: var(--section3-border-radius);
+                            
+                            img{
+                                padding: .5rem;
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+
+                                background-color: var(--6th-bg-color);
+                                color: var(--6th-color);
+                                border-radius: var(--section3-border-radius);
+                            }
+
+                            input{
+                                display: none;
+                            }
+
+                            .button-container{
+                                padding: .5rem;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                gap: .5rem;
+                                // z-index: -50;
+                                opacity: 0;
+                                transition: all .1s;
+                                
+                                background-color: var(--5th-bg-color);
+                                color: var(--5th-color);
+                                border-radius: var(--section3-border-radius);
+
+                                button{
+                                    width: 100%;
+                                }
+                            }
+
+                            &:hover{
+                                .button-container{
+                                    // z-index: 50;
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .banner-view-div{
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                backdrop-filter: blur(2px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 30;
+                transform: translateY(-100%);
+                transition: all 1s ease-in-out;
+
+                img{
+                    max-width: 95%;
+                    max-height: 95vh;
+                    aspect-ratio: 16/9;
+                    object-fit: cover;
+                }
+
+                .banner-view-div-close{
+                    position: fixed;
+                    top: 1rem;
+                    right: 1rem;
+                    stroke: var(--1st-color);
+                    fill: var(--1st-color);
+                    cursor: pointer;
+                }
+            }
+
+            .banner-view-div-show{
+                transform: translateY(0%);
             }
         }
     
@@ -492,11 +658,14 @@
             
             background-color: var(--3rd-bg-color);
             color: var(--3rd-color);  
+            border-radius: var(--section2-border-radius);
             
             .output{   
                 padding: .5rem;        
+                
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color); 
+                border-radius: var(--section3-border-radius);
 
                 .section1{
                     display: grid;
@@ -547,7 +716,8 @@
 
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color); 
-
+                border-radius: var(--section3-border-radius);
+                
                 .form-group{
                     padding: .5rem; 
                     display: grid;
@@ -556,11 +726,8 @@
 
                     background-color: var(--5th-bg-color);
                     color: var(--5th-color);  
-
-                    label{
-
-                    }
-
+                    border-radius: var(--section3-border-radius);
+                    
                     input{
                         padding: .25rem 0rem;
                     }
@@ -576,6 +743,7 @@
     
                 background-color: var(--4th-bg-color);
                 color: var(--4th-color);
+                border-radius: var(--section3-border-radius);
             }
         }
     
@@ -584,12 +752,3 @@
         }
     }    
 }
-
-// html{
-//     body{
-//         .wrapper{
-//             background-color: white;
-//             color: black;
-//         }
-//     }
-// }

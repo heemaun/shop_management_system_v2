@@ -27,7 +27,8 @@
 
         background-color: var(--2nd-bg-color);
         color: var(--2nd-color);
-    
+        border-radius: var(--section1-border-radius);
+        
         .table-container{
             max-height: 75vh;
             max-width: 100%;
@@ -36,6 +37,7 @@
 
             background-color: var(--3rd-bg-color);
             color: var(--3rd-color);
+            border-radius: var(--section2-border-radius);
             
             table{                        
                 thead{
@@ -100,6 +102,7 @@
 
             background-color: var(--3rd-bg-color);
             color: var(--3rd-color);
+            border-radius: var(--section2-border-radius);
         }
     }
 }

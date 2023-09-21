@@ -1,0 +1,43 @@
+.role-index {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem;
+}
+.role-index h2 {
+  text-align: center;
+}
+.role-index .controls {
+  display: flex;
+  justify-content: stretch;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  color: var(--2nd-color);
+  background-color: var(--2nd-bg-color);
+}
+.role-index .controls .stretch {
+  flex-grow: 1;
+}
+.role-index .table-container {
+  padding: 0.5rem;
+  color: var(--2nd-color);
+  background-color: var(--2nd-bg-color);
+}
+.role-index .table-container table tbody tr .permissions {
+  white-space: wrap;
+}
+.role-index .table-container table tbody tr .no-data {
+  color: red;
+  font-size: xx-large;
+}
+.role-index .table-container table tbody .clickable {
+  cursor: pointer;
+}
+.role-index .table-container table .left {
+  text-align: left;
+}
+.role-index .table-container table .right {
+  text-align: right;
+}/*# sourceMappingURL=index.css.map */

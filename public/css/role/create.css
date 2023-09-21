@@ -1,0 +1,47 @@
+.role-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.role-create form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.role-create form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.role-create form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.role-create form .form-group .form-label {
+  margin: 0;
+}
+.role-create form .form-group textarea {
+  height: 10rem;
+}
+.role-create form .form-group .error {
+  color: red;
+}
+.role-create form .column-2 {
+  grid-column: 1/-1;
+}
+.role-create form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}/*# sourceMappingURL=create.css.map */

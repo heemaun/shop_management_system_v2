@@ -16,14 +16,24 @@
   padding: 0.5rem;
   color: var(--2nd-color);
   background-color: var(--2nd-bg-color);
+  border-radius: var(--section1-border-radius);
+}
+.user-index .controls .form-group {
+  display: grid;
+  gap: 0.5rem;
+  border-radius: var(--section2-border-radius);
 }
 .user-index .controls .stretch {
   flex-grow: 1;
+  border-radius: var(--section2-border-radius);
 }
 .user-index .table-container {
   padding: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
   color: var(--2nd-color);
   background-color: var(--2nd-bg-color);
+  border-radius: var(--section1-border-radius);
 }
 .user-index .table-container table tbody tr .no-data {
   color: red;
@@ -37,4 +47,43 @@
 }
 .user-index .table-container table .right {
   text-align: right;
+}
+.user-index .table-container nav {
+  background: none;
+  border-radius: var(--section2-border-radius);
+}
+.user-index .table-container nav .pagination {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: var(--section3-border-radius);
+}
+.user-index .table-container nav .pagination .page-item {
+  background-color: var(--nav-bg-color);
+  color: var(--nav-color);
+  border-radius: var(--section3-border-radius);
+}
+.user-index .table-container nav .pagination .page-item:hover {
+  color: var(--nav-bg-color);
+  background-color: var(--nav-color);
+}
+.user-index .table-container nav .pagination .page-item .page-link {
+  padding: 0.5rem;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.user-index .table-container nav .pagination .active, .user-index .table-container nav .pagination .disabled {
+  background: none;
+  color: var(--nav-color);
+  filter: saturate(50%) hue-rotate(120deg);
+  border-radius: var(--section3-border-radius);
+}
+.user-index .table-container nav .pagination .active:hover, .user-index .table-container nav .pagination .disabled:hover {
+  background: none;
+  color: var(--nav-color);
+}
+.user-index .table-container nav .pagination .active {
+  border: 0.1rem solid var(--nav-bg-color);
 }/*# sourceMappingURL=index.css.map */

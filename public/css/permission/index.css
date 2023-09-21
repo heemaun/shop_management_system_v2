@@ -1,0 +1,43 @@
+.permission-index {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem;
+}
+.permission-index h2 {
+  text-align: center;
+}
+.permission-index .controls {
+  display: flex;
+  justify-content: stretch;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  color: var(--2nd-color);
+  background-color: var(--2nd-bg-color);
+}
+.permission-index .controls .stretch {
+  flex-grow: 1;
+}
+.permission-index .table-container {
+  padding: 0.5rem;
+  color: var(--2nd-color);
+  background-color: var(--2nd-bg-color);
+}
+.permission-index .table-container table tbody tr td {
+  white-space: nowrap;
+}
+.permission-index .table-container table tbody tr .no-data {
+  color: red;
+  font-size: xx-large;
+}
+.permission-index .table-container table tbody .clickable {
+  cursor: pointer;
+}
+.permission-index .table-container table .left {
+  text-align: left;
+}
+.permission-index .table-container table .right {
+  text-align: right;
+}/*# sourceMappingURL=index.css.map */

@@ -24,7 +24,7 @@ class UserController extends Controller
             $users = User::where('status_id',getStatusID('Active'))
                             ->orderBy('name','ASC')
                             ->orderBy('status_id','ASC')
-                            ->get();
+                            ->paginate(10);
             
             return view('user.index',compact('users','statuses'));
         }
@@ -47,9 +47,10 @@ class UserController extends Controller
                                         ->orWhere('phone','LIKE','%'.$request->search.'%')
                                         ->orWhere('email','LIKE','%'.$request->search.'%');
                             })
+                            ->whereIn('status_id',$statuses_ids)
                             ->orderBy('name','ASC')
                             ->orderBy('status_id','ASC')
-                            ->get();
+                            ->paginate($request->row_count);
                         
             return view('user.search',compact('users'));
         }        

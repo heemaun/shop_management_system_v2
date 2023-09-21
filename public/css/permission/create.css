@@ -1,0 +1,47 @@
+.permission-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.permission-create form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.permission-create form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.permission-create form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.permission-create form .form-group .form-label {
+  margin: 0;
+}
+.permission-create form .form-group textarea {
+  height: 10rem;
+}
+.permission-create form .form-group .error {
+  color: red;
+}
+.permission-create form .column-2 {
+  grid-column: 1/-1;
+}
+.permission-create form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}/*# sourceMappingURL=create.css.map */

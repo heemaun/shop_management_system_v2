@@ -9,6 +9,7 @@
             <li class="active" data-target="backgrounds_and_colors">Backgrounds & Colors</li>
             <li data-target="fonts">Fonts</li>
             <li data-target="buttons">Buttons</li>
+            <li data-target="logo_banner">Logo & Banner</li>
             <li data-target="miscellaneous">Miscellaneous</li>
         </ul>
     </nav>
@@ -823,6 +824,64 @@
             </div>
         </div>
 
+        <div class="logo-banner" id="logo_banner">
+            <div class="sections">
+                <div class="form-group">
+                    <label for="">Logo Text</label>
+                    <input type="text" class="text-field" id="logo_text" placeholder="enter logo text" value="{{ getSettings('logo-text') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Banner Text</label>
+                    <input type="text" class="text-field" id="banner_text" placeholder="enter banner text" value="{{ getSettings('banner-text') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="">App Name</label>
+                    <input type="text" class="text-field" id="app_name" placeholder="enter app name" value="{{ getSettings('app-name') }}">
+                </div>
+            </div>
+
+            {{-- <div class="sections">
+                <div class="form-group">
+                    <label for="">Logo Image</label>
+                    <input type="file" class="text-field" id="logo_image" placeholder="enter logo image">
+                </div>
+
+                <div class="output">
+                    <img src="{{ getSettings('logo-image') }}" alt="Logo Image" class="image">
+                </div>
+            </div>             --}}
+
+            <div class="banner-section">
+                <form action="{{ route('settings.update',1) }}" id="banner_form" enctype="multipart/form-data">
+                    @csrf
+                    @method("PUT")
+                    
+                    <div class="form-group">
+                        <label for="banner_image">Banner Image</label>
+
+                        <div class="banner-image-div">
+                            <img src="/image/main_bg.jpg" alt="Banner Image" id="banner_img">
+
+                            <input type="file" id="banner_input" accept="image/*">
+
+                            <div class="button-container">
+                                <button class="button primary" id="banner_button_change" type="button">Change</button>
+                                
+                                <button class="button success" id="banner_button_save" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="banner-view-div" id="banner_view_div">
+                <img src="/image/main_bg.jpg" alt="Banner Image">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" id="banner_view_div_close" class="banner-view-div-close"><path d="m358 740 122-122 122 122 42-42-122-122 122-122-42-42-122 122-122-122-42 42 122 122-122 122 42 42ZM140 896q-24 0-42-18t-18-42V316q0-24 18-42t42-18h680q24 0 42 18t18 42v520q0 24-18 42t-42 18H140Zm0-60h680V316H140v520Zm0 0V316v520Z"/></svg>
+            </div>
+        </div>
+
         <div class="miscellaneous" id="miscellaneous">
             <div class="output">
                 <h3>Demo Output</h3>
@@ -896,8 +955,7 @@
                 {{-- <button class="button shadow click-shadow gray">Back</button> --}}
             </div>
         </div>
-    </div>   
-
+    </div>  
 </div>
 
 @push("CSS")

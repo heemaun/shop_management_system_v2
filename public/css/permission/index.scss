@@ -1,0 +1,70 @@
+.permission-index{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    height: 100%;
+    padding: 1rem;    
+
+    h2{
+        text-align: center;
+    }
+
+    .controls{
+        display: flex;
+        justify-content: stretch;
+        align-items: flex-end;
+        gap: .5rem;
+        padding: .5rem;
+
+        color: var(--2nd-color);
+        background-color: var(--2nd-bg-color);
+
+        .form-group{
+        }
+        
+        .stretch{
+            flex-grow: 1;
+        }
+    }
+    
+    .table-container{
+        padding: .5rem;
+        
+        color: var(--2nd-color);
+        background-color: var(--2nd-bg-color);
+        
+        table{
+            thead{        
+                tr{
+                    th{
+                    }
+                }
+            }
+            
+            tbody{
+                tr{     
+                    td{
+                        white-space: nowrap;
+                    }
+
+                    .no-data{
+                        color: red;
+                        font-size: xx-large;
+                    }
+                }
+
+                .clickable{
+                    cursor: pointer;
+                }
+            }
+
+            .left{
+                text-align: left;
+            }
+    
+            .right{
+                text-align: right;
+            }
+        }
+    }
+}

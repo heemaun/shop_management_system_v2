@@ -28,9 +28,16 @@ function contentOnloadPosition(){
     if(window.location.pathname == "/settings"){
         $("#content").css("padding",headerHeight+" 0px 0px "+asideWidth);
     }
+    
+    else if((window.location.pathname == "/" || window.location.pathname == "/users/create") && $("#item_count").attr("class") == undefined){
+        $("#content").css("padding",headerHeight+" 0px "+footerHeight+" 0px");
+    }
+
     else{
         $("#content").css("padding",headerHeight+" 0px "+footerHeight+" "+asideWidth);
     }
 
     $("aside").css("padding-top",headerHeight);
+
+    // console.log($("#item_count").attr("class"));
 }

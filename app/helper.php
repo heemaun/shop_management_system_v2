@@ -65,7 +65,7 @@ function getStatusID($name)
     
             return Setting::where('key',$key)->first()->value;
         }catch(Exception $e){
-            dd($e);
+            dd($e->getMessage());
         }
     }
 

@@ -85,7 +85,7 @@
                 <label for="permanent" >Select it if you wanna delete it permanently</label>
             </div>
 
-            <div class="btn-container">
+            <div class="button-container">
                 <button type="submit" class="button shadow click-shadow danger">Delete</button>
                 <button type="button" class="button shadow click-shadow secondary" id="delete_form_close">Close</button>
             </div>

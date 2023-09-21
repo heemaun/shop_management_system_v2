@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ env('APP_NAME') }}</title>
+    <title>{{ getSettings('app-name') }}</title>
     <link rel="shortcut icon" href="{{ asset('image/logo.png') }}" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -107,7 +107,6 @@
             --button-light-color: {{ getSettings('--button-light-color') }};
             --button-dark-bg-color: {{ getSettings('--button-dark-bg-color') }};
             --button-dark-color: {{ getSettings('--button-dark-color') }};
-
         }
     </style>
     <link rel="stylesheet" href="{{ asset('css/my-design/my-design.css') }}">
@@ -162,6 +161,8 @@
                 <nav>
                     <ul>
                         <li><a href="{{ route('users.index') }}" class="{{ (Str_contains(Request::route()->getName(),'users')) ? 'active' : '' }}">Users</a></li>
+                        <li><a href="{{ route('roles.index') }}" class="{{ (Str_contains(Request::route()->getName(),'roles')) ? 'active' : '' }}">Roles</a></li>
+                        <li><a href="{{ route('permissions.index') }}" class="{{ (Str_contains(Request::route()->getName(),'permissions')) ? 'active' : '' }}">Permissions</a></li>
                         <li><a href="{{ route('accounts.index') }}" class="{{ (Str_contains(Request::route()->getName(),'accounts')) ? 'active' : '' }}">Accounts</a></li>
                         <li><a href="{{ route('categories.index') }}" class="{{ (Str_contains(Request::route()->getName(),'categories')) ? 'active' : '' }}">Categories</a></li>
                         <li><a href="{{ route('products.index') }}" class="{{ (Str_contains(Request::route()->getName(),'products')) ? 'active' : '' }}">Products</a></li>

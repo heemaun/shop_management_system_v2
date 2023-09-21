@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Setting;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class SettingsSeeder extends Seeder
 {
@@ -465,5 +467,112 @@ class SettingsSeeder extends Seeder
             'value'     => '#ffffff',
         ]);
         //buttons ends
+
+        //logo
+        Setting::create([
+            'admin_id'  => 1,
+            'key'       => 'logo-text',
+            'value'     => 'SMSV2',
+        ]);
+        Setting::create([
+            'admin_id'  => 1,
+            'key'       => 'logo-image',
+            'value'     => 'logo.png',
+        ]);
+        //logo ends
+
+        //banner
+        Setting::create([
+            'admin_id'  => 1,
+            'key'       => 'banner-text',
+            'value'     => 'Shop Management System V2',
+        ]);
+        Setting::create([
+            'admin_id'  => 1,
+            'key'       => '--banner-image',
+            'value'     => '/image/main_bg.png',
+        ]);
+        //banner ends
+        
+        //app name
+        Setting::create([
+            'admin_id'  => 1,
+            'key'       => 'app-name',
+            'value'     => 'Shop Management System V2',
+        ]);
+        //app name ends
+
+        //creating roles
+        $superAdmin = Role::create(['name' => 'Super Admin']);
+        $admin = Role::create(['name' => 'Admin']);
+        $manager = Role::create(['name' => 'Manager']);
+        $seller = Role::create(['name' => 'Seller']);
+        $customer = Role::create(['name' => 'Customer']);
+
+        $pages = ['Accounts','Categories','Products','Purchases','Purchase Orders','Sells','Sell Orders','Settings','Statuses','Transactions','Users','Roles','Permissions'];
+
+        foreach($pages as $p){
+            $permission1 = Permission::create(['name' => $p.' Index']);
+            $permission2 = Permission::create(['name' => $p.' Create']);
+            $permission3 = Permission::create(['name' => $p.' Show']);
+            $permission4 = Permission::create(['name' => $p.' Edit']);
+            $permission5 = Permission::create(['name' => $p.' Delete']);
+
+            $superAdmin->givePermissionTo([$permission1,$permission2,$permission3,$permission4,$permission5]);
+            $admin->givePermissionTo([$permission1,$permission2,$permission3,$permission4,$permission5]);
+        }
+
+        $manager->givePermissionTo([
+            'Accounts Index',
+            'Accounts Show',            
+            'Categories Index',
+            'Categories Show',
+            'Products Index',
+            'Products Create',
+            'Products Show',
+            'Products Edit',
+            'Purchases Index',
+            'Purchases Create',
+            'Purchases Show',
+            'Purchase Orders Index',
+            'Purchase Orders Create',
+            'Purchase Orders Show',
+            'Sells Index',
+            'Sells Create',
+            'Sells Show',
+            'Sell Orders Index',
+            'Sell Orders Create',
+            'Sell Orders Show',
+            'Transactions Index',
+            'Transactions Create',
+            'Transactions Show',
+            'Users Index',
+            'Users Create',
+            'Users Show',
+            'Users Edit',
+        ]);
+
+        $seller->givePermissionTo([
+            'Categories Index',
+            'Categories Show',
+            'Products Index',
+            'Products Show',
+            'Sells Index',
+            'Sells Create',
+            'Sells Show',
+            'Sell Orders Index',
+            'Sell Orders Create',
+            'Sell Orders Show',
+            'Transactions Index',
+            'Transactions Create',
+            'Users Index',
+            'Users Show',
+        ]);
+
+        $customer->givePermissionTo([
+            'Sells Create',
+            'Sells Show',
+            'Transactions Create',
+        ]);
     }
 }

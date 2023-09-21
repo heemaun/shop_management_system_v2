@@ -1,7 +1,7 @@
 .user-show {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 1rem;
   padding: 1rem;
 }
@@ -12,6 +12,7 @@
   flex-grow: 2;
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
+  border-radius: var(--section2-border-radius);
 }
 .user-show .infos h2 {
   text-align: center;
@@ -24,6 +25,7 @@
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
+  border-radius: var(--section3-border-radius);
 }
 .user-show .infos .info label {
   font-size: larger;
@@ -43,21 +45,23 @@
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
+  border-radius: var(--section3-border-radius);
 }
 .user-show .image {
   max-width: 50%;
   min-width: 200px;
   flex-grow: 2;
   padding: 0.5rem;
-  border: 1rem solid var(--3rd-color);
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
+  border-radius: var(--section2-border-radius);
 }
 .user-show .image img {
   width: 100%;
   aspect-ratio: 1;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: var(--section3-border-radius);
 }
 
 .user-delete {
