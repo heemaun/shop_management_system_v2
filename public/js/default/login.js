@@ -1,5 +1,6 @@
 $("#login_trigger,#login_close").click(function(){
     $("#login_div").toggleClass("show");
+    $("#view_controller").removeClass("view-controller-show");
 });
 
 $("#login_form").submit(function (e) {

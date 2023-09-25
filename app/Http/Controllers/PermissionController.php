@@ -15,13 +15,13 @@ class PermissionController extends Controller
     {
         if(!array_key_exists('key',$request->all())){
         
-            $permissions = Permission::all();            
+            $permissions = Permission::paginate(10);            
             return view('permission.index',compact('permissions'));
         }
 
         else if(strcmp($request->key,'search') == 0){
             $permissions = Permission::where('name','LIKE','%'.$request->search.'%')
-                            ->get();
+                            ->paginate($request->row_count);
                         
             return view('permission.search',compact('permissions'));
         } 

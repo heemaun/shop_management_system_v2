@@ -7,7 +7,7 @@
 .user-edit form {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 0.5rem;
   padding: 0.5rem;
   background-color: var(--3rd-bg-color);
@@ -21,7 +21,6 @@
 }
 .user-edit form .form-group {
   padding: 0.5rem;
-  grid-column: span 3;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
 }
@@ -35,9 +34,6 @@
   color: red;
 }
 .user-edit form .column-2 {
-  grid-column: 1/-1;
-}
-.user-edit form .column-3 {
   grid-column: span 2;
 }
 .user-edit form .button-container {
@@ -48,4 +44,10 @@
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
+}
+
+@media screen and (min-width: 720px) {
+  .user-edit form {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }/*# sourceMappingURL=edit.css.map */

@@ -9,6 +9,7 @@
         <tr>
             <th>No</th>
             <th>Status</th>
+            <th>Role</th>
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
@@ -21,6 +22,11 @@
             <tr data-href="{{ route('users.show',$user->id) }}" class="clickable">
                 <td class="right">{{ $loop->iteration }}</td>
                 <td>{{ $user->status->name }}</td>
+                <td>
+                    @foreach ($user->roles as $role)
+                        {{ $role->name }}
+                    @endforeach
+                </td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->username }}</td>
                 <td>{{ $user->email }}</td>

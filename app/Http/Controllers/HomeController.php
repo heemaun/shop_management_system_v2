@@ -89,4 +89,9 @@ class HomeController extends Controller
 
         return view('default.home-product-search',compact('products'));
     }
+
+    public function register()
+    {
+        return view('user.create');
+    }
 }

@@ -36,13 +36,13 @@
             <span id="address_error" class="error"></span>
         </div>        
 
-        <div class="form-group">
+        <div class="form-group column-3">
             <label for="dob" >Date Of Birth</label>
             <input type="date" name="dob" id="dob" class="text-field" placeholder="enter {{ (Auth::check()) ? 'user' : 'your' }} date of birth" max="{{ date('Y-m-d',strtotime(date('Y-m-d') . '-18 years')) }}" required autocomplete="off">
             <span id="dob_error" class="error"></span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group column-3">
             <label for="gender" >Gender</label>
             <select name="gender" id="gender" class="select" required>
                 <option value="">Select a gender</option>
@@ -52,6 +52,16 @@
             </select>
             <span id="gender_error" class="error"></span>
         </div>  
+
+        <div class="form-group column-3">
+            <label for="role">Role</label>
+            <select name="role" id="role">
+                <option value="">Select a role</option>
+                @foreach ($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
+            </select>
+        </div>
         
         <div class="form-group">
             <label for="password" >Password</label>

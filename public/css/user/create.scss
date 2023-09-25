@@ -6,7 +6,7 @@
     
     form{
         width: 100%;
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(1,1fr);
         box-shadow: none;
 
         background-color: var(--3rd-bg-color);
@@ -51,6 +51,90 @@
 
             background-color: var(--4th-bg-color);
             color: var(--4th-color);
+        }
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .user-create{        
+        form{    
+            legend{
+            }
+    
+            .form-group{    
+                .form-label{
+                }
+    
+                textarea{
+                }
+    
+                .error{
+                }
+            }
+    
+            .column-2{
+            }
+            
+            .button-container{
+            }
+        }
+    }
+}
+@media screen and (min-width: 960px) {
+    .user-create{        
+        form{   
+            grid-template-columns: repeat(6,1fr);
+
+            legend{
+            }
+    
+            .form-group{   
+                grid-column: span 3; 
+                .form-label{
+                }
+    
+                textarea{
+                }
+    
+                .error{
+                }
+            }
+    
+            .column-2{
+                grid-column: span 6; 
+            }
+            
+            .column-3{
+                grid-column: span 2; 
+            }
+            
+            .button-container{
+            }
+        }
+    }
+}
+@media screen and (min-width: 1200px) {
+    .user-create{        
+        form{    
+            legend{
+            }
+    
+            .form-group{    
+                .form-label{
+                }
+    
+                textarea{
+                }
+    
+                .error{
+                }
+            }
+    
+            .column-2{
+            }
+            
+            .button-container{
+            }
         }
     }
 }

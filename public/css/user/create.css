@@ -6,7 +6,7 @@
 }
 .user-create form {
   width: 100%;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   box-shadow: none;
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
@@ -42,4 +42,19 @@
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
+}
+
+@media screen and (min-width: 960px) {
+  .user-create form {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .user-create form .form-group {
+    grid-column: span 3;
+  }
+  .user-create form .column-2 {
+    grid-column: span 6;
+  }
+  .user-create form .column-3 {
+    grid-column: span 2;
+  }
 }/*# sourceMappingURL=create.css.map */

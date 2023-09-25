@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 html body {
   background-color: var(--1st-bg-color);
@@ -35,50 +37,66 @@ html body .wrapper .main-header .logo svg {
   width: var(--logo-font-size);
   height: var(--logo-font-size);
 }
-html body .wrapper .main-header nav {
+html body .wrapper .main-header .view-controller {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  transition: transform 1s ease-in-out;
+}
+html body .wrapper .main-header .view-controller nav {
   color: var(--nav-color);
   font-size: var(--nav-font-size);
   font-weight: var(--nav-font-weight);
 }
-html body .wrapper .main-header nav ul {
+html body .wrapper .main-header .view-controller nav ul {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
-html body .wrapper .main-header nav ul li {
+html body .wrapper .main-header .view-controller nav ul li {
   list-style: none;
 }
-html body .wrapper .main-header nav ul li a {
+html body .wrapper .main-header .view-controller nav ul li a {
   text-decoration: none;
   display: block;
   padding: 16px;
   color: inherit;
 }
-html body .wrapper .main-header nav ul li a:hover {
+html body .wrapper .main-header .view-controller nav ul li a:hover {
   color: var(--nav-bg-color);
   background-color: var(--nav-color);
 }
-html body .wrapper .main-header .controls {
+html body .wrapper .main-header .view-controller .controls {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  background-color: var(--nav-bg-color);
+  color: var(--nav-color);
 }
-html body .wrapper .main-header .controls .cart-trigger {
+html body .wrapper .main-header .view-controller .controls .cart-trigger {
   position: relative;
   transition: all 0.5s;
 }
-html body .wrapper .main-header .controls .cart-trigger:hover {
+html body .wrapper .main-header .view-controller .controls .cart-trigger:hover {
   cursor: pointer;
   transform: translateY(-5px);
 }
-html body .wrapper .main-header .controls .cart-trigger svg {
+html body .wrapper .main-header .view-controller .controls .cart-trigger svg {
   stroke: var(--logo-color);
   fill: var(--logo-color);
   width: var(--logo-font-size);
   height: var(--logo-font-size);
 }
-html body .wrapper .main-header .controls .cart-trigger .item-count {
+html body .wrapper .main-header .view-controller .controls .cart-trigger .item-count {
   position: absolute;
   top: 0px;
   right: -5px;
@@ -91,18 +109,35 @@ html body .wrapper .main-header .controls .cart-trigger .item-count {
   display: grid;
   place-items: center;
 }
-html body .wrapper .main-header .controls .login-controls, html body .wrapper .main-header .controls .registration {
+html body .wrapper .main-header .view-controller .controls .login-controls, html body .wrapper .main-header .view-controller .controls .registration {
   transition: all 0.5s;
 }
-html body .wrapper .main-header .controls .login-controls svg, html body .wrapper .main-header .controls .registration svg {
+html body .wrapper .main-header .view-controller .controls .login-controls svg, html body .wrapper .main-header .view-controller .controls .registration svg {
   stroke: var(--logo-color);
   fill: var(--logo-color);
   width: var(--logo-font-size);
   height: var(--logo-font-size);
 }
-html body .wrapper .main-header .controls .login-controls:hover, html body .wrapper .main-header .controls .registration:hover {
+html body .wrapper .main-header .view-controller .controls .login-controls:hover, html body .wrapper .main-header .view-controller .controls .registration:hover {
   cursor: pointer;
   transform: translateY(-5px);
+}
+html body .wrapper .main-header .view-controller-show {
+  transform: translateY(0%);
+}
+html body .wrapper .main-header .header-toggler {
+  z-index: 5;
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+}
+html body .wrapper .main-header .header-toggler svg {
+  stroke: var(--logo-color);
+  fill: var(--logo-color);
+  width: var(--logo-font-size);
+  height: var(--logo-font-size);
+}
+html body .wrapper .main-header .header-toggler-rotate {
+  transform: rotate(360deg);
 }
 html body .wrapper aside {
   position: fixed;
@@ -112,6 +147,12 @@ html body .wrapper aside {
   width: -moz-min-content;
   width: min-content;
   z-index: 10;
+  transform: translateX(-100%);
+  transition: transform 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   background-color: var(--nav-bg-color);
   color: var(--nav-color);
 }
@@ -134,6 +175,32 @@ html body .wrapper aside nav ul li .active {
   filter: brightness(150%) saturate(50%);
   background-color: var(--nav-bg-color);
   color: var(--nav-color);
+}
+html body .wrapper aside .side-bar-toggle {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  background-color: var(--nav-bg-color);
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  animation: side-bar-animation 1s ease-in-out 0s infinite alternate-reverse;
+}
+html body .wrapper aside .side-bar-toggle:active {
+  box-shadow: 0 0 1rem var(--nav-bg-color);
+}
+html body .wrapper aside .side-bar-toggle svg {
+  height: 2rem;
+  width: 2rem;
+  fill: var(--nav-color);
+  stroke: var(--nav-color);
+  transition: transform 1s ease-in-out;
+}
+html body .wrapper .aside-show {
+  transform: translateX(0%);
+}
+html body .wrapper .aside-show .side-bar-toggle svg {
+  transform: rotate(180deg);
 }
 html body .wrapper .content {
   min-height: 100vh;
@@ -158,4 +225,55 @@ html body .wrapper .footer p a {
 }
 html body .wrapper .footer p a:hover {
   text-decoration: underline;
+}
+
+@media screen and (min-width: 720px) {
+  html body .wrapper .main-header .view-controller {
+    flex-direction: row;
+    justify-content: flex-end;
+    position: unset;
+    transform: translateY(0%);
+  }
+  html body .wrapper .main-header .view-controller nav {
+    flex-grow: 1;
+  }
+  html body .wrapper .main-header .view-controller nav ul {
+    flex-direction: row;
+    justify-content: center;
+  }
+  html body .wrapper .main-header .view-controller .controls {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  html body .wrapper .main-header .view-controller-show {
+    transform: translateY(0%);
+  }
+  html body .wrapper .main-header .header-toggler {
+    display: none;
+  }
+}
+@media screen and (min-width: 960px) {
+  html body .wrapper aside {
+    transform: translateX(0%);
+  }
+  html body .wrapper aside .side-bar-toggle {
+    display: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  html {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  html body .wrapper aside {
+    justify-content: center;
+  }
+}
+@keyframes side-bar-animation {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(5px);
+  }
 }/*# sourceMappingURL=index.css.map */

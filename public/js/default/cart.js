@@ -1,20 +1,22 @@
 function loadCartIndex()
 {
-    $.ajax({
-        url: "/cart",
-        type: "GET",
-        success: function(response){
-            if(response.count == 0){
-                $("#item_count").text("");
-                $("#item_count").css("background","none");
+    if($("#item_count").attr("class") != undefined){
+        $.ajax({
+            url: "/cart",
+            type: "GET",
+            success: function(response){
+                if(response.count == 0){
+                    $("#item_count").text("");
+                    $("#item_count").css("background","none");
+                }
+                
+                else{
+                    $("#item_count").text(response.count);
+                    $("#item_count").css("background","red");
+                }
             }
-            
-            else{
-                $("#item_count").text(response.count);
-                $("#item_count").css("background","red");
-            }
-        }
-    });
+        });
+    }
 }
 
 getCartView();
@@ -25,56 +27,65 @@ $("#cart_trigger,#cart_close").click(function(){
     getCartView();
 });
 
-$(".products,#product_details_div").on("click",".add-to-cart",function(e){
+$("#products,#product_details_div").on("click",".add-to-cart",function(e){
     e.preventDefault();
-    let id = $(this).attr("data-id");
 
-    $.ajax({
-        url: "/cart",
-        type: "POST",
-        dataType: "json",
-        data:{
-            id: id,
-        },
-        success: function(response){
-            if(response.status === "error"){
-                toastr.error(response.message);
-            }
-            else if(response.status == "info"){
-                toastr.info(response.message);
-            }
-            else if(response.status == "exception"){
-                toastr.warning(response.message);
-            }
-            else{
-                toastr.success(response.message);
-                let count = response.sell.sell_orders.length;
+    if($("#item_count").attr("class") == undefined){
+        toastr.info("Please login first!");
+    }
 
-                if(count == 0){
-                    $("#cart_trigger span").text("");
-                    $("#cart_trigger span").css("background","none");
+    else{
+        let id = $(this).attr("data-id");
+    
+        $.ajax({
+            url: "/cart",
+            type: "POST",
+            dataType: "json",
+            data:{
+                id: id,
+            },
+            success: function(response){
+                if(response.status === "error"){
+                    toastr.error(response.message);
                 }
-                
+                else if(response.status == "info"){
+                    toastr.info(response.message);
+                }
+                else if(response.status == "exception"){
+                    toastr.warning(response.message);
+                }
                 else{
-                    $("#cart_trigger span").text(count);
-                    $("#cart_trigger span").css("background","red");
+                    toastr.success(response.message);
+                    let count = response.sell.sell_orders.length;
+    
+                    if(count == 0){
+                        $("#cart_trigger span").text("");
+                        $("#cart_trigger span").css("background","none");
+                    }
+                    
+                    else{
+                        $("#cart_trigger span").text(count);
+                        $("#cart_trigger span").css("background","red");
+                    }
+                    getCartView();
                 }
-                getCartView();
             }
-        }
-    });
+        });
+    }
 });
 
 function getCartView()
 {    
-    $.ajax({
-        url: "/cart/1",
-        type: "GET",
-        success: function(response){
-            $("#cart_div .cart .table-container table").html(response);
-            loadCartIndex();
-        }
-    });
+    if($("#item_count").attr("class") != undefined){
+        $.ajax({
+            url: "/cart/1",
+            type: "GET",
+            success: function(response){
+                $("#cart_div .cart .table-container table").html(response);
+                loadCartIndex();
+            }
+        });
+    }
 }
 
 $("#cart_div").on("click",".add,.sub,.delete",function(){

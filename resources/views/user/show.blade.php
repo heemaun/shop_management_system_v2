@@ -1,12 +1,31 @@
 @extends('default.index')
 @section('content')
     <div class="user-show">
+        <div class="button-container">
+            <a href="{{ route('users.index') }}" class="button shadow click-shadow secondary">Back</a>
+            @can('Users Edit')
+            <a href="{{ route('users.edit', $user->id) }}" class="button shadow click-shadow success">Edit</a>                    
+            @endcan
+            @can('Users Delete')
+            <button type="button" id="delete_trigger" class="button shadow click-shadow danger">Delete</button>                    
+            @endcan
+        </div>
+
+        <div class="image">
+            <img src="{{ asset('image/default_user.jpg') }}" alt="Default User">
+        </div>
+
         <div class="infos">
             <h2>User Information</h2>
 
             <div class="info">
                 <label for="status" >Status</label>
                 <span class="data">{{ $user->status->name }}</span>
+            </div>
+            
+            <div class="info">
+                <label for="status" >Role</label>
+                <span class="data">{{ $user->roles[0]->name }}</span>
             </div>
 
             <div class="info">
@@ -53,19 +72,10 @@
                 <label for="status" >Last Modified At</label>
                 <span class="data">{{ date('d-M-Y h:i:s A', strtotime($user->updated_at)) }}</span>
             </div>
-
-            <div class="btn-container">
-                <a href="{{ route('users.index') }}" class="button shadow click-shadow secondary">Back</a>
-                <a href="{{ route('users.edit', $user->id) }}" class="button shadow click-shadow success">Edit</a>
-                <button type="button" id="delete_trigger" class="button shadow click-shadow danger">Delete</button>
-            </div>
-        </div>
-
-        <div class="image">
-            <img src="{{ asset('image/default_user.jpg') }}" alt="Default User">
-        </div>
+        </div>       
     </div>
 
+    @can('Users Delete')
     <div id="user_delete_div" class="user-delete">
         <form action="{{ route('users.destroy', $user->id) }}" method="POST" id="delete_form">
             @csrf
@@ -91,6 +101,7 @@
             </div>
         </form>
     </div>
+    @endcan
 
     @push('CSS')
         <link rel="stylesheet" href="{{ asset('css/user/show.css') }}">

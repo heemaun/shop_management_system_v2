@@ -1,6 +1,15 @@
 @extends('default.index')
 @section('content')
 
+@if (Auth::check() && Auth::user()->email_verified_at == null)
+
+<div class="home">
+    <h1>Verify Your Mail First</h1>
+    <a href="#">Send Verification Code Again</a>
+</div>
+
+@else
+
 <div class="home">  
     <main>
         <h1>Shop Management System V2</h1>
@@ -40,11 +49,11 @@
 
                     <footer>
                         <div class="button-container">
-                            @if (Auth::check())
+                            {{-- @if (Auth::check()) --}}
                                 
                             <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="button shadow click-shadow success add-to-cart">ADD TO CART</a>
 
-                            @endif
+                            {{-- @endif --}}
 
                             <button type="button shadow click-shadow" data-id="{{ $product->id }}" class="button shadow click-shadow primary" id="product_view_trigger">View Details</button>
                         </div>
@@ -66,18 +75,23 @@
 
             <span id="product_price">Price: 500 Tk</span>
 
-            <p id="product_details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quisquam ut repellendus vitae nulla doloremque qui deleniti blanditiis minus tempore.</p>
+            <div class="product-summery">
+                <h4>Summery</h4>
+                <p id="product_details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quisquam ut repellendus vitae nulla doloremque qui deleniti blanditiis minus tempore.</p>
+            </div>
         </section>
 
         <footer>            
             <div class="button-container">          
-                <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="button shadow click-shadow blue add-to-cart">ADD TO CART</a>
+                <a href="{{ route('cart.store') }}" data-id="{{ $product->id }}" class="button shadow click-shadow primary add-to-cart">ADD TO CART</a>
 
-                <button type="button shadow click-shadow" class="button shadow click-shadow gray" id="product_view_close">Close</button>
+                <button type="button shadow click-shadow" class="button shadow click-shadow secondary" id="product_view_close">Close</button>
             </div>
         </footer>
     </article>
 </div>
+@endif
+
 
 @push("CSS")
     <link rel="stylesheet" href="{{ asset('css/default/home.css') }}">
@@ -85,6 +99,17 @@
 
 @push("JS")
     <script src="{{ asset('js/default/home.js') }}"></script>
+
+    @if (Session::has('login_required'))
+        <script>
+            toastr.warning("{!! Session::get('login_required') !!}");
+        </script>
+    @endif
+    @if (Session::has('verify_email'))
+        <script>
+            toastr.warning("{!! Session::get('verify_email') !!}");
+        </script>
+    @endif
 @endpush
 
 @endsection

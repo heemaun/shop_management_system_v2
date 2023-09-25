@@ -11,8 +11,6 @@ $("#role_edit_form").submit(function (e) {
         permission_ids.push($(value).attr("id"));
     });
 
-    console.log(name,permission_ids,url);
-
     $.ajax({
         url: url,
         type: "PUT",
@@ -26,7 +24,6 @@ $("#role_edit_form").submit(function (e) {
             $(".error").text("");
         },
         success: function (response) {
-            console.log(response);
             if (response.status === "errors") {
                 $.each(response.message, function (key, value) {
                     $("#" + key + "_error").text(value[0]);
@@ -77,9 +74,6 @@ $("#delete_form").submit(function(e){
             data: {
                 password: password,
                 soft_delete: !permanent,
-            },
-            beforeSend: function(){
-                console.log(password,permanent);
             },
             success: function(response){
                 if(response.status === "errors"){

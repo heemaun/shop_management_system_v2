@@ -12,22 +12,6 @@
     backdrop-filter: blur(2px);
 
     form{
-        // padding: 1rem;
-        // border: .1rem solid gray;
-        // min-width: 500px;
-        // max-width: 90%;
-        // box-shadow: .1rem .1rem 1rem gray;
-        // display: grid;
-        // gap: .5rem;
-
-        // background-color: var(--2nd-bg-color);
-        // color: var(--2nd-color);
-
-        // legend{
-        //     text-align: center;
-        //     text-transform: uppercase;
-        // }
-
         span{
             font-size: var(--default-font-size);
             font-style: var(--default-font-style);
@@ -43,20 +27,10 @@
                 font-family: inherit;
 
                 &:hover{
-                    color: blue;
+                    filter: brightness(75%);
                 }
             }
         }
-
-        // .error{
-        //     color: red;
-        // }
-
-        // .btn-container{
-        //     display: flex;
-        //     justify-content: space-between;
-        //     align-items: center;
-        // }
     }
 }
 

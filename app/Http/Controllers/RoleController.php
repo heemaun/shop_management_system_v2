@@ -16,13 +16,13 @@ class RoleController extends Controller
     {
         if(!array_key_exists('key',$request->all())){
         
-            $roles = Role::all();            
+            $roles = Role::paginate(10);            
             return view('role.index',compact('roles'));
         }
 
         else if(strcmp($request->key,'search') == 0){
             $roles = Role::where('name','LIKE','%'.$request->search.'%')
-                            ->get();
+                            ->paginate($request->row_count);
                         
             return view('role.search',compact('roles'));
         } 

@@ -16,17 +16,24 @@
   padding: 0.5rem;
   color: var(--2nd-color);
   background-color: var(--2nd-bg-color);
+  border-radius: var(--section1-border-radius);
+}
+.permission-index .controls .form-group {
+  display: grid;
+  gap: 0.5rem;
+  border-radius: var(--section2-border-radius);
 }
 .permission-index .controls .stretch {
   flex-grow: 1;
+  border-radius: var(--section2-border-radius);
 }
 .permission-index .table-container {
   padding: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
   color: var(--2nd-color);
   background-color: var(--2nd-bg-color);
-}
-.permission-index .table-container table tbody tr td {
-  white-space: nowrap;
+  border-radius: var(--section1-border-radius);
 }
 .permission-index .table-container table tbody tr .no-data {
   color: red;
@@ -40,4 +47,43 @@
 }
 .permission-index .table-container table .right {
   text-align: right;
+}
+.permission-index .table-container nav {
+  background: none;
+  border-radius: var(--section2-border-radius);
+}
+.permission-index .table-container nav .pagination {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: var(--section3-border-radius);
+}
+.permission-index .table-container nav .pagination .page-item {
+  background-color: var(--nav-bg-color);
+  color: var(--nav-color);
+  border-radius: var(--section3-border-radius);
+}
+.permission-index .table-container nav .pagination .page-item:hover {
+  color: var(--nav-bg-color);
+  background-color: var(--nav-color);
+}
+.permission-index .table-container nav .pagination .page-item .page-link {
+  padding: 0.5rem;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.permission-index .table-container nav .pagination .active, .permission-index .table-container nav .pagination .disabled {
+  background: none;
+  color: var(--nav-color);
+  filter: saturate(50%) hue-rotate(120deg);
+  border-radius: var(--section3-border-radius);
+}
+.permission-index .table-container nav .pagination .active:hover, .permission-index .table-container nav .pagination .disabled:hover {
+  background: none;
+  color: var(--nav-color);
+}
+.permission-index .table-container nav .pagination .active {
+  border: 0.1rem solid var(--nav-bg-color);
 }/*# sourceMappingURL=index.css.map */

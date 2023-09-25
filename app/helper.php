@@ -2,6 +2,7 @@
 
 use App\Models\Setting;
 use App\Models\Status;
+use Spatie\Permission\Models\Role;
 
 function getDeletedStatusId()
 {
@@ -69,4 +70,14 @@ function getStatusID($name)
         }
     }
 
+    function getAllRoleID()
+    {
+        $roleIDs = array();
+
+        foreach(Role::all() as $role){
+            array_push($roleIDs,$role->id);
+        }
+
+        return $roleIDs;
+    }
 ?>

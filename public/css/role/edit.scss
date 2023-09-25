@@ -45,7 +45,8 @@
 
             background-color: var(--4th-bg-color);
             color: var(--4th-color);
-
+            border-radius: var(-section2-border-radius);
+            
             .form-group{
                 flex-grow: 1;
                 display: grid;
@@ -69,26 +70,17 @@
                     gap: .5rem;
 
                     li{
+                        padding: .5rem;
+
                         background-color: var(--6th-bg-color);
                         color: var(--6th-color);
-                        padding: .5rem;
-                        // align-self: self-start;
+                        border-radius: var(--section3-border-radius);
 
                         &:hover{
                             cursor: pointer;
                             outline: .1rem solid var(--6th-color);
                         }
                     }
-
-                    // .common{
-                    //     background-color: green;
-                    //     color: white;
-
-                    //     &:hover{
-                    //         cursor: default;
-                    //         outline: none;
-                    //     }
-                    // }
                 }
             }
         }

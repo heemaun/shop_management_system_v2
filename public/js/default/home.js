@@ -75,7 +75,7 @@ function setProductList(product_search,category_search,key)
     });
 }
 
-$("#product_view_trigger,#product_view_close").click(function () {
+$("#content").on("click","#product_view_trigger,#product_view_close",function(){
     if (!$("#product_details_div").hasClass("product-show")) {
         let id = $(this).attr("data-id");
 
@@ -95,4 +95,11 @@ $("#product_view_trigger,#product_view_close").click(function () {
     }
 
     $("#product_details_div").toggleClass("product-show");
+});
+
+$("#products,#product_details_div").on("click","a",function(e){
+    if($("#item_count").attr("class") == undefined){
+        e.preventDefault();
+        toastr.info("Please login first!");
+    }
 });
