@@ -1,1 +1,65 @@
-/*# sourceMappingURL=edit.css.map */
+.product-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.product-edit form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.product-edit form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.product-edit form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.product-edit form .form-group .form-label {
+  margin: 0;
+}
+.product-edit form .form-group textarea {
+  height: 10rem;
+}
+.product-edit form .form-group .error {
+  color: red;
+  font-weight: 900;
+}
+.product-edit form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+
+@media screen and (min-width: 720px) {
+  .product-edit form {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (min-width: 960px) {
+  .product-edit form {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .product-edit form .form-group {
+    grid-column: span 3;
+  }
+  .product-edit form .column-2 {
+    grid-column: span 6;
+  }
+  .product-edit form .column-3 {
+    grid-column: span 2;
+  }
+}/*# sourceMappingURL=edit.css.map */

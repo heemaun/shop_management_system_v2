@@ -1,1 +1,39 @@
-/*# sourceMappingURL=create.css.map */
+.status-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.status-create form {
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
+  box-shadow: none;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.status-create form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.status-create form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.status-create form .form-group .form-label {
+  margin: 0;
+}
+.status-create form .form-group .error {
+  color: red;
+}
+.status-create form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}/*# sourceMappingURL=create.css.map */

@@ -2,67 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use Exception;
 use App\Models\Status;
 use App\Models\Product;
-use Exception;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Products Index'])->only(['index']);
+        $this->middleware(['permission:Products Create'])->only(['create','store']);
+        $this->middleware(['permission:Products Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Products Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
+        if(array_key_exists('key',$request->all())){
             $statuses_ids = '';
-            $categories_ids = '';
+            $categories_ids = array();
 
             if(strcmp($request->status_id,'All')==0){
                 $statuses_ids = getNonDeletedStatusesIds();
             }
 
             else{
-                $statuses_ids = $request->status_id;
+                $statuses_ids = [$request->status_id];
             }
             
             if(strcmp($request->category_id,'All')==0){
-                $categories_ids = getNonDeletedStatusesIds();
+                $categories = Category::all();
+
+                foreach($categories as $category){
+                    array_push($categories_ids,$category->id);
+                }
             }
 
             else{
-                $categories_ids = $request->category_id;
+                $categories_ids = [$request->category_id];
             }
 
             $products = Product::whereIn('status_id',$statuses_ids)
                                 ->whereIn('category_id',$categories_ids)
-                                ->where('name','LIKE','%'.$request->name.'%')
+                                ->where('name','LIKE','%'.$request->search.'%')
                                 ->orderBy('name','ASC')
                                 ->orderBy('status_id','ASC')
                                 ->orderBy('category_id','ASC')
-                                ->get();
+                                ->paginate($request->row_count);
                         
-            return view('Product.serch',compact('Products'));
+            return view('product.search',compact('products'));
         }
 
         $statuses = Status::all();
         $categories = Category::all();
 
         $products = Product::where('status_id',getStatusID('Active'))
-                            ->get();
+                            ->paginate(10);
         
-        return view('Product.index',compact('Products','statuses','categories'));
+        return view('product.index',compact('products','statuses','categories'));
     }
 
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('status_id',getStatusID('Active'))
+                                ->get();
 
-        return view('Product.create',compact('categories'));
+        return view('product.create',compact('categories'));
     }
 
     public function store(Request $request)
@@ -99,10 +112,11 @@ class ProductController extends Controller
 
             DB::commit();
 
+            Session::flash('product_added','Product added successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Product created successfully',
-                'route'     => route('Products.show',$product),
+                'route'     => route('products.show',$product->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -114,26 +128,34 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('Product.show',compact('Product'));
+        return view('product.show',compact('product'));
     }
 
     public function edit(Product $product)
     {
-        $statuses = Status::all();
+        $statuses = Status::where('name','!=','Deleted')->get();
+
+        if($product->status_id == getDeletedStatusId()){
+            $statuses = Status::all();
+        }
+
         $categories = Category::all();
 
-        return view('Product.edit',compact('Product','statuses','categories'));
+        return view('product.edit',compact('product','statuses','categories'));
     }
 
     public function update(Request $request, Product $product)
     {
         $data = Validator::make($request->all(),[
-            'status_id'     => 'required|exists:statuses,id,'.getStatusID('Deleted'), 
+            'status_id'     => 'required|exists:statuses,id', 
             'category_id'   => 'required|exists:categories,id',
             'name'          => 'required|min:3|max:20',
             'units'         => 'required|numeric',
             'price'         => 'required|numeric',
             'details'       => 'nullable|string|max:500',
+        ],$messages = [],$attributes = [
+            'category_id' => 'category',
+            'status_id' => 'status',
         ]);
 
         if($data->fails()){
@@ -160,10 +182,11 @@ class ProductController extends Controller
 
             DB::commit();
 
+            Session::flash('product_updated','Product updated successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Product updated successfully',
-                'route'     => route('Products.show',$product),
+                'route'     => route('products.show',$product->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -177,12 +200,7 @@ class ProductController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 
@@ -217,10 +235,11 @@ class ProductController extends Controller
 
             DB::commit();
 
+            Session::flash('product_deleted','Product deleted successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Product deleted successfully',
-                'route'     => route('Products.index'),
+                'route'     => route('products.index'),
             ]);
         }catch(Exception $e){
             return response()->json([

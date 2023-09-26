@@ -2,22 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Status;
-use App\Models\Sell;
 use Exception;
+use App\Models\Sell;
+use App\Models\Status;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class SellController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Sells Index'])->only(['index']);
+        $this->middleware(['permission:Sells Create'])->only(['create','store']);
+        $this->middleware(['permission:Sells Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Sells Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
+        if(array_key_exists('key',$request->all())){
             $statuses_ids = '';
 
             if(strcmp($request->status_id,'All')==0){
@@ -25,22 +32,22 @@ class SellController extends Controller
             }
 
             else{
-                $statuses_ids = $request->status_id;
+                $statuses_ids = [$request->status_id];
             }
 
             $sells = Sell::whereIn('status_id',$statuses_ids)
-                                ->where('name','LIKE','%'.$request->name.'%')
+                                ->where('name','LIKE','%'.$request->search.'%')
                                 ->orderBy('name','ASC')
                                 ->orderBy('status_id','ASC')
-                                ->get();
+                                ->paginate($request->row_count);
                         
-            return view('sell.serch',compact('sells'));
+            return view('sell.search',compact('sells'));
         }
 
         $statuses = Status::all();
 
         $sells = Sell::where('status_id',getStatusID('Active'))
-                            ->get();
+                            ->paginate(10);
         
         return view('sell.index',compact('sells','statuses'));
     }
@@ -149,12 +156,7 @@ class SellController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 

@@ -1,1 +1,47 @@
-/*# sourceMappingURL=edit.css.map */
+.category-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.category-edit form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.category-edit form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.category-edit form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.category-edit form .form-group .form-label {
+  margin: 0;
+}
+.category-edit form .form-group .error {
+  color: red;
+}
+.category-edit form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+
+@media screen and (min-width: 720px) {
+  .category-edit form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}/*# sourceMappingURL=edit.css.map */

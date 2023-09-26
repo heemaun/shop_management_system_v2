@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Status;
 use App\Models\SellOrder;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class SellOrderController extends Controller
 {
@@ -149,12 +148,7 @@ class SellOrderController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 

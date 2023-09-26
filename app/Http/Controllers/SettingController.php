@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Settings Index'])->only(['index']);
+        $this->middleware(['permission:Settings Create'])->only(['create','store']);
+        $this->middleware(['permission:Settings Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Settings Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
         $settings = Setting::all();

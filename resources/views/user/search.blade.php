@@ -1,8 +1,10 @@
 @if (count($users) == 0)
 
-<span>No Data Found!</span>
+<span class="no-data-found">No Data Found!</span>
 
 @else
+
+{{ $users->links() }}
 
 <table class="table">
     <thead>
@@ -34,8 +36,16 @@
             </tr>
         @endforeach
     </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="7">
+                {{ $users->total().' rows of data returned' }}
+            </td>
+        </tr>
+    </tfoot>
 </table>
 
-{{ $users->links() }}
+{{ $users->links() }}  
 
 @endif

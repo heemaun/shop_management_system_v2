@@ -31,7 +31,7 @@ class Dataseeder extends Seeder
         $seller = Role::create(['name' => 'Seller']);
         $customer = Role::create(['name' => 'Customer']);
 
-        $pages = ['Accounts','Categories','Products','Purchases','Purchase Orders','Sells','Sell Orders','Settings','Statuses','Transactions','Users','Roles','Permissions'];
+        $pages = ['Accounts','Categories','Products','Purchases','Purchase Orders','Sells','Sell Orders','Settings','Statuses','Transactions','Users','Roles','Permissions','Carts'];
 
         foreach($pages as $p){
             $permission1 = Permission::create(['name' => $p.' Index']);
@@ -211,11 +211,13 @@ class Dataseeder extends Seeder
             }
         }
 
-        Account::create([
-            'status_id' => rand(1,count(Status::all())),
-            'admin_id'  => rand(1,count(User::all())),
-            'name'      => 'Cash',
-            'balance'   => $faker->randomDigitNotZero(),
-        ]);
+        for($x=0;$x<50;$x++){
+            Account::create([
+                'status_id' => rand(1,count(Status::all())),
+                'admin_id'  => rand(1,count(User::all())),
+                'name'      => $faker->colorName(),
+                'balance'   => $faker->randomDigitNotZero(),
+            ]);
+        }
     }
 }

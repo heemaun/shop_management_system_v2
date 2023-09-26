@@ -2,22 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Status;
 use App\Models\Transaction;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class TransactionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Transactions Index'])->only(['index']);
+        $this->middleware(['permission:Transactions Create'])->only(['create','store']);
+        $this->middleware(['permission:Transactions Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Transactions Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
+        if(array_key_exists('key',$request->all())){
             $statuses_ids = '';
 
             if(strcmp($request->status_id,'All')==0){
@@ -25,22 +32,22 @@ class TransactionController extends Controller
             }
 
             else{
-                $statuses_ids = $request->status_id;
+                $statuses_ids = [$request->status_id];
             }
 
             $transactions = Transaction::whereIn('status_id',$statuses_ids)
-                                ->where('name','LIKE','%'.$request->name.'%')
+                                ->where('name','LIKE','%'.$request->search.'%')
                                 ->orderBy('name','ASC')
                                 ->orderBy('status_id','ASC')
-                                ->get();
+                                ->paginate($request->row_count);
                         
-            return view('transaction.serch',compact('transactions'));
+            return view('transaction.search',compact('transactions'));
         }
 
         $statuses = Status::all();
 
         $transactions = Transaction::where('status_id',getStatusID('Active'))
-                            ->get();
+                            ->paginate(10);
         
         return view('transaction.index',compact('transactions','statuses'));
     }
@@ -149,12 +156,7 @@ class TransactionController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 

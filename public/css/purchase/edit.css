@@ -1,1 +1,47 @@
-/*# sourceMappingURL=edit.css.map */
+.purchase-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.purchase-edit form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.purchase-edit form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.purchase-edit form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.purchase-edit form .form-group .form-label {
+  margin: 0;
+}
+.purchase-edit form .form-group .error {
+  color: red;
+}
+.purchase-edit form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+
+@media screen and (min-width: 720px) {
+  .purchase-edit form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}/*# sourceMappingURL=edit.css.map */

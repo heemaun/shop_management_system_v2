@@ -2,30 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Status;
 use Exception;
+use App\Models\Status;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class StatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Statuses Index'])->only(['index']);
+        $this->middleware(['permission:Statuses Create'])->only(['create','store']);
+        $this->middleware(['permission:Statuses Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Statuses Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
-            $statuses = Status::where('name','LIKE','%'.$request->name.'%')
+        if(array_key_exists('key',$request->all())){
+            $statuses = Status::where('name','LIKE','%'.$request->search.'%')
                                 ->orderBy('name','ASC')
-                                ->orderBy('status_id','ASC')
-                                ->get();
+                                ->paginate($request->row_count);
                         
-            return view('status.serch',compact('statuses'));
+            return view('status.search',compact('statuses'));
         }
 
-        $statuses = Status::all();
+        $statuses = Status::paginate(10);
         
         return view('status.index',compact('statuses'));
     }
@@ -59,10 +66,11 @@ class StatusController extends Controller
 
             DB::commit();
 
+            Session::flash('status_created','Status created successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Status created successfully',
-                'route'     => route('statuses.show',$status),
+                'route'     => route('statuses.show',$status->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -79,9 +87,7 @@ class StatusController extends Controller
 
     public function edit(Status $status)
     {
-        $statuses = Status::all();
-
-        return view('status.edit',compact('status','statuses'));
+        return view('status.edit',compact('status'));
     }
 
     public function update(Request $request, Status $status)
@@ -108,10 +114,11 @@ class StatusController extends Controller
 
             DB::commit();
 
+            Session::flash('status_updated','Status updated successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Status updated successfully',
-                'route'     => route('statuses.show',$status),
+                'route'     => route('statuses.show',$status->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -125,12 +132,7 @@ class StatusController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 
@@ -157,9 +159,10 @@ class StatusController extends Controller
 
             DB::commit();
 
+            Session::flash('status_deleted','Status deleted successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Status deleted successfully',
                 'route'     => route('statuses.index'),
             ]);
         }catch(Exception $e){

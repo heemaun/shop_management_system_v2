@@ -1,1 +1,42 @@
-/*# sourceMappingURL=create.css.map */
+.category-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.category-create form {
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
+  box-shadow: none;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.category-create form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.category-create form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.category-create form .form-group .form-label {
+  margin: 0;
+}
+.category-create form .form-group .error {
+  color: red;
+}
+.category-create form .column-2 {
+  grid-column: 1/-1;
+}
+.category-create form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}/*# sourceMappingURL=create.css.map */

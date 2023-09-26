@@ -2,22 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Status;
 use App\Models\Purchase;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class PurchaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Purchases Index'])->only(['index']);
+        $this->middleware(['permission:Purchases Create'])->only(['create','store']);
+        $this->middleware(['permission:Purchases Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Purchases Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
+        if(array_key_exists('key',$request->all())){
             $statuses_ids = '';
 
             if(strcmp($request->status_id,'All')==0){
@@ -25,7 +32,7 @@ class PurchaseController extends Controller
             }
 
             else{
-                $statuses_ids = $request->status_id;
+                $statuses_ids = [$request->status_id];
             }
 
             $purchases = Purchase::join('purchase_orders','purchases.id','=','purchase_orders.purchase_id')
@@ -36,15 +43,15 @@ class PurchaseController extends Controller
                                 ->select('purchases.*')
                                 ->orderBy('purchases.created_ay','DESC')
                                 ->orderBy('status_id','ASC')
-                                ->get();
+                                ->paginate($request->row_count);
                         
-            return view('purchase.serch',compact('purchases'));
+            return view('purchase.search',compact('purchases'));
         }
 
         $statuses = Status::all();
 
         $purchases = Purchase::where('status_id',getStatusID('Active'))
-                                ->get();
+                                ->paginate(10);
         
         return view('purchase.index',compact('purchases','statuses'));
     }
@@ -147,12 +154,7 @@ class PurchaseController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 

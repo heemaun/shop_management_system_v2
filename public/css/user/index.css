@@ -73,10 +73,6 @@
   background-color: var(--2nd-bg-color);
   border-radius: var(--section1-border-radius);
 }
-.user-index .table-container table tbody tr .no-data {
-  color: red;
-  font-size: xx-large;
-}
 .user-index .table-container table tbody .clickable {
   cursor: pointer;
 }
@@ -85,6 +81,15 @@
 }
 .user-index .table-container table .right {
   text-align: right;
+}
+.user-index .table-container .no-data-found {
+  color: white;
+  background-color: red;
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0rem;
+  border-radius: 0.5rem;
 }
 .user-index .table-container nav {
   background: none;

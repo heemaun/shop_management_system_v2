@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Carts Index'])->only(['index']);
+        $this->middleware(['permission:Carts Create'])->only(['create','store']);
+        $this->middleware(['permission:Carts Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Carts Delete'])->only(['destroy']);
+    }
+
     public function index()
     {
         $sell = Sell::where('customer_id',Auth::user()->id)

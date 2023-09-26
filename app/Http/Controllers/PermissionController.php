@@ -11,6 +11,14 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Permissions Index'])->only(['index']);
+        $this->middleware(['permission:Permissions Create'])->only(['create','store']);
+        $this->middleware(['permission:Permissions Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Permissions Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
         if(!array_key_exists('key',$request->all())){

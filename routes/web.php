@@ -43,22 +43,6 @@ Route::middleware([LoginMiddleware::class,AuthUserMiddleware::class])->group(fun
     // });
 });
 
-
-// Route::resource('/accounts',AccountController::class);
-// Route::resource('/categories',CategoryController::class);
-// Route::resource('/products',ProductController::class);
-// Route::resource('/purchases',PurchaseController::class);
-// Route::resource('/purchase-orders',PurchaseOrderController::class);
-// Route::resource('/sells',SellController::class);
-// Route::resource('/sell-orders',SellOrderController::class);
-// Route::resource('/settings',SettingController::class);
-// Route::resource('/statuses',StatusController::class);
-// Route::resource('/users',UserController::class);
-// Route::resource('/cart',CartController::class);
-// Route::resource('/transactions',TransactionController::class);
-// Route::resource('/roles',RoleController::class);
-// Route::resource('/permissions',PermissionController::class);
-
 //login routes
 Route::post('login',[LoginController::class,'login'])->name('login');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');

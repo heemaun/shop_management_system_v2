@@ -2,22 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Status;
 use App\Models\Category;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
+// use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Categories Index'])->only(['index']);
+        $this->middleware(['permission:Categories Create'])->only(['create','store']);
+        $this->middleware(['permission:Categories Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Categories Delete'])->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
+        if(array_key_exists('key',$request->all())){
             $statuses_ids = '';
 
             if(strcmp($request->status_id,'All')==0){
@@ -25,29 +34,29 @@ class CategoryController extends Controller
             }
 
             else{
-                $statuses_ids = $request->status_id;
+                $statuses_ids = [$request->status_id];
             }
 
             $categories = Category::whereIn('status_id',$statuses_ids)
-                                ->where('name','LIKE','%'.$request->name.'%')
+                                ->where('name','LIKE','%'.$request->search.'%')
                                 ->orderBy('name','ASC')
                                 ->orderBy('status_id','ASC')
-                                ->get();
+                                ->paginate($request->row_count);
                         
-            return view('Category.serch',compact('Categories'));
+            return view('category.search',compact('categories'));
         }
 
         $statuses = Status::all();
 
         $categories = Category::where('status_id',getStatusID('Active'))
-                            ->get();
+                            ->paginate(10);
         
-        return view('Category.index',compact('Categories','statuses'));
+        return view('category.index',compact('categories','statuses'));
     }
 
     public function create()
     {
-        return view('Category.create');
+        return view('category.create');
     }
 
     public function store(Request $request)
@@ -76,10 +85,11 @@ class CategoryController extends Controller
 
             DB::commit();
 
+            Session::flash('category_added','Category created successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Category created successfully',
-                'route'     => route('Categories.show',$category),
+                'route'     => route('categories.show',$category->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -91,20 +101,24 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return view('Category.show',compact('Category'));
+        return view('category.show',compact('category'));
     }
 
     public function edit(Category $category)
     {
-        $statuses = Status::all();
+        $statuses = Status::where('name','!=','Deleted')->get();
 
-        return view('Category.edit',compact('Category','statuses'));
+        if($category->status_id == getDeletedStatusId()){
+            $statuses = Status::all();
+        }
+
+        return view('category.edit',compact('category','statuses'));
     }
 
     public function update(Request $request, Category $category)
     {
         $data = Validator::make($request->all(),[
-            'status_id' => 'required|exists:statuses,id,'.getStatusID('Deleted'), 
+            'status_id' => 'required|exists:statuses,id', 
             'name'      => 'required|min:3|max:20',
         ]);
 
@@ -128,10 +142,11 @@ class CategoryController extends Controller
 
             DB::commit();
 
+            Session::flash('category_updated','Category updated successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Category updated successfully',
-                'route'     => route('Categories.show',$category),
+                'route'     => route('categories.show',$category->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -145,12 +160,7 @@ class CategoryController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 
@@ -185,10 +195,11 @@ class CategoryController extends Controller
 
             DB::commit();
 
+            Session::flash('category_deleted','Category deleted successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Category deleted successfully',
-                'route'     => route('Categories.index'),
+                'route'     => route('categories.index'),
             ]);
         }catch(Exception $e){
             return response()->json([

@@ -99,13 +99,6 @@
             }
             
             tbody{
-                tr{                    
-                    .no-data{
-                        color: red;
-                        font-size: xx-large;
-                    }
-                }
-
                 .clickable{
                     cursor: pointer;
                 }
@@ -118,6 +111,16 @@
             .right{
                 text-align: right;
             }
+        }
+
+        .no-data-found{
+            color: white;
+            background-color: red;
+            display: block;
+            text-align: center;
+            width: 100%;
+            padding: .5rem 0rem;
+            border-radius: .5rem;
         }
 
         nav{

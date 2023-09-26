@@ -1,1 +1,47 @@
-/*# sourceMappingURL=edit.css.map */
+.account-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.account-edit form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.account-edit form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.account-edit form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.account-edit form .form-group .form-label {
+  margin: 0;
+}
+.account-edit form .form-group .error {
+  color: red;
+}
+.account-edit form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+
+@media screen and (min-width: 720px) {
+  .account-edit form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}/*# sourceMappingURL=edit.css.map */

@@ -2,22 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Status;
 use App\Models\Account;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Validation\Rules\Password;
 
 class AccountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:Accounts Index'])->only(['index']);
+        $this->middleware(['permission:Accounts Create'])->only(['create','store']);
+        $this->middleware(['permission:Accounts Edit'])->only(['edit','update']);
+        $this->middleware(['permission:Accounts Delete'])->only(['destroy']);
+    }
     public function index(Request $request)
     {
-        if(strcmp($request->key,'search')){
+        if(array_key_exists('key',$request->all())){
             $statuses_ids = '';
 
             if(strcmp($request->status_id,'All')==0){
@@ -25,22 +32,22 @@ class AccountController extends Controller
             }
 
             else{
-                $statuses_ids = $request->status_id;
+                $statuses_ids = [$request->status_id];
             }
 
             $accounts = Account::whereIn('status_id',$statuses_ids)
-                                ->where('name','LIKE','%'.$request->name.'%')
+                                ->where('name','LIKE','%'.$request->search.'%')
                                 ->orderBy('name','ASC')
                                 ->orderBy('status_id','ASC')
-                                ->get();
+                                ->paginate($request->row_count);
                         
-            return view('account.serch',compact('accounts'));
+            return view('account.search',compact('accounts'));
         }
 
         $statuses = Status::all();
 
         $accounts = Account::where('status_id',getStatusID('Active'))
-                            ->get();
+                            ->paginate(10);
         
         return view('account.index',compact('accounts','statuses'));
     }
@@ -78,10 +85,11 @@ class AccountController extends Controller
 
             DB::commit();
 
+            Session::flash('account_created','Account created successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Account created successfully',
-                'route'     => route('accounts.show',$account),
+                'route'     => route('accounts.show',$account->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -98,7 +106,11 @@ class AccountController extends Controller
 
     public function edit(Account $account)
     {
-        $statuses = Status::all();
+        $statuses = Status::where('name','!=','Deleted')->get();
+
+        if($account->status_id == getDeletedStatusId()){
+            $statuses = Status::all();
+        }
 
         return view('account.edit',compact('account','statuses'));
     }
@@ -106,7 +118,7 @@ class AccountController extends Controller
     public function update(Request $request, Account $account)
     {
         $data = Validator::make($request->all(),[
-            'status_id' => 'required|exists:statuses,id,'.getStatusID('Deleted'), 
+            'status_id' => 'required|exists:statuses,id', 
             'name'      => 'required|min:3|max:20',
             'balance'   => 'required|numeric',
         ]);
@@ -132,10 +144,11 @@ class AccountController extends Controller
 
             DB::commit();
 
+            Session::flash('account_updated','Account updated successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Account updated successfully',
-                'route'     => route('accounts.show',$account),
+                'route'     => route('accounts.show',$account->id),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -149,12 +162,7 @@ class AccountController extends Controller
     {
         $data = Validator::make($request->all(),[
             'password' => [
-                'required',Password::min(8)
-                                    ->letters()
-                                    ->mixedCase()
-                                    ->numbers()
-                                    ->symbols()
-                                    ->uncompromised(),
+                'required',Password::min(8),
             ]
         ]);
 

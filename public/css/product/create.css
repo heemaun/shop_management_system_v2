@@ -1,1 +1,54 @@
-/*# sourceMappingURL=create.css.map */
+.product-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.product-create form {
+  width: 100%;
+  grid-template-columns: repeat(1, 1fr);
+  box-shadow: none;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.product-create form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.product-create form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.product-create form .form-group .form-label {
+  margin: 0;
+}
+.product-create form .form-group textarea {
+  height: 10rem;
+}
+.product-create form .form-group .error {
+  color: red;
+}
+.product-create form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+
+@media screen and (min-width: 960px) {
+  .product-create form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .product-create form .form-group {
+    grid-column: span 1;
+  }
+  .product-create form .column-2 {
+    grid-column: span 2;
+  }
+}/*# sourceMappingURL=create.css.map */
