@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Sell;
 use App\Models\User;
 use App\Models\Status;
 use App\Models\Account;
@@ -9,8 +10,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -190,7 +191,7 @@ class Dataseeder extends Seeder
         $user3->assignRole('Seller');
         $user4->assignRole('Manager');
 
-        for($x=0;$x<50;$x++){
+        for($x=0;$x<10;$x++){
             $category = Category::create([
                 'status_id'             => rand(1,count(Status::all())),
                 'admin_id'              => rand(1,count(User::all())),
@@ -198,7 +199,7 @@ class Dataseeder extends Seeder
                 'name'                  => $faker->colorName(),
             ]);
             
-            for($y=0;$y<50;$y++){
+            for($y=0;$y<10;$y++){
                 Product::create([
                     'status_id'     => rand(1,count(Status::all())),
                     'admin_id'      => rand(1,count(User::all())),
@@ -211,12 +212,23 @@ class Dataseeder extends Seeder
             }
         }
 
-        for($x=0;$x<50;$x++){
+        for($x=0;$x<10;$x++){
             Account::create([
                 'status_id' => rand(1,count(Status::all())),
                 'admin_id'  => rand(1,count(User::all())),
                 'name'      => $faker->colorName(),
                 'balance'   => $faker->randomDigitNotZero(),
+            ]);
+        }
+
+        for($x=0;$x<10;$x++){
+            Sell::create([
+                'status_id' => rand(1,count(Status::all())),
+                'admin_id' => rand(1,count(User::all())),
+                'customer_id' => rand(1,count(User::all())),
+                'units' => rand(0,1000),
+                'sub_total' => rand(0,10000),
+                'discount' => rand(0,100),
             ]);
         }
     }

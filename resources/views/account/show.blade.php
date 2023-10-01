@@ -36,12 +36,12 @@
 
             <div class="info">
                 <label for="status" >Created At</label>
-                <span class="data">{{ date('d-M-Y h:i:s A', strtotime($account->created_at)) }}</span>
+                <span class="data date">{{ date('d-M-Y h:i:s A', strtotime($account->created_at)) }}</span>
             </div>
 
             <div class="info">
                 <label for="status" >Last Modified At</label>
-                <span class="data">{{ date('d-M-Y h:i:s A', strtotime($account->updated_at)) }}</span>
+                <span class="data date">{{ date('d-M-Y h:i:s A', strtotime($account->updated_at)) }}</span>
             </div>
         </div>       
     </div>

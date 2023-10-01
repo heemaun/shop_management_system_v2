@@ -48,7 +48,7 @@
 .product-show .infos .info {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   border-bottom: 0.1rem dashed gray;
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
@@ -136,13 +136,12 @@
   .product-show {
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
-    justify-content: start;
-    align-items: start;
   }
   .product-show .button-container {
     grid-row: span 1;
     grid-column: span 1;
     order: 3;
+    align-self: self-start;
   }
   .product-show .image {
     order: 2;

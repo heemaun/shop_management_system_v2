@@ -6,7 +6,7 @@
     <div class="controls">
         <div class="form-group stretch">
             <label for="search" >Search Sell By Name</label>
-            <input type="text" id="search" name="search" placeholder="search sell by name" class="text-field" onkeyup="search()">
+            <input type="date" id="search" name="search" placeholder="search sell by name" class="text-field" onkeyup="search()">
         </div>
 
         <div class="form-group">
@@ -49,8 +49,10 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Date</th>
                     <th>Status</th>
-                    <th>Name</th>
+                    <th>Units</th>
+                    <th>Total</th>
                 </tr>
             </thead>
 
@@ -58,15 +60,17 @@
                 @foreach ($sells as $sell)
                     <tr data-href="{{ route('sells.show',$sell->id) }}" class="clickable">
                         <td class="right">{{ $loop->iteration }}</td>
+                        <td>{{ date('d-M-Y h:i:s a',strtotime($sell->created_at)) }}</td>
                         <td>{{ $sell->status->name }}</td>
-                        <td>{{ $sell->name }}</td>
+                        <td>{{ $sell->units }}</td>
+                        <td>{{ $sell->sub_total - $sell->discount }}</td>
                     </tr>
                 @endforeach
             </tbody>
 
             <tfoot>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="5">
                         {{ $sells->total().' rows of data returned' }}
                     </td>
                 </tr>

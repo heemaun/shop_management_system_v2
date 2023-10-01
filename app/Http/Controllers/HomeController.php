@@ -30,7 +30,7 @@ class HomeController extends Controller
             if($sell == null){
                 $sell = Sell::create([
                     'status_id'     => getStatusID('Carted'),
-                    'customer_id' => Auth::user()->id,
+                    'customer_id'   => Auth::user()->id,
                     'units'         => 0,
                     'subtotal'      => 0,
                     'discount'      => 0,
@@ -93,5 +93,10 @@ class HomeController extends Controller
     public function register()
     {
         return view('user.create');
+    }
+
+    public function loadLocalTimeZone(Request $request)
+    {
+        dd(env('lo'));
     }
 }

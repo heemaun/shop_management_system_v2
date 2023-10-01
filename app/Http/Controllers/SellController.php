@@ -36,8 +36,7 @@ class SellController extends Controller
             }
 
             $sells = Sell::whereIn('status_id',$statuses_ids)
-                                ->where('name','LIKE','%'.$request->search.'%')
-                                ->orderBy('name','ASC')
+                                ->orderBy('created_at','DESC')
                                 ->orderBy('status_id','ASC')
                                 ->paginate($request->row_count);
                         
