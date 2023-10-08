@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Sell;
+use App\Models\User;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -25,30 +27,104 @@ class SellController extends Controller
     public function index(Request $request)
     {
         if(array_key_exists('key',$request->all())){
-            $statuses_ids = '';
+            // return response()->json([
+            //     'request' => $request->all(),
+            // ]);
+            if(strcmp($request->key,'customer_search')==0){               
+                if(empty($request->customer_name)){
+                    $customers = User::whereHas(
+                                            'roles', function($query){
+                                                $query->where('name','Customer');
+                                            }
+                                        )
+                                        ->orderBy('name')
+                                        ->limit(10)
+                                        ->get();
+                }
 
-            if(strcmp($request->status_id,'All')==0){
-                $statuses_ids = getNonDeletedStatusesIds();
+                else{
+                    $customers = User::whereHas(
+                                            'roles', function($query){
+                                                $query->where('name','Customer');
+                                            }
+                                        )
+                                        ->where(function($query) use($request){
+                                            $query->where('name','LIKE','%'.$request->customer_name.'%')
+                                                    ->orWhere('username','LIKE','%'.$request->customer_name.'%')
+                                                    ->orWhere('phone','LIKE','%'.$request->customer_name.'%')
+                                                    ->orWhere('email','LIKE','%'.$request->customer_name.'%')
+                                                    ->orWhere('id',$request->customer_name);
+                                        })
+                                        ->orderBy('name')
+                                        ->limit(10)
+                                        ->get();
+                }
+
+                // return response()->json([
+                //     'customers' => $customers,
+                // ]);
+                return view('sell.customer-datalist',compact('customers'));
             }
 
             else{
-                $statuses_ids = [$request->status_id];
-            }
+                $statuses_ids = '';
+                $customers_ids = '';
 
-            $sells = Sell::whereIn('status_id',$statuses_ids)
-                                ->orderBy('created_at','DESC')
-                                ->orderBy('status_id','ASC')
-                                ->paginate($request->row_count);
-                        
-            return view('sell.search',compact('sells'));
+                if(strcmp($request->status_id,'All')==0){
+                    $statuses_ids = getNonDeletedStatusesIds();
+                }
+
+                else{
+                    $statuses_ids = [$request->status_id];
+                }
+                
+                if(array_key_exists('customer_id',$request->all())){
+                    $sells = Sell::whereIn('status_id',$statuses_ids)
+                                    ->where('customer_id',$request->customer_id)
+                                    ->whereBetween('created_at',[$request->from_date,$request->to_date.' 23:59:59'])
+                                    ->orderBy('created_at','DESC')
+                                    ->orderBy('status_id','ASC')
+                                    ->paginate($request->row_count);
+                }
+
+                else{
+                    $sells = Sell::whereIn('status_id',$statuses_ids)
+                                    ->whereBetween('created_at',[$request->from_date,$request->to_date.' 23:59:59'])
+                                    ->orderBy('created_at','DESC')
+                                    ->orderBy('status_id','ASC')
+                                    ->paginate($request->row_count);
+                }
+                            
+                return view('sell.search',compact('sells'));
+            }            
         }
 
         $statuses = Status::all();
 
         $sells = Sell::where('status_id',getStatusID('Active'))
+                            ->orderBy('created_at','DESC')
+                            ->orderBy('status_id','ASC')
                             ->paginate(10);
+        $fromDate = Sell::orderBy('created_at','ASC')
+                    ->first()->created_at;
+        $toDate = Sell::orderBy('created_at','DESC')
+                    ->first()->created_at;
+
+        $fromDate = date('Y-m-d',(strtotime($fromDate) - (24*60*60)));
+        $toDate = date('Y-m-d',(strtotime($toDate) + (24*60*60)));
+
+        $customers = User::whereHas(
+                                'roles', function($query){
+                                    $query->where('name','Customer');
+                                }
+                            )
+                            ->orderBy('name')
+                            ->limit(10)
+                            ->get();
+
+        // dd($customers);
         
-        return view('sell.index',compact('sells','statuses'));
+        return view('sell.index',compact('sells','statuses','fromDate','toDate','customers'));
     }
 
     public function create()

@@ -15,6 +15,11 @@ use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
+    public function test()
+    {
+        return view('default.test');
+    }
+
     public function home()
     {
         $products = Product::Where('status_id',getStatusID('Active'))

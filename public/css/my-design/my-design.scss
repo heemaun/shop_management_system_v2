@@ -118,6 +118,8 @@ select{
 .table{
     // border-collapse: collapse;
     width: 100%;
+
+    color: #008080;
     
     background-color: var(--2nd-bg-color);
     color: var(--2nd-color);
@@ -131,7 +133,7 @@ select{
                 text-align: center;
                 vertical-align: middle;
                 white-space: nowrap;
-                padding: .5rem 1rem;
+                padding: .5rem 1rem;                
                 // border-left: 1px solid var(--3rd-color);
                 // border-right: 1px solid var(--3rd-color);
     

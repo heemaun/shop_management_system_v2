@@ -19,32 +19,32 @@ class SettingsSeeder extends Seeder
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--1st-bg-color',
-            'value'     => '#333333',
+            'value'     => '#0099cc',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--2nd-bg-color',
-            'value'     => '#4d4d4d',
+            'value'     => '#00bfff',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--3rd-bg-color',
-            'value'     => '#666666',
+            'value'     => '#33ccff',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--4th-bg-color',
-            'value'     => '#808080',
+            'value'     => '#66d9ff',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--5th-bg-color',
-            'value'     => '#999999',
+            'value'     => '#99e6ff',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--6th-bg-color',
-            'value'     => '#b3b3b3',
+            'value'     => '#ccf2ff',
         ]);
         //bg-ends
 
@@ -52,32 +52,32 @@ class SettingsSeeder extends Seeder
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--1st-color',
-            'value'     => '#ffffff',
+            'value'     => '#000000',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--2nd-color',
-            'value'     => '#ffffff',
+            'value'     => '#000000',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--3rd-color',
-            'value'     => '#ffffff',
+            'value'     => '#000000',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--4th-color',
-            'value'     => '#ffffff',
+            'value'     => '#000000',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--5th-color',
-            'value'     => '#ffffff',
+            'value'     => '#000000',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--6th-color',
-            'value'     => '#ffffff',
+            'value'     => '#000000',
         ]);
         //color-ends
         
@@ -290,7 +290,7 @@ class SettingsSeeder extends Seeder
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--logo-color',
-            'value'     => '#ffffff',
+            'value'     => '#ffd9cc',
         ]);
         Setting::create([
             'admin_id'  => 1,
@@ -318,12 +318,12 @@ class SettingsSeeder extends Seeder
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--nav-bg-color',
-            'value'     => '#1a1a1a',
+            'value'     => '#008080',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--nav-color',
-            'value'     => '#ffffff',
+            'value'     => '#ffd9cc',
         ]);
         Setting::create([
             'admin_id'  => 1,
@@ -351,7 +351,7 @@ class SettingsSeeder extends Seeder
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--banner-color',
-            'value'     => '#ffffff',
+            'value'     => '#ffd9cc',
         ]);
         Setting::create([
             'admin_id'  => 1,

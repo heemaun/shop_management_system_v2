@@ -5,12 +5,28 @@
 
     <div class="controls">
         <div class="form-group stretch">
-            <label for="search" >Search Sell By Name</label>
-            <input type="date" id="search" name="search" placeholder="search sell by name" class="text-field" onkeyup="search()">
+            <label for="customer_id">Customer Name</label>
+            <input type="text" id="customer_name" name="customer_name" list="customer_list" placeholder="search for customer name" class="text-field" onchange="search()">
+            {{-- <input type="hidden" id="customer_id" name="customer_id" onchange="search()"> --}}
+            <datalist id="customer_list">
+                @foreach ($customers as $customer)
+                    <option data-id="{{ $customer->id }}" data-name="{{ $customer->name }}">{{ $customer->name }}</option>
+                @endforeach
+            </datalist>
         </div>
 
         <div class="form-group">
-            <label for="Status_id" >Select A Status</label>
+            <label for="from_date">From Date</label>
+            <input type="date" id="from_date" class="text-field date" min="{{ $fromDate }}" value="{{ $fromDate }}" onchange="search()">
+        </div>
+        
+        <div class="form-group">
+            <label for="to_date">To Date</label>
+            <input type="date" id="to_date" class="text-field date" max="{{ $toDate }}" value="{{ $toDate }}" onchange="search()">
+        </div>
+
+        <div class="form-group">
+            <label for="Status_id" >Select A Status</label> 
             <select id="status_id" name="status_id" onchange="search()">
                 <option value="All">Select a option</option>
                 @foreach ($statuses as $status)
@@ -50,6 +66,7 @@
                 <tr>
                     <th>No</th>
                     <th>Date</th>
+                    <th>Customer Name</th>
                     <th>Status</th>
                     <th>Units</th>
                     <th>Total</th>
@@ -60,7 +77,8 @@
                 @foreach ($sells as $sell)
                     <tr data-href="{{ route('sells.show',$sell->id) }}" class="clickable">
                         <td class="right">{{ $loop->iteration }}</td>
-                        <td>{{ date('d-M-Y h:i:s a',strtotime($sell->created_at)) }}</td>
+                        <td class="date">{{ date('d-M-Y h:i:s a',strtotime($sell->created_at)) }}</td>
+                        <td>{{ $sell->customer->name }}</td>
                         <td>{{ $sell->status->name }}</td>
                         <td>{{ $sell->units }}</td>
                         <td>{{ $sell->sub_total - $sell->discount }}</td>
@@ -70,7 +88,7 @@
 
             <tfoot>
                 <tr>
-                    <td colspan="5">
+                    <td colspan="6">
                         {{ $sells->total().' rows of data returned' }}
                     </td>
                 </tr>

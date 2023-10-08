@@ -18,6 +18,7 @@ class Sell extends Model
         'units',
         'sub_total',
         'discount',
+        'created_at',
     ];
 
     public function status()

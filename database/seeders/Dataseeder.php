@@ -8,9 +8,10 @@ use App\Models\Status;
 use App\Models\Account;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\SellOrder;
 use Faker\Factory as Faker;
-use Illuminate\Database\Seeder;
 
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
@@ -169,17 +170,17 @@ class Dataseeder extends Seeder
             'password'          => Hash::make('11111111'),
         ]);
 
-        for($x=0;$x<500;$x++){
+        for($x=0;$x<10;$x++){
             $user = User::create([
                 'status_id'         => rand(1,count(Status::all())),
-                'name'              => $faker->name(),
-                'username'          => $faker->userName(),
+                'name'              => $faker->unique()->name(),
+                'username'          => $faker->unique()->userName(),
                 'gender'            => $faker->randomElement(['Male','Female']),
                 'address'           => $faker->address(),
                 'dob'               => $faker->date(),
-                'email'             => $faker->email,
+                'email'             => $faker->unique()->email,
                 'email_verified_at' => date('Y-m-d'),
-                'phone'             => $faker->phoneNumber(),
+                'phone'             => $faker->unique()->phoneNumber(),
                 'password'          => Hash::make('11111111'),
             ]);
 
@@ -191,7 +192,7 @@ class Dataseeder extends Seeder
         $user3->assignRole('Seller');
         $user4->assignRole('Manager');
 
-        for($x=0;$x<10;$x++){
+        for($x=0;$x<5;$x++){
             $category = Category::create([
                 'status_id'             => rand(1,count(Status::all())),
                 'admin_id'              => rand(1,count(User::all())),
@@ -199,7 +200,7 @@ class Dataseeder extends Seeder
                 'name'                  => $faker->colorName(),
             ]);
             
-            for($y=0;$y<10;$y++){
+            for($y=0;$y<5;$y++){
                 Product::create([
                     'status_id'     => rand(1,count(Status::all())),
                     'admin_id'      => rand(1,count(User::all())),
@@ -221,15 +222,51 @@ class Dataseeder extends Seeder
             ]);
         }
 
+        $customer_ids = array();
+        $admin_seller_ids = array();
+
+        foreach(Role::where('name','Customer')->first()->users as $customer){
+            array_push($customer_ids,$customer->id);
+        }
+        foreach(Role::where('name','admin')->first()->users as $admin){
+            array_push($admin_seller_ids,$admin->id);
+        }
+        foreach(Role::where('name','seller')->first()->users as $seller){
+            array_push($admin_seller_ids,$seller->id);
+        }
+
+        print_r($customer_ids);
+        print_r($admin_seller_ids);
+
         for($x=0;$x<10;$x++){
-            Sell::create([
-                'status_id' => rand(1,count(Status::all())),
-                'admin_id' => rand(1,count(User::all())),
-                'customer_id' => rand(1,count(User::all())),
-                'units' => rand(0,1000),
-                'sub_total' => rand(0,10000),
-                'discount' => rand(0,100),
+            $sell = Sell::create([
+                'status_id'     => rand(1,count(Status::all())),
+                'admin_id'      => $admin_seller_ids[rand(0,(count($admin_seller_ids)-1))],
+                'customer_id'   => $customer_ids[rand(0,(count($customer_ids)-1))],
+                'units'         => 0,
+                'sub_total'     => 0,
+                'discount'      => rand(0,100),
+                'created_at'    => $faker->dateTimeBetween('-6 month','+1 week'),
             ]);
+
+            for($y=0;$y<10;$y++){
+                $product = Product::find(rand(1,count(Product::all())));
+                $productUnits = rand(1,10);
+
+                $sellOrder = SellOrder::create([
+                    'status_id'     => rand(1,count(Status::all())),
+                    'admin_id'      => $admin_seller_ids[rand(0,(count($admin_seller_ids)-1))],
+                    'sell_id'       => $sell->id,
+                    'product_id'    => $product->id,
+                    'units'         => $productUnits,
+                    'price'         => $productUnits * $product->price,
+                    'discount'      => ($productUnits * $product->price) * rand(0,20) * .01,
+                ]);
+
+                $sell->units =+ $productUnits;
+                $sell->sub_total += $sellOrder->price - $sellOrder->discount;
+                $sell->save(); 
+            }
         }
     }
 }

@@ -11,6 +11,7 @@
         <tr>
             <th>No</th>
             <th>Date</th>
+            <th>Customer Name</th>
             <th>Status</th>
             <th>Units</th>
             <th>Total</th>
@@ -21,7 +22,8 @@
         @foreach ($sells as $sell)
             <tr data-href="{{ route('sells.show',$sell->id) }}" class="clickable">
                 <td class="right">{{ $loop->iteration }}</td>
-                <td>{{ date('d-M-Y h:i:s a',strtotime($sell->created_at)) }}</td>
+                <td class="date">{{ date('d-M-Y h:i:s a',strtotime($sell->created_at)) }}</td>
+                <td>{{ $sell->customer->name }}</td>
                 <td>{{ $sell->status->name }}</td>
                 <td>{{ $sell->units }}</td>
                 <td>{{ $sell->sub_total - $sell->discount }}</td>
@@ -31,7 +33,7 @@
 
     <tfoot>
         <tr>
-            <td colspan="5">
+            <td colspan="6">
                 {{ $sells->total().' rows of data returned' }}
             </td>
         </tr>

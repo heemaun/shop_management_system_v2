@@ -49,21 +49,40 @@ $("#header_toggler").click(function(){
     $(this).toggleClass("header-toggler-rotate");
 });
 
-function convertToLocalTime()
-{
-    
+function convertToLocalTime(format = "dd-j-Y hh:ii:ss aa")
+{    
     let dates = $(".date");
     
-    $.each(dates,function(key,value){
-        let date = new Date($(value).text());
+    $.each(dates,function(key,value){       
+        let date = "";
+
+        if($(value).text() == ""){            
+            date = new Date($(value).val());
+        }
+        
+        else{
+            date = new Date($(value).text());
+        }
 
         let utcDate = new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate(),date.getHours(),date.getMinutes(),date.getSeconds()));
 
-        $(value).text(dateToString(utcDate,"dd-j-Y hh:ii:ss aa"));
+        if($(value).text() == ""){            
+            $(value).val(dateToString(utcDate,"Y-mm-dd"));
+        }
+        
+        else{
+            $(value).text(dateToString(utcDate,format));
+        }
     });
 }
 
 convertToLocalTime();
+
+function convertToUtcTime(strDate,format = format = "dd-j-Y hh:ii:ss aa")
+{
+    let date = new Date(strDate);
+    return utcDateToString(date,format);
+}
 
 function dateToString(date,dateFormat)
 {
@@ -92,6 +111,37 @@ function dateToString(date,dateFormat)
     dateFormat = dateFormat.replace("MM" , monthsLong[date.getMonth()]);
     dateFormat = dateFormat.replace("j" , monthsShort[date.getMonth()]);
     dateFormat = dateFormat.replace("aa" , (date.getHours() > 11) ? "PM" : "AM");
+
+    return dateFormat;
+}
+
+function utcDateToString(date,dateFormat)
+{
+
+    let daysLong = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    let daysShort = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+    let monthsLong = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    let monthsShort = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    dateFormat = dateFormat.replace("Y" , date.getUTCFullYear());
+    dateFormat = dateFormat.replace("mm" , (date.getUTCMonth()+1 < 10) ? "0"+(date.getUTCMonth()+1) : (date.getUTCMonth()+1));
+    dateFormat = dateFormat.replace("m" , date.getUTCMonth()+1);
+    dateFormat = dateFormat.replace("dd" , (date.getUTCDate() < 10) ? "0"+(date.getUTCDate()) : (date.getUTCDate()));
+    dateFormat = dateFormat.replace("d" , date.getUTCDate());
+    dateFormat = dateFormat.replace("HH" , (date.getUTCHours() < 10) ? "0"+(date.getUTCHours()) : (date.getUTCHours()));
+    dateFormat = dateFormat.replace("H" , date.getUTCHours());
+    dateFormat = dateFormat.replace("hh" , (date.getUTCHours() % 12 < 10) ? ((date.getUTCHours() % 12 === 0) ? 12 : "0"+(date.getUTCHours() % 12)) : (date.getUTCHours() % 12));
+    dateFormat = dateFormat.replace("h" , (date.getUTCHours() % 12 === 0) ? 12 : date.getUTCHours() % 12);
+    dateFormat = dateFormat.replace("ii" , (date.getUTCMinutes() < 10) ? "0"+(date.getUTCMinutes()) : (date.getUTCMinutes()));
+    dateFormat = dateFormat.replace("i" , date.getUTCMinutes());
+    dateFormat = dateFormat.replace("ss" , (date.getUTCSeconds() < 10) ? "0"+(date.getUTCSeconds()) : (date.getUTCSeconds()));
+    dateFormat = dateFormat.replace("s" , date.getUTCSeconds());
+    dateFormat = dateFormat.replace("DD" , daysLong[date.getUTCDay()]);
+    dateFormat = dateFormat.replace("f" , daysShort[date.getUTCDay()]);
+    dateFormat = dateFormat.replace("MM" , monthsLong[date.getUTCMonth()]);
+    dateFormat = dateFormat.replace("j" , monthsShort[date.getUTCMonth()]);
+    dateFormat = dateFormat.replace("aa" , (date.getUTCHours() > 11) ? "PM" : "AM");
 
     return dateFormat;
 }

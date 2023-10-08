@@ -53,3 +53,4 @@ Route::get('/register',[HomeController::class,'register'])->name('register');
 Route::get('/home-product-view',[HomeController::class,'productView'])->name('home-product-view');
 Route::get('/home-category-search',[HomeController::class,'searchCategory'])->name('home-category-search');
 Route::get('/home-product-search',[HomeController::class,'searchProduct'])->name('home-product-search');
+Route::get('/test',[HomeController::class,'test'])->name('test');

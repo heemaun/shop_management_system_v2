@@ -86,6 +86,7 @@ select {
 
 .table {
   width: 100%;
+  color: #008080;
   background-color: var(--2nd-bg-color);
   color: var(--2nd-color);
 }
