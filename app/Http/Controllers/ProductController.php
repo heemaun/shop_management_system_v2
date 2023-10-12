@@ -29,6 +29,19 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if(array_key_exists('key',$request->all())){
+            if(strcmp($request->key,'product_create')==0){
+                $products = Product::where('status_id',getActiveStatusId())
+                                ->where('name','LIKE','%'.$request->search.'%')
+                                ->orderBy('name','ASC')
+                                ->limit(5)
+                                ->get();
+                
+                return view('sell.product-datalist',compact('products'));
+                // return response()->json([
+                //     'products' => $products,
+                // ]);
+            }
+
             $statuses_ids = '';
             $categories_ids = array();
 
@@ -128,8 +141,15 @@ class ProductController extends Controller
         }
     }
 
-    public function show(Product $product)
+    public function show(Product $product,Request $request)
     {
+        if($request->key != null){
+            if(strcmp($request->key,'create_sell')==0){
+                return response()->json([
+                    'product' => $product,
+                ]);
+            }
+        }
         return view('product.show',compact('product'));
     }
 

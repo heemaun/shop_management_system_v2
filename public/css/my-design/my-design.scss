@@ -213,11 +213,11 @@ select{
     }
 
     .left{
-        text-align: left;
+        text-align: left !important;
     }
 
     .right{
-        text-align: right;
+        text-align: right !important;
     }
 }
 
@@ -229,8 +229,8 @@ form{
     
     border: .1rem solid var(--2nd-color);
     border-radius: var(--form-border-radius);
-    background-color: var(--2nd-bg-color);
-    color: var(--2nd-color);
+    // background-color: var(--2nd-bg-color);
+    // color: var(--2nd-color);
 
     legend{
         grid-template-columns: 1/-1;
@@ -243,8 +243,8 @@ form{
     .form-group{
         padding: .5rem;
 
-        background-color: var(--3rd-bg-color);
-        color: var(--2rd-color);
+        // background-color: var(--3rd-bg-color);
+        // color: var(--2rd-color);
         border-radius: var(--section2-border-radius);
 
         // label{
@@ -271,8 +271,8 @@ form{
         align-items: center;
         padding: .5rem;
 
-        background-color: var(--3rd-bg-color);
-        color: var(--2rd-color);
+        // background-color: var(--3rd-bg-color);
+        // color: var(--2rd-color);
         border-radius: var(--section2-border-radius);
     }
 }
@@ -334,6 +334,10 @@ nav{
         filter: saturate(125%) brightness(125%);
         transform: translateY(.1rem);
         box-shadow: 0 0 2rem .1rem var(--button-dark-bg-color);
+    }
+
+    &:focus{
+        outline: .1rem solid black;
     }
 }
 
@@ -424,6 +428,25 @@ nav{
 
 .shadow{    
     box-shadow: 0rem .1rem 0rem .1rem rgba($color: gray, $alpha: .5);
+}
+
+.button:disabled{
+    color: gray;
+    background-color: white;
+    border: 1px solid gray;
+    cursor: unset;  
+
+    &:hover{
+        filter:none;
+        transform: none;
+        box-shadow: none;
+    }
+    
+    &:active{
+        filter:none;
+        transform: none;
+        box-shadow: none;
+    }
 }
 
 // .click-shadow{

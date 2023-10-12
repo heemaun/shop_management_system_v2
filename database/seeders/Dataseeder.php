@@ -170,7 +170,7 @@ class Dataseeder extends Seeder
             'password'          => Hash::make('11111111'),
         ]);
 
-        for($x=0;$x<10;$x++){
+        for($x=0;$x<1000;$x++){
             $user = User::create([
                 'status_id'         => rand(1,count(Status::all())),
                 'name'              => $faker->unique()->name(),
@@ -192,20 +192,20 @@ class Dataseeder extends Seeder
         $user3->assignRole('Seller');
         $user4->assignRole('Manager');
 
-        for($x=0;$x<5;$x++){
+        for($x=0;$x<10;$x++){
             $category = Category::create([
                 'status_id'             => rand(1,count(Status::all())),
                 'admin_id'              => rand(1,count(User::all())),
                 // 'parent_category_id'    => null,
-                'name'                  => $faker->colorName(),
+                'name'                  => $faker->unique()->colorName(),
             ]);
             
-            for($y=0;$y<5;$y++){
+            for($y=0;$y<10;$y++){
                 Product::create([
                     'status_id'     => rand(1,count(Status::all())),
                     'admin_id'      => rand(1,count(User::all())),
                     'category_id'   => $category->id,
-                    'name'          => $faker->colorName(),
+                    'name'          => $faker->unique()->colorName(),
                     'units'         => $faker->randomDigitNotZero(),
                     'price'         => $faker->randomDigitNotZero(),
                     'details'       => $faker->text(),
@@ -238,7 +238,7 @@ class Dataseeder extends Seeder
         print_r($customer_ids);
         print_r($admin_seller_ids);
 
-        for($x=0;$x<10;$x++){
+        for($x=0;$x<100;$x++){
             $sell = Sell::create([
                 'status_id'     => rand(1,count(Status::all())),
                 'admin_id'      => $admin_seller_ids[rand(0,(count($admin_seller_ids)-1))],
@@ -249,7 +249,7 @@ class Dataseeder extends Seeder
                 'created_at'    => $faker->dateTimeBetween('-6 month','+1 week'),
             ]);
 
-            for($y=0;$y<10;$y++){
+            for($y=0;$y<rand(1,10);$y++){
                 $product = Product::find(rand(1,count(Product::all())));
                 $productUnits = rand(1,10);
 

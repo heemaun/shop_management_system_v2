@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Status;
+use App\Models\Product;
 use App\Models\SellOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,8 +53,9 @@ class SellOrderController extends Controller
     public function store(Request $request)
     {
         $data = Validator::make($request->all(),[
-            'name'      => 'required|min:3|max:20',
-            'balance'   => 'required|numeric',
+            'product_id'    => 'required|exists:products,id',
+            'units'         => 'required|numeric|min:1',
+            'discount'      => 'required|numeric|min:0'
         ]);
 
         if($data->fails()){
@@ -65,22 +67,70 @@ class SellOrderController extends Controller
 
         $data = $data->validate();
 
+        $sell_id = Auth::user()->adminSells->where('status_id',getStatusID('pending'))->first()->id;
+
+        // return response()->json([
+        //     'sell_id' => $sell_id,
+        // ]);
+
         DB::beginTransaction();
 
         try{
-            $sellorder = SellOrder::create([
-                'status_id' => getStatusID('Active'),
-                'admin_id'  => Auth::user()->id,
-                'name'      => $data['name'],
-                'balance'   => $data['balance'],
-            ]);
+
+            $sellOrder = SellOrder::where('status_id',getStatusID('pending'))
+                                    ->where('admin_id',Auth::user()->id)
+                                    ->where('sell_id',$sell_id)
+                                    ->where('product_id',$data['product_id'])
+                                    ->first();
+
+            if($sellOrder == null){
+                $sellOrder = SellOrder::create([
+                    'status_id'     => getStatusID('pending'),
+                    'admin_id'      => Auth::user()->id,
+                    'sell_id'       => $sell_id,
+                    'product_id'    => $data['product_id'],
+                    'units'         => $data['units'],
+                    'price'         => Product::find($data['product_id'])->price,
+                    'discount'      => $data['discount'],
+                ]);
+            }
+
+            else{
+                $sellOrder->units += $data['units'];
+                $sellOrder->price = Product::find($data['product_id'])->price;
+                $sellOrder->discount = $data['discount'];
+                $sellOrder->save();
+            }
+
+            $sell = $sellOrder->sell;
+            $sellUnits = 0;
+            $sellSubTotal = 0;
+
+            foreach($sell->sellOrders as $so){
+                $sellUnits += $so->units;
+                $sellSubTotal += ($so->units * $so->price - $so->discount);
+            }
+
+            $sell->units = $sellUnits;
+            $sell->sub_total = $sellSubTotal;
+            $sell->save();
 
             DB::commit();
+
+            if(array_key_exists('key',$request->all())){
+                if(strcmp($request->key,'create_sell')==0){
+                    // return response()->json([
+                    //     'sell_order' => $sellOrder,
+                    //     'sell' => $sell,
+                    // ]);
+                    return view('sell.sell-order-table',compact('sell'));
+                }
+            }
 
             return response()->json([
                 'status'    => 'success',
                 'message'   => 'SellOrder created successfully',
-                'route'     => route('sellorders.show',$sellorder),
+                'route'     => route('sellorders.show',$sellOrder),
             ]);
         }catch(Exception $e){
             return response()->json([
@@ -104,6 +154,62 @@ class SellOrderController extends Controller
 
     public function update(Request $request, SellOrder $sellorder)
     {
+        if(array_key_exists('key',$request->all())){
+            if(strcmp('create_sell',$request->key)==0){
+                // return response()->json([
+                //     'data' => $request->all(),
+                // ]);
+                $sellOrder = SellOrder::find($request->id);
+                $sell = $sellOrder->sell;
+                $sellSubTotal = 0;
+                $sellUnits = 0;
+
+                if($request->sign == 0){
+                    $sellOrder->delete();
+                }
+
+                else if($request->sign == 1){
+                    $sellOrder->units++;
+                    $sellOrder->save();
+                }
+                
+                else{
+                    if($sellOrder->units == 1){
+                        return response()->json([
+                            'status' => 'error',
+                            'message' => 'Units can not be less than 1',
+                        ]);
+                    }
+                    $sellOrder->units--;
+
+                    if($sellOrder->units * $sellOrder->price < $sellOrder->discount *2){
+                        return response()->json([
+                            'status' => 'warning',
+                            'message' => 'Please modify discount it can not be greater than total'
+                        ]);
+                    }
+
+                    $sellOrder->save();
+                }
+
+                foreach($sell->sellOrders as $so){
+                    $sellSubTotal += $so->units * $so->price - $so->discount;
+                    $sellUnits = $so->units;
+                }
+
+                $sell->units = $sellUnits;
+                $sell->sub_total = $sellSubTotal;
+                $sell->save();
+
+                // return response()->json([
+                //     'sell' => $sell,
+                //     'sell_order' => $sellOrder,
+                // ]);
+
+                return view('sell.sell-order-table',compact('sell'));
+            }
+        }
+
         $data = Validator::make($request->all(),[
             'status_id' => 'required|exists:statuses,id,'.getStatusID('Deleted'), 
             'name'      => 'required|min:3|max:20',

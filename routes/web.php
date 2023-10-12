@@ -8,7 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\PurchaseOrderController;
+// use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\SellOrderController;
@@ -27,7 +27,7 @@ Route::middleware([LoginMiddleware::class,AuthUserMiddleware::class])->group(fun
     Route::resource('/categories',CategoryController::class);
     Route::resource('/products',ProductController::class);
     Route::resource('/purchases',PurchaseController::class);
-    Route::resource('/purchase-orders',PurchaseOrderController::class);
+    // Route::resource('/purchase-orders',PurchaseOrderController::class);
     Route::resource('/sells',SellController::class);
     Route::resource('/sell-orders',SellOrderController::class);
     Route::resource('/settings',SettingController::class);

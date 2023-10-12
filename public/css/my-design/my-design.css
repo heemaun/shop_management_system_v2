@@ -157,10 +157,10 @@ select {
   font-style: var(--th-font-style);
 }
 .table .left {
-  text-align: left;
+  text-align: left !important;
 }
 .table .right {
-  text-align: right;
+  text-align: right !important;
 }
 
 form {
@@ -170,8 +170,6 @@ form {
   gap: 0.5rem;
   border: 0.1rem solid var(--2nd-color);
   border-radius: var(--form-border-radius);
-  background-color: var(--2nd-bg-color);
-  color: var(--2nd-color);
 }
 form legend {
   grid-template-columns: 1/-1;
@@ -182,8 +180,6 @@ form legend {
 }
 form .form-group {
   padding: 0.5rem;
-  background-color: var(--3rd-bg-color);
-  color: var(--2rd-color);
   border-radius: var(--section2-border-radius);
 }
 form .form-group .error {
@@ -198,8 +194,6 @@ form .button-container {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  background-color: var(--3rd-bg-color);
-  color: var(--2rd-color);
   border-radius: var(--section2-border-radius);
 }
 
@@ -254,6 +248,9 @@ nav ul li {
   filter: saturate(125%) brightness(125%);
   transform: translateY(0.1rem);
   box-shadow: 0 0 2rem 0.1rem var(--button-dark-bg-color);
+}
+.button:focus {
+  outline: 0.1rem solid black;
 }
 
 .primary {
@@ -341,4 +338,21 @@ nav ul li {
 
 .shadow {
   box-shadow: 0rem 0.1rem 0rem 0.1rem rgba(128, 128, 128, 0.5);
+}
+
+.button:disabled {
+  color: gray;
+  background-color: white;
+  border: 1px solid gray;
+  cursor: unset;
+}
+.button:disabled:hover {
+  filter: none;
+  transform: none;
+  box-shadow: none;
+}
+.button:disabled:active {
+  filter: none;
+  transform: none;
+  box-shadow: none;
 }/*# sourceMappingURL=my-design.css.map */

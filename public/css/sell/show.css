@@ -1,16 +1,18 @@
 .sell-show {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   height: 100%;
+  width: 100%;
   padding: 1rem;
 }
 .sell-show .top {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
 }
 .sell-show .top h2 {
-  flex-grow: 1;
   text-align: center;
 }
 .sell-show .top .button-container {
@@ -23,10 +25,15 @@
   color: var(--3rd-color);
   border-radius: var(--section3-border-radius);
 }
+.sell-show .top .button-container a, .sell-show .top .button-container button {
+  flex-grow: 1;
+  text-align: center;
+}
 .sell-show .infos {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   padding: 0.5rem;
   gap: 0.5rem;
   background-color: var(--3rd-bg-color);
@@ -48,7 +55,9 @@
   font-weight: bolder;
 }
 .sell-show .infos .info span {
-  font-style: italic;
+  text-align: right;
+  border-bottom: 1px dashed black;
+  flex-grow: 1;
 }
 .sell-show .sell-orders {
   padding: 0.5rem;
@@ -56,12 +65,17 @@
   color: var(--3rd-color);
   border-radius: var(--section2-border-radius);
 }
+.sell-show .sell-orders .table-container {
+  width: 100%;
+  overflow-x: auto;
+}
 .sell-show .sell-orders .infos {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 0.5rem;
-  gap: 0.5rem;
+  gap: 0rem;
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
   border-radius: var(--section3-border-radius);
@@ -74,11 +88,20 @@
   color: var(--5th-color);
   border-radius: var(--section3-border-radius);
 }
+.sell-show .sell-orders .infos .sides:first-child {
+  padding-bottom: 0;
+}
 .sell-show .sell-orders .infos .sides .info {
   padding: 0.5rem;
   background-color: var(--6th-bg-color);
   color: var(--6th-color);
   border-radius: var(--section3-border-radius);
+}
+.sell-show .sell-orders .infos .sides .info label {
+  font-weight: bolder;
+}
+.sell-show .sell-orders .infos .sides .info span {
+  text-align: right;
 }
 
 .sell-delete {
@@ -104,6 +127,8 @@
   max-width: 90%;
   display: grid;
   gap: 0.5rem;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
   background-color: var(--2nd-bg-color);
   color: var(--2nd-color);
 }
@@ -129,4 +154,41 @@
 
 .delete-show {
   transform: translateY(0%);
+}
+
+@media screen and (min-width: 720px) {
+  .sell-show .top {
+    flex-direction: row;
+    align-items: center;
+  }
+  .sell-show .top h2 {
+    text-align: left;
+  }
+  .sell-show .top .button-container a, .sell-show .top .button-container button {
+    flex-grow: unset;
+  }
+  .sell-show .infos {
+    flex-direction: row;
+  }
+  .sell-show .infos .info {
+    flex-grow: 1;
+  }
+  .sell-show .sell-orders .infos {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .sell-show .sell-orders .infos .sides {
+    width: 50%;
+  }
+  .sell-show .sell-orders .infos .sides:first-child {
+    padding-bottom: 0.5rem;
+  }
+}
+@media screen and (min-width: 960px) {
+  .sell-show .top h2 {
+    text-align: center;
+    flex-grow: 1;
+  }
 }/*# sourceMappingURL=show.css.map */

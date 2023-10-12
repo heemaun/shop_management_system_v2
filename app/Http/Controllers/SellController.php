@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
@@ -129,14 +130,26 @@ class SellController extends Controller
 
     public function create()
     {
-        return view('sell.create');
+        $sell = Sell::where('status_id',getStatusID('pending'))
+                    ->where('admin_id',Auth::user()->id)
+                    ->first();
+
+                    
+        if($sell == null){
+            $sell = Sell::create([
+                'status_id' => getStatusID('pending'),
+                'admin_id' => Auth::user()->id,
+            ]);
+        }
+
+        return view('sell.create',compact('sell'));
     }
 
     public function store(Request $request)
     {
         $data = Validator::make($request->all(),[
-            'name'      => 'required|min:3|max:20',
-            'balance'   => 'required|numeric',
+            'customer_id'   => 'required|exists:users,id',
+            'discount'      => 'required|min:0',
         ]);
 
         if($data->fails()){
@@ -151,18 +164,33 @@ class SellController extends Controller
         DB::beginTransaction();
 
         try{
-            $sell = Sell::create([
-                'status_id' => getStatusID('Active'),
-                'admin_id'  => Auth::user()->id,
-                'name'      => $data['name'],
-                'balance'   => $data['balance'],
-            ]);
+            $sell = Sell::where('status_id',getStatusID('pending'))
+                            ->where('admin_id',Auth::user()->id)
+                            ->first();
+
+            $sell->customer_id  = $data['customer_id'];
+            $sell->discount     = $data['discount'];
+            $sell->status_id    = getActiveStatusId();
+
+            $sellUnits = 0;
+            $sellSubTotal = 0;
+
+            foreach($sell->sellOrders as $so){
+                $sellUnits += $so->units;
+                $sellSubTotal += $so->units * $so->price - $so->discount;
+            }
+
+            $sell->units = $sellUnits;
+            $sell->sub_total = $sellSubTotal;
+
+            $sell->save();
 
             DB::commit();
 
+            Session::flash('sell_added','Sell added successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Sell created successfully',
                 'route'     => route('sells.show',$sell),
             ]);
         }catch(Exception $e){
@@ -182,15 +210,15 @@ class SellController extends Controller
     {
         $statuses = Status::all();
 
-        return view('sell.edit',compact('sell','statuses'));
+        return view('sell.create',compact('sell','statuses'));
     }
 
     public function update(Request $request, Sell $sell)
     {
         $data = Validator::make($request->all(),[
-            'status_id' => 'required|exists:statuses,id,'.getStatusID('Deleted'), 
-            'name'      => 'required|min:3|max:20',
-            'balance'   => 'required|numeric',
+            'customer_id'   => 'required|exists:users,id',
+            'status_id'     => 'required|exists:statuses,id',
+            'discount'      => 'required|min:0',
         ]);
 
         if($data->fails()){
@@ -205,18 +233,29 @@ class SellController extends Controller
         DB::beginTransaction();
 
         try{
-            $sell->status_id = $data['status_id'];
-            $sell->admin_id  = Auth::user()->id;
-            $sell->name      = $data['name'];
-            $sell->balance   = $data['balance'];
+            $sell->customer_id  = $data['customer_id'];
+            $sell->discount     = $data['discount'];
+            $sell->status_id    = $data['status_id'];
+
+            $sellUnits = 0;
+            $sellSubTotal = 0;
+
+            foreach($sell->sellOrders as $so){
+                $sellUnits += $so->units;
+                $sellSubTotal += $so->units * $so->price - $so->discount;
+            }
+
+            $sell->units = $sellUnits;
+            $sell->sub_total = $sellSubTotal;
 
             $sell->save();
 
             DB::commit();
 
+            Session::flash('sell_updated','Sell updated successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Sell updated successfully',
                 'route'     => route('sells.show',$sell),
             ]);
         }catch(Exception $e){
@@ -229,26 +268,35 @@ class SellController extends Controller
 
     public function destroy(Request $request,Sell $sell)
     {
-        $data = Validator::make($request->all(),[
-            'password' => [
-                'required',Password::min(8),
-            ]
-        ]);
+        // return response()->json([
+        //     'data' => $request->all(),
+        //     'sell' => $sell,
+        // ]);
+        if(!array_key_exists('key',$request->all())){
+            // if(strcmp($request->key,'create_sell')==0){
 
-        if($data->fails()){
-            return response()->json([
-                'status'    => 'error',
-                'message'   => $data->errors(),
+            // }
+            $data = Validator::make($request->all(),[
+                'password' => [
+                    'required',Password::min(8),
+                ]
             ]);
-        }
-
-        $data = $data->validate();
-
-        if(!Hash::check($data['password'],Auth::user()->password)){
-            return response()->json([
-                'status'    => 'error',
-                'message'   => 'Incorrect password',
-            ]);
+    
+            if($data->fails()){
+                return response()->json([
+                    'status'    => 'error',
+                    'message'   => $data->errors(),
+                ]);
+            }
+    
+            $data = $data->validate();
+    
+            if(!Hash::check($data['password'],Auth::user()->password)){
+                return response()->json([
+                    'status'    => 'error',
+                    'message'   => 'Incorrect password',
+                ]);
+            }
         }
 
         DB::beginTransaction();
@@ -265,6 +313,15 @@ class SellController extends Controller
             }
 
             DB::commit();
+
+            if(array_key_exists('key',$request->all())){
+                Session::flash('sell_deleted','Items cleared successfully');
+
+                return response()->json([
+                    'status' => 'success',
+                    'route' => route('sells.create'),
+                ]);
+            }
 
             return response()->json([
                 'status'    => 'success',

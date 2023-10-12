@@ -1,140 +1,122 @@
-.sell-create{
+.sell-create{ 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
     padding: 1rem;
-    
+
     form{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
         width: 100%;
-        grid-template-columns: repeat(1,1fr);
-        box-shadow: none;
 
-        background-color: var(--3rd-bg-color);
-        color: var(--3rd-color);
+        background-color: var(--2nd-bg-color);
+        color: var(--2nd-color);
 
-        legend{
-            grid-column: 1 / -1;
-            margin: 0;
-            padding: 0;
-            text-align: center;
+        // legend{
+        // }
+
+        .customer-info,.products-info{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            padding: .5rem;
+            gap: .5rem;
+
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);
+            border-radius: var(--section2-border-radius);
+
+            .form-group{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: .5rem;
+                padding: .5rem;
+
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);
+                border-radius: var(--section3-border-radius);
+
+                // label{
+
+                // }
+
+                input[type=number]{
+                    text-align: right;
+                }
+
+                // datalist{
+
+                // }
+
+                span{
+                    text-align: right;
+                }
+
+                .error{
+                    text-align: left;
+                }
+            }
         }
 
-        .form-group{
+        .sell-orders{
+            width: 100%;
+            overflow-x: auto;
             padding: .5rem;
 
-            background-color: var(--4th-bg-color);
-            color: var(--4th-color);
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);
+            border-radius: var(--section2-border-radius);
 
-            .form-label{
-                margin: 0;
+            table{
+                background-color: var(--4th-bg-color);
+                color: var(--4th-color);
+
+                button{
+                    width: 38px;
+                    aspect-ratio: 1;
+                }
             }
-
-            textarea{
-                height: 10rem;
-            }
-
-            .error{
-                color: red;
-            }
-        }
-
-        .column-2{
-            grid-column: 1 / -1;
         }
         
         .button-container{
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: .5rem;
-
-            background-color: var(--4th-bg-color);
-            color: var(--4th-color);
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);
+            border-radius: var(--section2-border-radius);
         }
     }
 }
 
-@media screen and (min-width: 720px) {
-    .sell-create{        
-        form{    
-            legend{
-            }
-    
-            .form-group{    
-                .form-label{
-                }
-    
-                textarea{
-                }
-    
-                .error{
-                }
-            }
-    
-            .column-2{
-            }
-            
-            .button-container{
-            }
-        }
-    }
-}
+// @media screen and (min-width: 720px) {
+// }
 @media screen and (min-width: 960px) {
-    .sell-create{        
-        form{   
-            grid-template-columns: repeat(6,1fr);
+    .sell-create{     
+        form{      
+            .customer-info,.products-info{
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: stretch;
+    
+                .form-group{
+                    flex-grow: 1;
+                    justify-content: flex-end;
 
-            legend{
-            }
+                    label{
+                        white-space: nowrap;
+                    }
     
-            .form-group{   
-                grid-column: span 3; 
-                .form-label{
+                    span{
+                        white-space: nowrap;
+                    }
                 }
-    
-                textarea{
-                }
-    
-                .error{
-                }
-            }
-    
-            .column-2{
-                grid-column: span 6; 
-            }
-            
-            .column-3{
-                grid-column: span 2; 
-            }
-            
-            .button-container{
             }
         }
     }
 }
-@media screen and (min-width: 1200px) {
-    .sell-create{        
-        form{    
-            legend{
-            }
-    
-            .form-group{    
-                .form-label{
-                }
-    
-                textarea{
-                }
-    
-                .error{
-                }
-            }
-    
-            .column-2{
-            }
-            
-            .button-container{
-            }
-        }
-    }
-}
+// @media screen and (min-width: 1200px) {
+// }

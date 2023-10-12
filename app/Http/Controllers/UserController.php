@@ -71,13 +71,35 @@ class UserController extends Controller
                                     $query->whereIn('id',$role_ids);
                                 }
                             )
-                            ->whereIn('status_id',$statuses_ids)
                             ->orderBy('status_id','ASC')
                             ->orderBy('name','ASC')
                             ->paginate($request->row_count);
                         
             return view('user.search',compact('users'));
-        }        
+        }     
+        
+        else if(strcmp($request->key,'product_create')==0){
+            $customers = User::where('status_id',getActiveStatusId())
+                            ->where(function($query) use($request){
+                                $query->where('name','LIKE','%'.$request->search.'%')
+                                        ->orWhere('username','LIKE','%'.$request->search.'%')
+                                        ->orWhere('phone','LIKE','%'.$request->search.'%')
+                                        ->orWhere('email','LIKE','%'.$request->search.'%');
+                            })
+                            ->whereHas(
+                                'roles', function($query){
+                                    $query->where('id',Role::where('name','customer')->first()->id);
+                                }
+                            )
+                            ->orderBy('name','ASC')
+                            ->limit(5)
+                            ->get();
+            
+            return view('sell.customer-datalist',compact('customers'));
+            // return response()->json([
+            //     'users' => $customers,
+            // ]);
+        }
     }
 
     public function create()

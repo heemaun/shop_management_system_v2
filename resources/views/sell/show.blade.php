@@ -5,6 +5,7 @@
             <h2>Sell Information</h2>
     
             <div class="button-container">
+                <a href="{{ route('sells.create') }}" class="button shadow click-shadow primary">Add New</a>
                 <a href="{{ route('sells.index') }}" class="button shadow click-shadow secondary">Back</a>
                 @can('Sells Edit')
                 <a href="{{ route('sells.edit', $sell->id) }}" class="button shadow click-shadow success">Edit</a>                    
@@ -31,54 +32,56 @@
         </div> 
         
         <div class="sell-orders">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Product Name</th>
-                        <th>Units</th>
-                        <th>Price</th>
-                        <th>Discount</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($sell->sellOrders as $so)
+            <div class="table-container">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $so->product->name }}</td>
-                            <td>{{ $so->units }}</td>
-                            <td>{{ $so->price }}</td>
-                            <td>{{ $so->discount }}</td>
-                            <td>{{ $so->units * $so->price - $so->discount }}</td>
+                            <th>No</th>
+                            <th>Product Name</th>
+                            <th>Units</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Total</th>
                         </tr>
-                    @endforeach
-                </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td colspan="4" rowspan="3">{{ 'Unit Count: '.$sell->units.' Item Count '.count($sell->sellOrders) }}</td>
-                        <td>Sub-Total</td>
-                        <td>{{ $sell->sub_total }}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Discount</td>
-                        <td>{{ $sell->discount }}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Total</td>
-                        <td>{{ $sell->sub_total - $sell->discount }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </thead>
+    
+                    <tbody>
+                        @foreach ($sell->sellOrders as $so)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $so->product->name }}</td>
+                                <td>{{ $so->units }}</td>
+                                <td>{{ $so->price }}</td>
+                                <td>{{ $so->discount }}</td>
+                                <td>{{ $so->units * $so->price - $so->discount }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+    
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" rowspan="3">{{ 'Unit Count: '.$sell->units.' Item Count '.count($sell->sellOrders) }}</td>
+                            <td>Sub-Total</td>
+                            <td>{{ $sell->sub_total }}</td>
+                        </tr>
+    
+                        <tr>
+                            <td>Discount</td>
+                            <td>{{ $sell->discount }}</td>
+                        </tr>
+    
+                        <tr>
+                            <td>Total</td>
+                            <td>{{ $sell->sub_total - $sell->discount }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
 
             <div class="infos">
                 <div class="sides">
                     <div class="info">
-                        <label for="status" >Status:</label>
+                        <label for="status" >Sell Status:</label>
                         <span class="data">{{ $sell->status->name }}</span>
                     </div>
                 </div>
