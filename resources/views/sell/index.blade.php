@@ -78,7 +78,7 @@
                     <tr data-href="{{ route('sells.show',$sell->id) }}" class="clickable">
                         <td class="right">{{ $loop->iteration }}</td>
                         <td class="date">{{ date('d-M-Y h:i:s a',strtotime($sell->created_at)) }}</td>
-                        <td>{{ $sell->customer->name }}</td>
+                        <td>{{ ($sell->customer == null) ? 'N/A' : $sell->customer->name }}</td>
                         <td>{{ $sell->status->name }}</td>
                         <td>{{ $sell->units }}</td>
                         <td>{{ $sell->sub_total - $sell->discount }}</td>
@@ -108,7 +108,7 @@
 
     @if (Session::has('sell_deleted'))
         <script>
-            toastr.success("{!! Session::pull('sell_deleted') !!}");
+            toastr.warning("{!! Session::pull('sell_deleted') !!}");
         </script>
     @endif
 @endpush

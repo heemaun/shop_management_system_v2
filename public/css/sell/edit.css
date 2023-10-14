@@ -1,47 +1,86 @@
 .sell-edit {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
   padding: 1rem;
 }
 .sell-edit form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  background-color: var(--2nd-bg-color);
+  color: var(--2nd-color);
+}
+.sell-edit form .customer-info, .sell-edit form .products-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 0.5rem;
   gap: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+  border-radius: var(--section2-border-radius);
+}
+.sell-edit form .customer-info .form-group, .sell-edit form .products-info .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+  border-radius: var(--section3-border-radius);
+}
+.sell-edit form .customer-info .form-group input[type=number], .sell-edit form .products-info .form-group input[type=number] {
+  text-align: right;
+}
+.sell-edit form .customer-info .form-group span, .sell-edit form .products-info .form-group span {
+  text-align: right;
+}
+.sell-edit form .customer-info .form-group .error, .sell-edit form .products-info .form-group .error {
+  text-align: left;
+}
+.sell-edit form .sell-orders {
+  width: 100%;
+  overflow-x: auto;
   padding: 0.5rem;
   background-color: var(--3rd-bg-color);
   color: var(--3rd-color);
+  border-radius: var(--section2-border-radius);
 }
-.sell-edit form legend {
-  grid-column: 1/-1;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.sell-edit form .form-group {
-  padding: 0.5rem;
+.sell-edit form .sell-orders table {
   background-color: var(--4th-bg-color);
   color: var(--4th-color);
 }
-.sell-edit form .form-group .form-label {
-  margin: 0;
-}
-.sell-edit form .form-group .error {
-  color: red;
+.sell-edit form .sell-orders table button {
+  width: 38px;
+  aspect-ratio: 1;
 }
 .sell-edit form .button-container {
-  grid-column: 1/-1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: var(--4th-bg-color);
-  color: var(--4th-color);
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+  border-radius: var(--section2-border-radius);
 }
 
-@media screen and (min-width: 720px) {
-  .sell-edit form {
-    grid-template-columns: repeat(2, 1fr);
+@media screen and (min-width: 960px) {
+  .sell-edit form .customer-info, .sell-edit form .products-info {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  .sell-edit form .customer-info .form-group, .sell-edit form .products-info .form-group {
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+  .sell-edit form .customer-info .form-group label, .sell-edit form .products-info .form-group label {
+    white-space: nowrap;
+  }
+  .sell-edit form .customer-info .form-group span, .sell-edit form .products-info .form-group span {
+    white-space: nowrap;
   }
 }/*# sourceMappingURL=edit.css.map */

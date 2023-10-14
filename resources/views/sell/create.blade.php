@@ -1,13 +1,10 @@
 @extends('default.index')
 @section("content")
 <div class="sell-create">
-    <form action="{{ (strcmp(Request::route()->getName(), 'sells.edit') == 0) ? route('sells.update',$sell->id) : route('sells.store') }}" method="POST" id="{{ (strcmp(Request::route()->getName(), 'sells.edit') == 0) ? 'sell_update_form' : 'sell_create_form' }}">
+    <form action="{{ route('sells.store') }}" method="POST" id="sell_create_form">
         @csrf
-        @if (strcmp(Request::route()->getName(), 'sells.edit') == 0)
-        @method("PUT")
-        @endif
 
-        <legend>{{ (Auth::check()) ? 'Add New Sell' : 'Sell Registration' }}</legend>
+        <legend>Add New Sell</legend>
 
         <div class="customer-info">            
             <div class="form-group">
@@ -17,19 +14,6 @@
                 </datalist>
                 <span id="customer_name_error" class="error"></span>
             </div>
-
-            @if (strcmp(Request::route()->getName(), 'sells.edit') == 0)
-            
-            <div class="form-group">
-                <label for="status_id">Status</label>
-                <select name="status_id" id="status_id">
-                    @foreach ($statuses as $status)
-                        <option value="{{ $status->id }}" {{ ($status->id == $sell->status_id) ? 'selected' : '' }}>{{ $status->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            @endif
         </div>
 
         <div class="products-info">
@@ -38,7 +22,6 @@
                 <input type="text" name="product_name" id="product_name" list="product_list" data-id="" class="text-field" placeholder="enter product name" autocomplete="off">
                 <datalist id="product_list">
                 </datalist>
-                {{-- <span id="product_name_error" class="error"></span> --}}
             </div>
 
             <div class="form-group">
@@ -49,13 +32,11 @@
             <div class="form-group">
                 <label for="product_units">Product Units</label>
                 <input type="number" name="product_units" id="product_units" class="text-field" autocomplete="off" value="0" disabled min="1">
-                {{-- <span class="error" id="product_units_error"></span> --}}
             </div>
 
             <div class="form-group">
                 <label for="product_discount">Product Discount</label>
                 <input type="number" name="product_discount" id="product_discount" class="text-field" autocomplete="off" value="0" disabled min="0">
-                {{-- <span class="error" id="product_discount_error"></span> --}}
             </div>
 
             <div class="form-group">
@@ -115,7 +96,7 @@
             
                     <tr>
                         <td class="right">Discount</td>
-                        <td class="right"><input type="number" class="text-field right" value="{{ $sell->discount }}" id="sell_discount"></td>
+                        <td class="right"><input type="number" class="text-field right" value="{{ empty($sell->discount) ? 0 : $sell->discount }}" min="0" id="sell_discount"></td>
                     </tr>
             
                     <tr>
@@ -131,7 +112,7 @@
             
             <div>
                 <button class="button shadow click-shadow primary" type="submit" id="sell_store">Store</button>
-                <a href="{{ (strcmp(Request::route()->getName(), 'sells.edit') == 0) ? route('sells.show',$sell->id) : route('sells.index') }}" class="button shadow click-shadow secondary">Back</a>
+                <a href="{{ route('sells.index') }}" class="button shadow click-shadow secondary">Back</a>
             </div>
         </div>
     </form>

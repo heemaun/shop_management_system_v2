@@ -78,7 +78,7 @@ class UserController extends Controller
             return view('user.search',compact('users'));
         }     
         
-        else if(strcmp($request->key,'product_create')==0){
+        else if(strcmp($request->key,'create_sell')==0 || strcmp($request->key,'edit_sell')==0){
             $customers = User::where('status_id',getActiveStatusId())
                             ->where(function($query) use($request){
                                 $query->where('name','LIKE','%'.$request->search.'%')

@@ -210,7 +210,7 @@ class SellController extends Controller
     {
         $statuses = Status::all();
 
-        return view('sell.create',compact('sell','statuses'));
+        return view('sell.edit',compact('sell','statuses'));
     }
 
     public function update(Request $request, Sell $sell)
@@ -323,9 +323,10 @@ class SellController extends Controller
                 ]);
             }
 
+            Session::flash('sell_deleted','Sell deleted successfully');
+
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Sell deleted successfully',
                 'route'     => route('sells.index'),
             ]);
         }catch(Exception $e){

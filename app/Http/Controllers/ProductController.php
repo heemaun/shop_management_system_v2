@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if(array_key_exists('key',$request->all())){
-            if(strcmp($request->key,'product_create')==0){
+            if(strcmp($request->key,'create_sell')==0 || strcmp($request->key,'edit_sell')==0){
                 $products = Product::where('status_id',getActiveStatusId())
                                 ->where('name','LIKE','%'.$request->search.'%')
                                 ->orderBy('name','ASC')
@@ -144,7 +144,7 @@ class ProductController extends Controller
     public function show(Product $product,Request $request)
     {
         if($request->key != null){
-            if(strcmp($request->key,'create_sell')==0){
+            if(strcmp($request->key,'create_sell')==0 || strcmp($request->key,'edit_sell')==0){
                 return response()->json([
                     'product' => $product,
                 ]);

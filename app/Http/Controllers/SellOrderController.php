@@ -118,7 +118,7 @@ class SellOrderController extends Controller
             DB::commit();
 
             if(array_key_exists('key',$request->all())){
-                if(strcmp($request->key,'create_sell')==0){
+                if(strcmp($request->key,'create_sell')==0 || strcmp($request->key,'edit_sell')==0){
                     // return response()->json([
                     //     'sell_order' => $sellOrder,
                     //     'sell' => $sell,
@@ -155,7 +155,7 @@ class SellOrderController extends Controller
     public function update(Request $request, SellOrder $sellorder)
     {
         if(array_key_exists('key',$request->all())){
-            if(strcmp('create_sell',$request->key)==0){
+            if(strcmp('create_sell',$request->key)==0 || strcmp($request->key,'edit_sell')==0){
                 // return response()->json([
                 //     'data' => $request->all(),
                 // ]);
