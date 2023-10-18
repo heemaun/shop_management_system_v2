@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageObjectController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
@@ -37,6 +38,7 @@ Route::middleware([LoginMiddleware::class,AuthUserMiddleware::class])->group(fun
     Route::resource('/transactions',TransactionController::class);
     Route::resource('/roles',RoleController::class);
     Route::resource('/permissions',PermissionController::class);
+    Route::resource('/image-objects',ImageObjectController::class);
 
     // Route::withoutMiddleware([LoginMiddleware::class,AuthUserMiddleware::class])->group(function(){
     //     Route::resource('/users',UserController::class)->only(['create','store']);

@@ -59,4 +59,9 @@ class Status extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function imageObjects()
+    {
+        return $this->hasMany(ImageObject::class);
+    }
 }

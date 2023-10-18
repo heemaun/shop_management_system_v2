@@ -197,6 +197,7 @@
                         @can('Transactions Index')                            
                         <li><a href="{{ route('transactions.index') }}" class="{{ (Str_contains(Request::route()->getName(),'transactions')) ? 'active' : '' }}">Transactions</a></li>
                         @endcan
+                        <li><a href="{{ route('image-objects.create') }}" class="{{ (Str_contains(Request::route()->getName(),'image-objects')) ? 'active' : '' }}">Image Objects</a></li>
                     </ul>
                 </nav>
 

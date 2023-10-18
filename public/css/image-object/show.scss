@@ -1,0 +1,167 @@
+.image-object-show{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;    
+
+    .button-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: .5rem;
+        padding: .5rem;
+        
+        background-color: var(--3rd-bg-color);
+        color: var(--3rd-color);
+        border-radius: var(--section3-border-radius);
+
+        a,button{
+            flex-grow: 1;
+            text-align: center;
+        }
+    }
+
+    .infos{
+        display: grid;
+        padding: .5rem;
+        gap: .5rem;
+        flex-grow: 1;   
+        
+        background-color: var(--3rd-bg-color);
+        color: var(--3rd-color);
+        border-radius: var(--section2-border-radius);
+        
+        h2{
+            text-align: center;
+        }
+        
+        .info{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: .1rem dashed gray;
+            padding: .5rem;
+            
+            background-color: var(--4th-bg-color);
+            color: var(--4th-color);
+            border-radius: var(--section3-border-radius);
+            
+            label{
+                font-size: larger;
+                font-weight: bolder;
+            }
+            
+            span{
+                padding: 0;
+                margin: 0;
+                text-align: right;
+                font-style: italic;
+            }
+        }        
+    }
+}
+
+.image-object-delete{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;   
+    transition: all 1s;
+    transform: translateY(-100%);
+    backdrop-filter: blur(2px);
+    
+    color: var(--1st-color);
+    background-color: hsla(var(--1st-bg-color-hue), var(--1st-bg-color-saturation), var(--1st-bg-color-light), .5);
+    
+    form{
+        border: .1rem solid gray;
+        padding: 1rem;
+        max-width: 90%;
+        display: grid;
+        gap: .5rem;
+        
+        background-color: var(--2nd-bg-color);
+        color: var(--2nd-color);
+
+        legend{
+            text-align: center;
+        }
+
+        .form-group{
+            padding: .5rem;
+            
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);
+
+            label{
+                margin: 0;
+            }
+        }
+        
+        .button-container{
+            padding: .5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background-color: var(--3rd-bg-color);
+            color: var(--3rd-color);
+        }
+    }
+}
+
+.delete-show{
+    transform: translateY(0%);
+}
+
+@media screen and (min-width: 720px) {
+    .image-object-show{   
+        .button-container{
+            order: 2;
+        }
+
+        .infos{  
+            order: 3;   
+        }
+    }
+    
+    .image-object-delete{        
+        form{  
+            min-width: 500px;
+        }
+    }
+}
+@media screen and (min-width: 960px) {
+    .image-object-show{
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto; 
+        justify-content: start;
+        align-items: start;      
+
+        .button-container{
+            grid-row: span 1;
+            grid-column: span 1;
+            order: 3;
+            flex-direction: column;
+            align-items: stretch;
+            width: min-content;
+        }
+
+        .infos{   
+            order: 1;  
+            grid-row: span 1;
+            grid-column: span 1;   
+            justify-self: stretch;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .image-object-show{ 
+    }
+}

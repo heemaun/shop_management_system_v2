@@ -1,0 +1,47 @@
+.image-object-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.image-object-edit form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--3rd-bg-color);
+  color: var(--3rd-color);
+}
+.image-object-edit form legend {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.image-object-edit form .form-group {
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+.image-object-edit form .form-group .form-label {
+  margin: 0;
+}
+.image-object-edit form .form-group .error {
+  color: red;
+}
+.image-object-edit form .button-container {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--4th-bg-color);
+  color: var(--4th-color);
+}
+
+@media screen and (min-width: 720px) {
+  .image-object-edit form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}/*# sourceMappingURL=edit.css.map */

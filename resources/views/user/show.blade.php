@@ -11,8 +11,10 @@
             @endcan
         </div>
 
+        {{-- {{ $user->imageObjects[0]->url }} --}}
+
         <div class="image">
-            <img src="{{ asset('image/default_user.jpg') }}" alt="Default User">
+            <img src="{{ (count($user->imageObjects) != 0) ? asset('storage/'.$user->imageObjects[0]->url) : asset('image/default_user.jpg') }}" alt="Default User">
         </div>
 
         <div class="infos">

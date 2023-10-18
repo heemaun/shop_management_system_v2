@@ -21,4 +21,9 @@ class Setting extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function imageObjects()
+    {
+        return $this->hasMany(ImageObject::class);
+    }
 }

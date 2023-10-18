@@ -104,4 +104,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class,'customer_id');
     }
+
+    public function imageObjects()
+    {
+        return $this->hasMany(ImageObject::class);
+    }
 }
