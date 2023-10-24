@@ -379,4 +379,11 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function imageUploadGet(User $user)
+    {
+        // $user = Auth::user();
+        // dd($user->imageObjects);
+        return view('image-object.create',compact('user'));
+    }
 }

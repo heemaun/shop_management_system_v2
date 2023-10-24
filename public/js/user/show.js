@@ -43,3 +43,7 @@ $("#delete_form").submit(function(e){
         });
     }    
 });
+
+$("#image_viewer_trigger,#image_viewer_close_trigger").click(function(){
+    $("#image_view_div").toggleClass("image-viewer-hide");
+});

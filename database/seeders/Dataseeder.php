@@ -170,7 +170,7 @@ class Dataseeder extends Seeder
             'password'          => Hash::make('11111111'),
         ]);
 
-        for($x=0;$x<1000;$x++){
+        for($x=0;$x<100;$x++){
             $user = User::create([
                 'status_id'         => rand(1,count(Status::all())),
                 'name'              => $faker->unique()->name(),
@@ -184,7 +184,7 @@ class Dataseeder extends Seeder
                 'password'          => Hash::make('11111111'),
             ]);
 
-            $user->assignRole($faker->randomElement(['Super Admin','Admin','Manager','Seller','Customer']));
+            $user->assignRole($faker->randomElement(['Admin','Manager','Seller','Customer']));
         }
 
         $user1->assignRole('Super Admin');
@@ -199,6 +199,7 @@ class Dataseeder extends Seeder
                 // 'parent_category_id'    => null,
                 'name'                  => $faker->unique()->colorName(),
             ]);
+
             
             for($y=0;$y<10;$y++){
                 Product::create([
@@ -213,7 +214,7 @@ class Dataseeder extends Seeder
             }
         }
 
-        for($x=0;$x<10;$x++){
+        for($x=0;$x<100;$x++){
             Account::create([
                 'status_id' => rand(1,count(Status::all())),
                 'admin_id'  => rand(1,count(User::all())),
@@ -235,8 +236,8 @@ class Dataseeder extends Seeder
             array_push($admin_seller_ids,$seller->id);
         }
 
-        print_r($customer_ids);
-        print_r($admin_seller_ids);
+        // print_r($customer_ids);
+        // print_r($admin_seller_ids);
 
         for($x=0;$x<100;$x++){
             $sell = Sell::create([

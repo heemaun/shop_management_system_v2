@@ -9,10 +9,11 @@
             @can('Products Delete')
             <button type="button" id="delete_trigger" class="button shadow click-shadow danger">Delete</button>                    
             @endcan
+            <a href="{{ route('products.image',$product->id) }}" class="button primary shadow click-shadow">Upload</a>
         </div>
 
         <div class="image">
-            <img src="{{ asset('image/default_product.jpg') }}" alt="Default Product">
+            <img id="image_viewer_trigger" src="{{ (count($product->imageObjects) != 0) ? asset('storage/'.$product->imageObjects[0]->url) : asset('image/default_product.jpg') }}" alt="Default Product Image">
         </div>
 
         <div class="infos">
@@ -64,6 +65,28 @@
             </div>
         </div>       
     </div>
+
+    @if (count($product->imageObjects) != 0)
+    <div id="image_view_div" class="image-viewer image-viewer-hide">
+        <span class="image-viewer-close" id="image_viewer_close_trigger"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></span>
+
+        @if (count($product->imageObjects) > 1)
+        <span class="buttons" id="previous"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M423-59 2-480l421-421 78 79-342 342 342 342-78 79Z"/></svg></span>
+        @endif
+        
+        
+        <div class="image-panel">
+            @foreach ($product->imageObjects as $image)
+            <img src="{{ asset('storage/'.$image->url) }}" class="{{ ($loop->iteration == 1) ? 'active' : '' }}" alt="Product Image" data-id="{{ $loop->iteration }}">
+            @endforeach
+        </div>
+        
+        
+        @if (count($product->imageObjects) > 1)
+        <span class="buttons" id="next"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m305-61-79-79 342-342-342-342 79-79 420 421L305-61Z"/></svg></span>
+        @endif
+    </div>        
+    @endif
 
     @can('Products Delete')
     <div id="product_delete_div" class="product-delete">

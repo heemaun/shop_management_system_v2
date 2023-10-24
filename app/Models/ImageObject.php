@@ -36,6 +36,6 @@ class ImageObject extends Model
     
     public function settings()
     {
-        return $this->belongsTo(Setting::class,'settings_key','key');
+        return $this->belongsTo(Setting::class);
     }
 }

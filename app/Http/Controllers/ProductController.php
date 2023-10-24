@@ -80,6 +80,9 @@ class ProductController extends Controller
         $categories = Category::all();
 
         $products = Product::where('status_id',getStatusID('Active'))
+                            ->orderBy('name','ASC')
+                            ->orderBy('status_id','ASC')
+                            ->orderBy('category_id','ASC')
                             ->paginate(10);
         
         return view('product.index',compact('products','statuses','categories'));
@@ -269,5 +272,12 @@ class ProductController extends Controller
                 'message'   => $e->getMessage(),
             ]);
         }
+    }
+
+    public function imageUploadGet(Product $product)
+    {
+        // $user = Auth::user();
+        // dd($user->imageObjects);
+        return view('image-object.create',compact('product'));
     }
 }

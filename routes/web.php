@@ -40,9 +40,9 @@ Route::middleware([LoginMiddleware::class,AuthUserMiddleware::class])->group(fun
     Route::resource('/permissions',PermissionController::class);
     Route::resource('/image-objects',ImageObjectController::class);
 
-    // Route::withoutMiddleware([LoginMiddleware::class,AuthUserMiddleware::class])->group(function(){
-    //     Route::resource('/users',UserController::class)->only(['create','store']);
-    // });
+    Route::get('/users/{user}/image-upload',[UserController::class,'imageUploadGet'])->name('users.image');
+    Route::get('/products/{product}/image-upload',[ProductController::class,'imageUploadGet'])->name('products.image');
+    Route::get('/settings/{setting}/image-upload',[SettingController::class,'imageUploadGet'])->name('settings.image');
 });
 
 //login routes

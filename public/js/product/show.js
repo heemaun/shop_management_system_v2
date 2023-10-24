@@ -43,3 +43,36 @@ $("#delete_form").submit(function(e){
         });
     }    
 });
+
+$("#image_viewer_trigger,#image_viewer_close_trigger").click(function(){
+    $("#image_view_div").toggleClass("image-viewer-hide");
+});
+
+$("#next,#previous").click(function(e){
+    let imageCount = $(".image-panel img").length;
+    let activeImage = $(".image-panel img.active");
+
+    if($(this).attr("id") == "next"){
+        activeImage.removeClass("active");
+
+        if(activeImage.attr("data-id") == imageCount){
+            $(".image-panel img[data-id=1]").addClass("active");
+        }
+
+        else{
+            activeImage.next().addClass("active");
+        }
+    }
+    
+    else{
+        activeImage.removeClass("active");
+        
+        if(activeImage.attr("data-id") == 1){
+            $(".image-panel img[data-id="+imageCount+"]").addClass("active");
+        }
+
+        else{
+            activeImage.prev().addClass("active");
+        }
+    }
+});
