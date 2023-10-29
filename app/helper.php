@@ -70,6 +70,15 @@ function getStatusID($name)
         }
     }
 
+    function getSetting($key)
+    {
+        try{    
+            return Setting::where('key',$key)->first();
+        }catch(Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
     function getAllRoleID()
     {
         $roleIDs = array();

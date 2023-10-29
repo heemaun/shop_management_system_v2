@@ -30,8 +30,8 @@
 .image-object-create form .form-group img {
   padding: 0.5rem;
   border: 0.1rem solid black;
-  width: 90%;
-  height: 50vh;
+  max-width: 90%;
+  max-height: 50vh;
   aspect-ratio: 1;
   -o-object-fit: cover;
      object-fit: cover;

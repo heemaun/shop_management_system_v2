@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('status_id')->constrained('statuses','id');
             $table->foreignId('user_id')->nullable()->constrained('users','id');
             $table->foreignId('product_id')->nullable()->constrained('products','id');
-            $table->foreignId('settings_id')->nullable()->constrained('settings','id');
+            $table->foreignId('setting_id')->nullable()->constrained('settings','id');
             $table->string('url');
             $table->timestamps();
         });

@@ -471,26 +471,26 @@ class SettingsSeeder extends Seeder
         //logo
         Setting::create([
             'admin_id'  => 1,
-            'key'       => 'logo-text',
+            'key'       => '--logo-text',
             'value'     => 'SMSV2',
         ]);
         Setting::create([
             'admin_id'  => 1,
-            'key'       => 'logo-image',
-            'value'     => 'logo.png',
+            'key'       => '--logo-image',
+            'value'     => '/image/logo.png',
         ]);
         //logo ends
 
         //banner
         Setting::create([
             'admin_id'  => 1,
-            'key'       => 'banner-text',
+            'key'       => '--banner-text',
             'value'     => 'Shop Management System V2',
         ]);
         Setting::create([
             'admin_id'  => 1,
             'key'       => '--banner-image',
-            'value'     => '/image/main_bg.png',
+            'value'     => '/image/main_bg.jpg',
         ]);
         //banner ends
         

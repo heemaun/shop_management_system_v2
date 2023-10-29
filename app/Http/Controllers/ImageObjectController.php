@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\ImageObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ class ImageObjectController extends Controller
         $data = Validator::make($request->all(),[
             'user_id'       => 'required_if:key,user_profile_image|exists:users,id',
             'product_id'    => 'required_if:key,product_image|exists:products,id',
-            'settings_id'   => 'required_if:key,settings_image|exists:settings,id',
+            'setting_id'    => 'required_if:key,settings_image|exists:settings,id',
             'key'           => 'required',
         ]);
 
@@ -113,7 +114,38 @@ class ImageObjectController extends Controller
             }
     
             else if(strcmp($request->key,'settings_image')==0){
+                if($request->has('image')){
+                    $image = $request->file('image');
+                    $imageName = time() * time().'.'.$image->getClientOriginalExtension();
+                    $image->storeAs('public',$imageName);
+                    
+                    $imageObject = ImageObject::where('setting_id',$data['setting_id'])->first();
+
+                    if($imageObject != null){
+                        Storage::delete('public/'.$imageObject->url);
+                        $imageObject->delete();
+                    }
     
+                    ImageObject::create([
+                        'status_id' => getActiveStatusId(),
+                        'setting_id' => $data['setting_id'],
+                        'url' => $imageName,
+                    ]);
+
+                    $setting = Setting::find($data['setting_id']);
+                    $setting->value = $imageName;
+                    $setting->admin_id = Auth::user()->id;
+                    $setting->save();
+    
+                    Session::flash('upload_success','Image uploaded successfully');
+    
+                    DB::commit();
+    
+                    return response()->json([
+                        'status' => 'success',
+                        'route' => route('home'),
+                    ]);
+                }  
             }
     
             return response()->json([

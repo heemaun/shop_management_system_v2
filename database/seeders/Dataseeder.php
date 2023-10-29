@@ -9,8 +9,9 @@ use App\Models\Account;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SellOrder;
-use Faker\Factory as Faker;
+use App\Models\TestColor;
 
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;

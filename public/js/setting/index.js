@@ -5,7 +5,12 @@
 
 // setSettingsCSS();
 
-function loadBGAndColor() {
+function loadDefaultBGAndColor(item) {
+    $("#"+$(item).attr("data-target")).val($(item).val());
+    loadBGAndColor();
+}
+
+function loadBGAndColor(item = null) {
     $(".first-div").css("background-color", $("#bg_1").val());
     $(".second-div").css("background-color", $("#bg_2").val());
     $(".third-div").css("background-color", $("#bg_3").val());
@@ -24,6 +29,10 @@ function loadBGAndColor() {
     $(".banner").css("color", $("#banner_color").val());
     $(".nav").css("color", $("#nav_color").val());
     $(".nav").css("background-color", $("#nav_bg").val());
+
+    if(item != null){
+        $(item).siblings("select").val("");
+    }
 }
 
 // $(".test").change(loadBGAndColor());
@@ -429,14 +438,7 @@ $("#miscellaneous_save").click(function () {
     });
 });
 
-$("#banner_img,#banner_view_div_close").click(function () {
-    $("#banner_view_div").toggleClass("banner-view-div-show");
-});
-
-$("#banner_button_change").click(function () {
-    $("#banner_input").click();
-});
-
-$("#banner_input").change(function(){
-    console.log($(this).val());
+$(".form-image img,#image_viewer_close_trigger").click(function(){
+    $("#image_viewer img").attr("src",$(this).attr("src"));
+    $("#image_viewer").toggleClass("image-viewer-hide");
 });

@@ -11,7 +11,8 @@
 @else
 
 <div class="home">  
-    <main>
+    <main style="background-image: url('{{ (count(getSetting('--banner-image')->imageObjects) != 0) ? asset('storage/'.getSettings('--banner-image')) : asset('image/main_bg.jpg') }}')">
+    {{-- <main> --}}
         <h1>Shop Management System V2</h1>
     </main>    
 

@@ -63,96 +63,400 @@
                     <div class="sections">
                         <div class="form-group">
                             <label>First Order Background Color</label>
-                            <input type="color" id="bg_1" onchange="loadBGAndColor()" value="{{ getSettings('--1st-bg-color') }}">
+                            <input type="color" id="bg_1" onchange="loadBGAndColor(this)" value="{{ getSettings('--1st-bg-color') }}">
+                            <select name="color_default" data-target="bg_1" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
                             <label>First Order Color</label>
-                            <input type="color" id="color_1" onchange="loadBGAndColor()" value="{{ getSettings('--1st-color') }}">
+                            <input type="color" id="color_1" onchange="loadBGAndColor(this)" value="{{ getSettings('--1st-color') }}">
+                            <select name="color_default" data-target="color_1" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
                     
                     <div class="sections">
                         <div class="form-group">
                             <label>Second Order Background Color</label>
-                            <input type="color" id="bg_2" onchange="loadBGAndColor()" value="{{ getSettings('--2nd-bg-color') }}">
+                            <input type="color" id="bg_2" onchange="loadBGAndColor(this)" value="{{ getSettings('--2nd-bg-color') }}">
+                            <select name="color_default" data-target="bg_2" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
                             <label>Second Order Color</label>
-                            <input type="color" id="color_2" onchange="loadBGAndColor()" value="{{ getSettings('--2nd-color') }}">
+                            <input type="color" id="color_2" onchange="loadBGAndColor(this)" value="{{ getSettings('--2nd-color') }}">
+                            <select name="color_default" data-target="color_2" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
         
                     <div class="sections">
                         <div class="form-group">
                             <label>Third Order Background Color</label>
-                            <input type="color" id="bg_3" onchange="loadBGAndColor()" value="{{ getSettings('--3rd-bg-color') }}">
+                            <input type="color" id="bg_3" onchange="loadBGAndColor(this)" value="{{ getSettings('--3rd-bg-color') }}">
+                            <select name="color_default" data-target="bg_3" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
         
                         <div class="form-group">
                             <label>Third Order Color</label>
-                            <input type="color" id="color_3" onchange="loadBGAndColor()" value="{{ getSettings('--3rd-color') }}">
+                            <input type="color" id="color_3" onchange="loadBGAndColor(this)" value="{{ getSettings('--3rd-color') }}">
+                            <select name="color_default" data-target="color_3" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
         
                     <div class="sections">
                         <div class="form-group">
                             <label>Fourth Order Background Color</label>
-                            <input type="color" id="bg_4" onchange="loadBGAndColor()" value="{{ getSettings('--4th-bg-color') }}">
+                            <input type="color" id="bg_4" onchange="loadBGAndColor(this)" value="{{ getSettings('--4th-bg-color') }}">
+                            <select name="color_default" data-target="bg_4" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
         
                         <div class="form-group">
                             <label>Fourth Order Color</label>
-                            <input type="color" id="color_4" onchange="loadBGAndColor()" value="{{ getSettings('--4th-color') }}">
+                            <input type="color" id="color_4" onchange="loadBGAndColor(this)" value="{{ getSettings('--4th-color') }}">
+                            <select name="color_default" data-target="color_4" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
         
                     <div class="sections">
                         <div class="form-group">
                             <label>Fifth Order Background Color</label>
-                            <input type="color" id="bg_5" onchange="loadBGAndColor()" value="{{ getSettings('--5th-bg-color') }}">
+                            <input type="color" id="bg_5" onchange="loadBGAndColor(this)" value="{{ getSettings('--5th-bg-color') }}">
+                            <select name="color_default" data-target="bg_5" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
         
                         <div class="form-group">
                             <label>Fifth Order Color</label>
-                            <input type="color" id="color_5" onchange="loadBGAndColor()" value="{{ getSettings('--5th-color') }}">
+                            <input type="color" id="color_5" onchange="loadBGAndColor(this)" value="{{ getSettings('--5th-color') }}">
+                            <select name="color_default" data-target="color_5" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
         
                     <div class="sections">
                         <div class="form-group">
                             <label>Sixth Order Background Color</label>
-                            <input type="color" id="bg_6" onchange="loadBGAndColor()" value="{{ getSettings('--6th-bg-color') }}">
+                            <input type="color" id="bg_6" onchange="loadBGAndColor(this)" value="{{ getSettings('--6th-bg-color') }}">
+                            <select name="color_default" data-target="bg_6" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
         
                         <div class="form-group">
                             <label>Sixth Order Color</label>
-                            <input type="color" id="color_6" onchange="loadBGAndColor()" value="{{ getSettings('--6th-color') }}">
+                            <input type="color" id="color_6" onchange="loadBGAndColor(this)" value="{{ getSettings('--6th-color') }}">
+                            <select name="color_default" data-target="color_6" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
     
                     <div class="sections">
                         <div class="form-group">
                             <label>Nav Background Color</label>
-                            <input type="color" id="nav_bg" onchange="loadBGAndColor()" value="{{ getSettings('--nav-bg-color') }}">
+                            <input type="color" id="nav_bg" onchange="loadBGAndColor(this)" value="{{ getSettings('--nav-bg-color') }}">
+                            <select name="color_default" data-target="nav_bg" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
         
                         <div class="form-group">
                             <label>Nav Color</label>
-                            <input type="color" id="nav_color" onchange="loadBGAndColor()" value="{{ getSettings('--nav-color') }}">
+                            <input type="color" id="nav_color" onchange="loadBGAndColor(this)" value="{{ getSettings('--nav-color') }}">
+                            <select name="color_default" data-target="nav_color" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
                     
                     <div class="sections">
                         <div class="form-group">
                             <label>Logo Color</label>
-                            <input type="color" id="logo_color" onchange="loadBGAndColor()" value="{{ getSettings('--logo-color') }}">
+                            <input type="color" id="logo_color" onchange="loadBGAndColor(this)" value="{{ getSettings('--logo-color') }}">
+                            <select name="color_default" data-target="logo_color" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
     
                         <div class="form-group">
                             <label>Banner Color</label>
-                            <input type="color" id="banner_color" onchange="loadBGAndColor()" value="{{ getSettings('--banner-color') }}">
+                            <input type="color" id="banner_color" onchange="loadBGAndColor(this)" value="{{ getSettings('--banner-color') }}">
+                            <select name="color_default" data-target="banner_color" onchange="loadDefaultBGAndColor(this)">
+                                <option value="">Customized</option>
+                                <option value="#00FFFF">Aqua</option>
+                                <option value="#000000">Black</option>
+                                <option value="#0000FF">Blue</option>
+                                <option value="#FF00FF">Fuchsia</option>
+                                <option value="#808080">Gray</option>
+                                <option value="#008000">Green</option>
+                                <option value="#00FF00">Lime</option>
+                                <option value="#800000">Maroon</option>
+                                <option value="#000080">Navy</option>
+                                <option value="#808000">Olive</option>
+                                <option value="#800080">Purple</option>
+                                <option value="#FF0000">Red</option>
+                                <option value="#C0C0C0">Silver</option>
+                                <option value="#008080">Teal</option>
+                                <option value="#FFFFFF">White</option>
+                                <option value="#FFFF00">Yellow</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -828,57 +1132,32 @@
             <div class="sections">
                 <div class="form-group">
                     <label for="">Logo Text</label>
-                    <input type="text" class="text-field" id="logo_text" placeholder="enter logo text" value="{{ getSettings('logo-text') }}">
+                    <input type="text" class="text-field" id="logo_text" placeholder="enter logo text" value="{{ getSettings('--logo-text') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="">Banner Text</label>
-                    <input type="text" class="text-field" id="banner_text" placeholder="enter banner text" value="{{ getSettings('banner-text') }}">
+                    <input type="text" class="text-field" id="banner_text" placeholder="enter banner text" value="{{ getSettings('--banner-text') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="">App Name</label>
                     <input type="text" class="text-field" id="app_name" placeholder="enter app name" value="{{ getSettings('app-name') }}">
                 </div>
-            </div>
-
-            {{-- <div class="sections">
-                <div class="form-group">
-                    <label for="">Logo Image</label>
-                    <input type="file" class="text-field" id="logo_image" placeholder="enter logo image">
+            </div>  
+            
+            <div class="sections">
+                <div class="form-image logo">
+                    <label for="logo_image">Logo Image</label>
+                    <img src="{{ asset(getSettings('--logo-image')) }}" alt="Logo Image" class="logo">
+                    <a href="{{ route('settings.image',getSetting('--logo-image')->id) }}" class="button primary shadow click">Upload</a>
                 </div>
-
-                <div class="output">
-                    <img src="{{ getSettings('logo-image') }}" alt="Logo Image" class="image">
+                
+                <div class="form-image banner">
+                    <label for="banner_image">Banner Image</label>
+                    <img src="{{ (count(getSetting('--banner-image')->imageObjects) != 0) ? asset('storage/'.getSettings('--banner-image')) : asset('image/main_bg.jpg') }}" alt="Banner Image" class="banner">
+                    <a href="{{ route('settings.image',getSetting('--banner-image')->id) }}" class="button primary shadow click">Upload</a>
                 </div>
-            </div>             --}}
-
-            <div class="banner-section">
-                <form action="{{ route('settings.update',1) }}" id="banner_form" enctype="multipart/form-data">
-                    @csrf
-                    @method("PUT")
-                    
-                    <div class="form-group">
-                        <label for="banner_image">Banner Image</label>
-
-                        <div class="banner-image-div">
-                            <img src="/image/main_bg.jpg" alt="Banner Image" id="banner_img">
-
-                            <input type="file" id="banner_input" accept="image/*">
-
-                            <div class="button-container">
-                                <button class="button primary" id="banner_button_change" type="button">Change</button>
-                                
-                                <button class="button success" id="banner_button_save" type="submit">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="banner-view-div" id="banner_view_div">
-                <img src="/image/main_bg.jpg" alt="Banner Image">
-                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" id="banner_view_div_close" class="banner-view-div-close"><path d="m358 740 122-122 122 122 42-42-122-122 122-122-42-42-122 122-122-122-42 42 122 122-122 122 42 42ZM140 896q-24 0-42-18t-18-42V316q0-24 18-42t42-18h680q24 0 42 18t18 42v520q0 24-18 42t-42 18H140Zm0-60h680V316H140v520Zm0 0V316v520Z"/></svg>
             </div>
         </div>
 
@@ -956,6 +1235,11 @@
             </div>
         </div>
     </div>  
+</div>
+
+<div class="image-viewer image-viewer-hide" id="image_viewer">
+    <img alt="Image Viewer Image Not Found">
+    <span class="image-viewer-close" id="image_viewer_close_trigger"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></span>
 </div>
 
 @push("CSS")

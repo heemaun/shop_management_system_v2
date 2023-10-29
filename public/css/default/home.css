@@ -5,7 +5,6 @@
   padding: 1rem;
 }
 .home main {
-  background-image: url(/image/main_bg.jpg);
   background-position: center;
   -o-object-fit: cover;
      object-fit: cover;

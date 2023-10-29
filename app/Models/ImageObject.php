@@ -15,7 +15,7 @@ class ImageObject extends Model
         'status_id',
         'user_id',
         'product_id',
-        'settings_id',
+        'setting_id',
         'url',
     ];
 

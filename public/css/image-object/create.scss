@@ -41,8 +41,8 @@
             img{
                 padding: .5rem;
                 border: .1rem solid black;
-                width: 90%;
-                height: 50vh;
+                max-width: 90%;
+                max-height: 50vh;
                 aspect-ratio: 1;
                 object-fit: cover;
                 transition: border-color .5s linear .1s;

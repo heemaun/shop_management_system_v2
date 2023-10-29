@@ -200,8 +200,8 @@
   font-style: var(--banner-font-style);
 }
 .settings-index .panels .backgrounds-and-colors .container .controls {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 0.5rem;
   overflow-y: auto;
   background-color: var(--3rd-bg-color);
@@ -218,16 +218,22 @@
 }
 .settings-index .panels .backgrounds-and-colors .container .controls .sections .form-group {
   padding: 0.5rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+  gap: 0.5rem;
   background-color: var(--5th-bg-color);
   color: var(--5th-color);
   border-radius: var(--section2-border-radius);
 }
 .settings-index .panels .backgrounds-and-colors .container .controls .sections .form-group label {
   white-space: nowrap;
+  justify-self: start;
 }
 .settings-index .panels .backgrounds-and-colors .container .controls .sections .form-group input {
+  justify-self: end;
   width: 2rem;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -235,6 +241,11 @@
   outline: none;
   padding: none;
   background: none;
+}
+.settings-index .panels .backgrounds-and-colors .container .controls .sections .form-group select {
+  justify-self: end;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 .settings-index .panels .backgrounds-and-colors .button-container {
   display: flex;
@@ -418,7 +429,7 @@
 .settings-index .panels .logo-banner .sections {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   padding: 0.5rem;
   background-color: var(--4th-bg-color);
@@ -432,109 +443,50 @@
   color: var(--5th-color);
   border-radius: var(--section3-border-radius);
 }
-.settings-index .panels .logo-banner .banner-section {
-  padding: 0.5rem;
-  background-color: var(--4th-bg-color);
-  color: var(--4th-color);
-  border-radius: var(--section3-border-radius);
-}
-.settings-index .panels .logo-banner .banner-section form {
-  padding: 0.5rem;
-  background-color: var(--4th-bg-color);
-  color: var(--4th-color);
-}
-.settings-index .panels .logo-banner .banner-section form .form-group {
-  padding: 0.5rem;
+.settings-index .panels .logo-banner .sections .form-image {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: var(--5th-bg-color);
-  color: var(--5th-color);
-  border-radius: var(--section3-border-radius);
-}
-.settings-index .panels .logo-banner .banner-section form .form-group .banner-image-div {
   padding: 0.5rem;
-  position: relative;
-  width: 50%;
-  aspect-ratio: 16/9;
-  cursor: pointer;
-  background-color: var(--1st-bg-color);
-  color: var(--6th-color);
-  border-radius: var(--section3-border-radius);
-}
-.settings-index .panels .logo-banner .banner-section form .form-group .banner-image-div img {
-  padding: 0.5rem;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--6th-bg-color);
-  color: var(--6th-color);
-  border-radius: var(--section3-border-radius);
-}
-.settings-index .panels .logo-banner .banner-section form .form-group .banner-image-div input {
-  display: none;
-}
-.settings-index .panels .logo-banner .banner-section form .form-group .banner-image-div .button-container {
-  padding: 0.5rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
-  opacity: 0;
-  transition: all 0.1s;
+  width: 100%;
   background-color: var(--5th-bg-color);
   color: var(--5th-color);
   border-radius: var(--section3-border-radius);
 }
-.settings-index .panels .logo-banner .banner-section form .form-group .banner-image-div .button-container button {
-  width: 100%;
+.settings-index .panels .logo-banner .sections .form-image label {
+  white-space: nowrap;
 }
-.settings-index .panels .logo-banner .banner-section form .form-group .banner-image-div:hover .button-container {
-  opacity: 1;
-}
-.settings-index .panels .logo-banner .banner-view-div {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 30;
-  transform: translateY(-100%);
-  transition: all 1s ease-in-out;
-}
-.settings-index .panels .logo-banner .banner-view-div img {
-  max-width: 95%;
-  max-height: 95vh;
-  aspect-ratio: 16/9;
+.settings-index .panels .logo-banner .sections .form-image img {
+  max-width: 100%;
+  padding: 0.5rem;
+  border: 0.1rem solid black;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: border 0.1s ease-in-out 0.1s;
+  border-radius: var(--section3-border-radius);
 }
-.settings-index .panels .logo-banner .banner-view-div .banner-view-div-close {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  stroke: var(--1st-color);
-  fill: var(--1st-color);
+.settings-index .panels .logo-banner .sections .form-image img:hover {
   cursor: pointer;
+  border: 0.1rem solid white;
 }
-.settings-index .panels .logo-banner .banner-view-div-show {
-  transform: translateY(0%);
+.settings-index .panels .logo-banner .sections .form-image img.logo {
+  aspect-ratio: 1;
+}
+.settings-index .panels .logo-banner .sections .form-image img.banner {
+  aspect-ratio: 16/10;
+}
+.settings-index .panels .logo-banner .sections .logo {
+  flex-grow: 1;
+}
+.settings-index .panels .logo-banner .sections .banner {
+  flex-grow: 1;
+}
+.settings-index .panels .logo-banner .sections:last-child {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .settings-index .panels .miscellaneous {
   display: none;
@@ -621,4 +573,39 @@
 }
 .settings-index .panels .div-active {
   display: flex;
+}
+
+.image-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out 0.1s;
+}
+.image-viewer img {
+  max-width: 90%;
+  max-height: 90vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.image-viewer .image-viewer-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.image-viewer .image-viewer-close:hover {
+  cursor: pointer;
+  fill: white;
+  stroke: white;
+}
+
+.image-viewer-hide {
+  transform: translateY(-100%);
 }/*# sourceMappingURL=index.css.map */

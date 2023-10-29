@@ -280,4 +280,9 @@ class SettingController extends Controller
     {
         
     }
+
+    public function imageUploadGet(Setting $setting)
+    {
+        return view('image-object.create',compact('setting'));
+    }
 }

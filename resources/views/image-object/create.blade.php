@@ -28,12 +28,9 @@
                             {{ asset('image/default_user.jpg') }}
                         @endif
                         @elseif ((strcmp(Request::route()->getName(),'products.image')==0))
-                            {{-- @if (count($product->imageObjects) != 0)
-                                {{ asset('storage/'.$product->imageObjects[0]->url) }}
-                            @else --}}
                                 {{ asset('image/camera.png') }}
-                            {{-- @endif --}}
                         @elseif ((strcmp(Request::route()->getName(),'settings.image')==0))
+                            {{ (count(getSetting('--banner-image')->imageObjects) != 0) ? asset('storage/'.getSettings('--banner-image')) : asset('image/main_bg.jpg') }}
                         @endif"
 
                 class="{{ (strcmp(Request::route()->getName(),'users.image')==0) ? 'profile-picture' : '' }}
@@ -45,7 +42,7 @@
                         {{ (strcmp(Request::route()->getName(),'products.image')==0) ? $product->id : '' }}
                         {{ (strcmp(Request::route()->getName(),'image-object.create')==0) ? 1 : '' }}"
 
-                alt="Default User Profile Image" id="view_image">
+                alt="Loading default image failed" id="view_image">
             
             <span class="error" id="image_input_error"></span>
         </div>
